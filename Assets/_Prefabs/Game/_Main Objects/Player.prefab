@@ -43,7 +43,6 @@ GameObject:
   - component: {fileID: 114669656874546736}
   - component: {fileID: 114916501286600408}
   - component: {fileID: 114597218946347534}
-  - component: {fileID: 114382888638042362}
   - component: {fileID: 114357585291201202}
   - component: {fileID: 54146100963101564}
   m_Layer: 9
@@ -415,7 +414,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1055901625757286}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.5599995, y: -0.481, z: 0}
+  m_LocalPosition: {x: -24.83, y: 6.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4180916011672350}
@@ -1388,25 +1387,6 @@ MonoBehaviour:
   onEnableAdd: 1
   onDisableRemove: 1
   cameraController: {fileID: 0}
---- !u!114 &114382888638042362
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1055901625757286}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: beba6336dba41d44cb79cb881ce896da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stayHold: 0
-  coolDownGrip:
-    timeCoolDown: 0.5
-  display: {fileID: 1258120912091892}
-  gripped: 0
-  rb: {fileID: 54146100963101564}
-  playerController: {fileID: 114916501286600408}
-  inputPlayer: {fileID: 114669656874546736}
 --- !u!114 &114597218946347534
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1421,17 +1401,11 @@ MonoBehaviour:
   jumpHeight: 6
   gravity: 9.81
   stayHold: 0
-  fallMultiplier: 2.5
-  lowMultiplier: 2.5
   coolDownJump:
     timeCoolDown: 0.5
-  airJump: 0
-  coolDownBeforeFirstAirJump:
-    timeCoolDown: 0.6
-  coolDownBetween2AirJump:
-    timeCoolDown: 0.2
   rb: {fileID: 54146100963101564}
   inputPlayer: {fileID: 114669656874546736}
+  playerController: {fileID: 114916501286600408}
 --- !u!114 &114609055067265658
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1509,7 +1483,7 @@ MonoBehaviour:
   inputPlayer: {fileID: 114669656874546736}
   rb: {fileID: 54146100963101564}
   betterJump: {fileID: 114597218946347534}
-  grip: {fileID: 114382888638042362}
+  grip: {fileID: 0}
 --- !u!114 &114951671183239300
 MonoBehaviour:
   m_ObjectHideFlags: 1

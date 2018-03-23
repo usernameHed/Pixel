@@ -41,6 +41,8 @@ public class PlayerController : MonoBehaviour, IKillable
 
     [FoldoutGroup("Debug"), Tooltip("vecteur de la normal"), SerializeField]
     private Vector3 normalCollide = Vector3.up;
+    public Vector3 NormalCollide { get { return (normalCollide); } }
+
     [FoldoutGroup("Debug"), Tooltip("Marge des 90° du jump (0 = toujours en direction de l'arrow, 0.1 = si angle(normal, arrow) se rapproche de 90, on vise le millieu normal-arrow"), SerializeField]
     private float margeHoriz = 0.1f;
     [FoldoutGroup("Debug"), Tooltip("Marge de vitesse: quand on appuis sur aucune touche, mais qu'on jump: si notre vitesse vertical est suppérieur à cette valeur, on saute dans la direction de l'arrow (et non de la normal précédente)"), SerializeField]
@@ -101,7 +103,7 @@ public class PlayerController : MonoBehaviour, IKillable
         {
             if (grounded)
             {
-                MoveHorizOnGround();
+                MoveOnGround();
             }
             else
             {
@@ -114,26 +116,26 @@ public class PlayerController : MonoBehaviour, IKillable
     /// déplace horizontalement le player
     /// </summary>
     /// <param name="inverse"></param>
-    private void MoveHorizOnGround(int inverse = 1)
+    private void MoveOnGround()
     {
         //si on a juste sauté, ne rien faire
         if (!coolDownGroundedJump.IsReady() || !coolDownGrounded.IsReady())
             return;
 
         // Calculate how fast we should be moving
-        Vector3 targetVelocity = new Vector3(InputPlayerScript.Horiz, 0, 0);
+        Vector3 targetVelocity = new Vector3(InputPlayerScript.Horiz, InputPlayerScript.Verti, 0);
         targetVelocity = transform.TransformDirection(targetVelocity);
         targetVelocity *= speed;
 
         // Apply a force that attempts to reach our target velocity
         Vector3 velocity = rb.velocity;
         Vector3 velocityChange = (targetVelocity - velocity);
-        velocityChange.x = Mathf.Clamp(velocityChange.x, -maxVelocityChange, maxVelocityChange) * inverse;
-        velocityChange.y = 0;
+        velocityChange.x = Mathf.Clamp(velocityChange.x, -maxVelocityChange, maxVelocityChange);
+        velocityChange.y = Mathf.Clamp(velocityChange.y, -maxVelocityChange, maxVelocityChange);
         velocityChange.z = 0;
 
-        //si on veut bouger en x...
-        if (velocityChange.x != 0)
+        //si on veut bouger...
+        if (velocityChange.x != 0 || velocityChange.y != 0)
         {
             //calcule les 3 angle
             float angleDirInput = QuaternionExt.GetAngleFromVector(targetVelocity); //direction de l'input (droite ou gauche, 0 ou 180)
@@ -151,7 +153,7 @@ public class PlayerController : MonoBehaviour, IKillable
                 
                 switch (onWall)
                 {
-                    case 1:
+                    /*case 1:
                         Debug.Log("ici ne pas continuer vers la gauche");
                         coolDownGrounded.StartCoolDown();
                         break;
@@ -160,7 +162,7 @@ public class PlayerController : MonoBehaviour, IKillable
                         coolDownGrounded.StartCoolDown();
                         break;
                     case 2: //on est sur le plafond
-                    case 0: //on est pas sur un mur
+                    case 0: //on est pas sur un mur*/
                     default:
                         Debug.Log("ici move normalement, ne rien faire si vecteur de l'inertie INVERSE de normal collision ?? ET si on est sur un plafond, slider ??");
                         //Debug.Log("normal: " + angleNormal + ", input:" + angleDirInput + ", player:" + anglePlayer);
@@ -320,7 +322,6 @@ public class PlayerController : MonoBehaviour, IKillable
         grounded = false;
         coolDownGroundedJump.StartCoolDown();
 
-        grip.Gripping(false);
         betterJump.Jump(dir);
     }
 
@@ -473,7 +474,9 @@ public class PlayerController : MonoBehaviour, IKillable
         if (stopAction)
             return;
 
-        normalCollide = QuaternionExt.GetMiddleOfXVector(colliderNormalArray);
+        Vector3 normalMedium = QuaternionExt.GetMiddleOfXVector(colliderNormalArray);
+        if (normalMedium != Vector3.zero)
+            normalCollide = normalMedium;
 
         TryToMove();
         TryToJump();

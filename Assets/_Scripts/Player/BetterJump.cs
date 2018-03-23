@@ -9,6 +9,8 @@ public class BetterJump : MonoBehaviour
     private float jumpHeight = 2.0f;
     [FoldoutGroup("GamePlay"), Tooltip("gravité du saut"), SerializeField]
     private float gravity = 9.81f;
+    [FoldoutGroup("GamePlay"), Tooltip("gravité du saut"), SerializeField]
+    private float fallMultiplier = 1.0f;
     [FoldoutGroup("GamePlay"), Tooltip("jumper constament en restant appuyé ?"), SerializeField]
     private bool stayHold = false;
     [Space(10)]
@@ -82,12 +84,17 @@ public class BetterJump : MonoBehaviour
 
     private void FixedUpdate ()
 	{
-        //if (playerController.Grounded)
+        if (!playerController.Grounded)
+        {
+            Debug.Log("retourne sur terre !");
+            rb.velocity += playerController.NormalCollide * Physics.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
+            Debug.DrawRay(transform.position, playerController.NormalCollide, Color.magenta, 1f);
+        }
         //rb.velocity
         /*
         if (rb.velocity.y < 0)
 		{
-            rb.velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
+            
 		}
         else if (rb.velocity.y > 0 && !inputPlayer.JumpInput)
         {
