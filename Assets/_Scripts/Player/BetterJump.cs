@@ -12,24 +12,16 @@ public class BetterJump : MonoBehaviour
     [FoldoutGroup("GamePlay"), Tooltip("jumper constament en restant appuyé ?"), SerializeField]
     private bool stayHold = false;
     [Space(10)]
-    [FoldoutGroup("GamePlay"), OnValueChanged("InitValue"), Tooltip("facteur de gravité down"), SerializeField]
-	private float fallMultiplier = 2.5f;
-    [FoldoutGroup("GamePlay"), OnValueChanged("InitValue"), Tooltip("facteur de gravité up quand on n'appui plus"), SerializeField]
-    private float lowMultiplier = 2.5f;
     [FoldoutGroup("GamePlay"), Tooltip("cooldown du jump"), SerializeField]
     private FrequencyCoolDown coolDownJump;
-    [Space(10)]
-    [FoldoutGroup("GamePlay"), Tooltip("Nombre de air jump ?"), SerializeField]
-    private int airJump = 0;
-    [FoldoutGroup("GamePlay"), Tooltip("Si air jump, combien de tempt d'attente avant le premier air jump ?"), SerializeField]
-    private FrequencyCoolDown coolDownBeforeFirstAirJump;
-    [FoldoutGroup("GamePlay"), Tooltip("Si air jump, combien de tempt d'attente entre 2 air jump ?"), SerializeField]
-    private FrequencyCoolDown coolDownBetween2AirJump;
+
 
     [FoldoutGroup("Debug"), Tooltip("ref"), SerializeField]
     private Rigidbody rb;
     [FoldoutGroup("Debug"), Tooltip("ref"), SerializeField]
     private InputPlayer inputPlayer;
+    [FoldoutGroup("Debug"), Tooltip("ref"), SerializeField]
+    private PlayerController playerController;
 
     private Vector3 initialVelocity;
 
@@ -90,6 +82,9 @@ public class BetterJump : MonoBehaviour
 
     private void FixedUpdate ()
 	{
+        //if (playerController.Grounded)
+        //rb.velocity
+        /*
         if (rb.velocity.y < 0)
 		{
             rb.velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
@@ -98,6 +93,7 @@ public class BetterJump : MonoBehaviour
         {
             rb.velocity += Vector3.up * Physics.gravity.y * (lowMultiplier - 1) * Time.fixedDeltaTime;
         }
+        */
     }
 
     private void Update()
