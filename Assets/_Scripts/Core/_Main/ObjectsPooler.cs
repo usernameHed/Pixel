@@ -13,7 +13,7 @@ public class ObjectsPooler : SingletonMono<ObjectsPooler>
     [System.Serializable]
     public class Pool
     {
-        public GameData.Prefabs tag;
+        public GameData.PoolTag tag;
         public GameObject prefab;
         public int size;
         public bool shouldExpand = false;
@@ -22,7 +22,7 @@ public class ObjectsPooler : SingletonMono<ObjectsPooler>
     [FoldoutGroup("GamePlay"), Tooltip("new pool"), SerializeField]
     private List<Pool> pools;
 
-    private Dictionary<GameData.Prefabs, List<GameObject>> poolDictionary;
+    private Dictionary<GameData.PoolTag, List<GameObject>> poolDictionary;
 
     #endregion
 
@@ -39,7 +39,7 @@ public class ObjectsPooler : SingletonMono<ObjectsPooler>
     /// </summary>
     private void InitPool()
     {
-        poolDictionary = new Dictionary<GameData.Prefabs, List<GameObject>>();
+        poolDictionary = new Dictionary<GameData.PoolTag, List<GameObject>>();
 
         for (int j = 0; j < pools.Count; j++)
         {
@@ -63,7 +63,7 @@ public class ObjectsPooler : SingletonMono<ObjectsPooler>
     /// </summary>
     public void desactiveEveryOneForTransition()
     {
-        foreach (KeyValuePair<GameData.Prefabs, List<GameObject>> attachStat in poolDictionary)
+        foreach (KeyValuePair<GameData.PoolTag, List<GameObject>> attachStat in poolDictionary)
         {
             List<GameObject> objFromTag = attachStat.Value;
             for (int j = 0; j < objFromTag.Count; j++)
@@ -99,7 +99,7 @@ public class ObjectsPooler : SingletonMono<ObjectsPooler>
     /// <summary>
     /// access object from pool
     /// </summary>
-    public GameObject SpawnFromPool(GameData.Prefabs tag, Vector3 position, Quaternion rotation, Transform parent)
+    public GameObject SpawnFromPool(GameData.PoolTag tag, Vector3 position, Quaternion rotation, Transform parent)
     {
         if (!poolDictionary.ContainsKey(tag))
         {

@@ -53,6 +53,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pools:
   - tag: 0
-    prefab: {fileID: 1608521408533352, guid: c0c03b57f4c7a448884569172a68f988, type: 2}
-    size: 30
+    prefab: {fileID: 1551932104604348, guid: 08ad5b94817038a44a07f56bc17f73a3, type: 2}
+    size: 10
     shouldExpand: 0

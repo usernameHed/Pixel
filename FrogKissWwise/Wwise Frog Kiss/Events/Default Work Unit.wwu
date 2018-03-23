@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{9F383271-D774-4D0B-AB5E-304080A2F4DA}" SchemaVersion="85">
+	<Events>
+		<WorkUnit Name="Default Work Unit" ID="{9F383271-D774-4D0B-AB5E-304080A2F4DA}" PersistMode="Standalone">
+			<ChildrenList>
+				<Event Name="Play_vent" ID="{7AED14D5-DE34-4607-ACA4-E750C41A14BF}">
+					<ChildrenList>
+						<Action Name="" ID="{6C96A8F5-1417-40BB-B120-606213DD178B}" ShortID="16034106">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="1"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="vent" ID="{1D131021-CC77-411C-99A7-CE43028845B7}" WorkUnitID="{FDF87CCA-B268-48D5-965B-F36042191A27}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Stop_vent" ID="{E4DFA8E9-9A33-4C70-95CB-BCB04DDDE283}">
+					<ChildrenList>
+						<Action Name="" ID="{010B0109-1CBF-4310-8F45-ADA149207705}" ShortID="1011453627">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="2"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="vent" ID="{1D131021-CC77-411C-99A7-CE43028845B7}" WorkUnitID="{FDF87CCA-B268-48D5-965B-F36042191A27}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_sfx2D" ID="{A6685703-1413-4ECB-B3FF-EDB44743296D}">
+					<ChildrenList>
+						<Action Name="" ID="{5578BA13-09E1-47E9-8AB0-F53FBCBDEA6D}" ShortID="285379475">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="1"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="menu_validation" ID="{A94B757E-F46C-4112-99CA-6D9933FA34F5}" WorkUnitID="{FDF87CCA-B268-48D5-965B-F36042191A27}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_sfx3D" ID="{2E83C665-9784-4090-8415-AA46868AB063}">
+					<ChildrenList>
+						<Action Name="" ID="{E98164F4-3FF1-4DEE-8069-87754AE87C80}" ShortID="669826321">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="1"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Sheep_Cartoon_Baa_4" ID="{099D2F3C-23A9-4918-9E88-97B65C76EC96}" WorkUnitID="{FDF87CCA-B268-48D5-965B-F36042191A27}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_LOOP" ID="{A8462AE0-92E9-4080-9F6E-AE91783BA4E3}">
+					<ChildrenList>
+						<Action Name="" ID="{7CDDCE0E-3A1B-4D6C-A122-078595F3C8AE}" ShortID="894112146">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="1"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="LOOP" ID="{AE159AC2-7B83-455A-B4CF-6CBB532B087A}" WorkUnitID="{24441BEA-7D03-40CF-9A6C-232D396C0874}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Stop_LOOP" ID="{E4A243CE-6FDA-427D-BEE6-6A0461406ACF}">
+					<ChildrenList>
+						<Action Name="" ID="{009469DB-0673-43F0-8C54-2FB36D713424}" ShortID="115759943">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="2"/>
+								<Property Name="Scope" Type="int16" Value="1"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="LOOP" ID="{AE159AC2-7B83-455A-B4CF-6CBB532B087A}" WorkUnitID="{24441BEA-7D03-40CF-9A6C-232D396C0874}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+			</ChildrenList>
+		</WorkUnit>
+	</Events>
+</WwiseDocument>

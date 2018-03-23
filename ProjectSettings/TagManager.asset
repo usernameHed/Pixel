@@ -24,12 +24,12 @@ TagManager:
   - 
   - 
   - Lock
-  - Rope
   - Player
-  - BallColliderLink
-  - Bonus
-  - Object
-  - ObjectBumper
+  - Obstacle
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 

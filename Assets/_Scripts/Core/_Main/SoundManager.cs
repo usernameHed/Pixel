@@ -14,7 +14,7 @@ public class SoundManager : SerializedMonoBehaviour                             
     /// </summary>
     
     [SerializeField]
-    public Dictionary<string, FmodEventEmitter> soundsEmitter = new Dictionary<string, FmodEventEmitter>();
+    //public Dictionary<string, FmodEventEmitter> soundsEmitter = new Dictionary<string, FmodEventEmitter>();
 
     //public FmodEventEmitter musicEmitterScript;
 
@@ -70,13 +70,13 @@ public class SoundManager : SerializedMonoBehaviour                             
     /// </summary>
     private void stateMusicChanged()
     {
-        playSound(GetEmitter("BackgroundMusic"), "Checkpoint", musicState);
+        //playSound(GetEmitter("BackgroundMusic"), "Checkpoint", musicState);
     }
 
     /// <summary>
     /// ajoute une key dans la liste
     /// </summary>
-    public void AddKey(string key, FmodEventEmitter value)
+    /*public void AddKey(string key, FmodEventEmitter value)
     {
         foreach (KeyValuePair<string, FmodEventEmitter> sound in soundsEmitter)
         {
@@ -115,7 +115,7 @@ public class SoundManager : SerializedMonoBehaviour                             
             }
         }
         return (null);
-    }
+    }*/
 
     /// <summary>
     /// joue un son de menu (sans emmiter)
@@ -127,7 +127,7 @@ public class SoundManager : SerializedMonoBehaviour                             
 
         if (!soundTag.Contains("event:/"))
             soundTag = "event:/SFX/" + soundTag;
-        playSound(GetEmitter(soundTag), stop);
+        //playSound(GetEmitter(soundTag), stop);
         //FMODUnity.RuntimeManager.PlayOneShot("2D sound");   //methode 1 
     }
 
@@ -135,7 +135,7 @@ public class SoundManager : SerializedMonoBehaviour                             
     /// ici play l'emitter (ou le stop)
     /// </summary>
     /// <param name="emitterScript"></param>
-    public void playSound(FmodEventEmitter emitterScript, bool stop = false)
+    /*public void playSound(FmodEventEmitter emitterScript, bool stop = false)
     {
 
         if (!emitterScript)
@@ -148,16 +148,16 @@ public class SoundManager : SerializedMonoBehaviour                             
             emitterScript.play();
         else
             emitterScript.stop();
-    }
+    }*/
 
     /// <summary>
     /// ici change le paramettre de l'emitter
     /// </summary>
     /// <param name="emitterScript"></param>
-    public void playSound(FmodEventEmitter emitterScript, string paramName, float value)
+    /*public void playSound(FmodEventEmitter emitterScript, string paramName, float value)
     {
         emitterScript.setParameterValue(paramName, value);
-    }
+    }*/
 
     #endregion
 }

@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{FDF87CCA-B268-48D5-965B-F36042191A27}" SchemaVersion="85">
+	<AudioObjects>
+		<WorkUnit Name="Frog Kiss" ID="{FDF87CCA-B268-48D5-965B-F36042191A27}" PersistMode="Standalone">
+			<ChildrenList>
+				<ActorMixer Name="sfx 3D" ID="{CB202707-6141-40B4-9C58-86B1E7A12E8B}" ShortID="24278708">
+					<PropertyList>
+						<Property Name="PositioningType" Type="int16" Value="1"/>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{75FB60AC-0C31-4E02-B4DD-96B6B4574002}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{BD75C167-58EB-4C75-A5CD-2B120D290B5B}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<Sound Name="Sheep_Cartoon_Baa_4" ID="{099D2F3C-23A9-4918-9E88-97B65C76EC96}" ShortID="325231303">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{75FB60AC-0C31-4E02-B4DD-96B6B4574002}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{BD75C167-58EB-4C75-A5CD-2B120D290B5B}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Sheep_Cartoon_Baa_4" ID="{191D3834-3169-413C-93B0-8734F14D87C0}" ShortID="312959866">
+									<Language>SFX</Language>
+									<AudioFile>Sheep_Cartoon_Baa_4.wav</AudioFile>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="Sheep_Cartoon_Baa_4" ID="{191D3834-3169-413C-93B0-8734F14D87C0}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+					</ChildrenList>
+					<PositioningInfo>
+						<Position Name="" ID="{F1C7714B-DE67-4EFA-B098-19E2CC590237}"/>
+					</PositioningInfo>
+				</ActorMixer>
+				<ActorMixer Name="sfx 2D" ID="{BDBCC1A3-9871-42FA-91FD-7019E2E6625C}" ShortID="501271098">
+					<PropertyList>
+						<Property Name="Volume" Type="Real64">
+							<ValueList>
+								<Value>12</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{75FB60AC-0C31-4E02-B4DD-96B6B4574002}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{BD75C167-58EB-4C75-A5CD-2B120D290B5B}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<Sound Name="menu_validation" ID="{A94B757E-F46C-4112-99CA-6D9933FA34F5}" ShortID="641237355">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{75FB60AC-0C31-4E02-B4DD-96B6B4574002}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{BD75C167-58EB-4C75-A5CD-2B120D290B5B}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="menu_validation" ID="{C5AF065F-5D8F-4C93-A3CC-9A9E9496F5EA}" ShortID="741145507">
+									<Language>SFX</Language>
+									<AudioFile>menu_validation.wav</AudioFile>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="menu_validation" ID="{C5AF065F-5D8F-4C93-A3CC-9A9E9496F5EA}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+					</ChildrenList>
+					<PositioningInfo>
+						<Panner Name="" ID="{6236FDEC-750A-4252-85C4-D793588C9B56}">
+							<PropertyList>
+								<Property Name="PanX" Type="Real64" Value="1.2012012012012"/>
+								<Property Name="PanY" Type="Real64" Value="13.6291600633915"/>
+							</PropertyList>
+						</Panner>
+						<Position Name="" ID="{B51D3E89-7D7B-451E-A8CB-6054661E0849}"/>
+					</PositioningInfo>
+				</ActorMixer>
+				<ActorMixer Name="vent" ID="{93F624FC-CE81-4F72-A718-BAEF7C38DDA5}" ShortID="880666791">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{75FB60AC-0C31-4E02-B4DD-96B6B4574002}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{BD75C167-58EB-4C75-A5CD-2B120D290B5B}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<Sound Name="vent" ID="{1D131021-CC77-411C-99A7-CE43028845B7}" ShortID="960726966">
+							<PropertyList>
+								<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+								<Property Name="Pitch" Type="int32">
+									<RTPCList>
+										<RTPC Name="" ID="{B4A17EF2-B595-49B3-94C1-FA91DEF48940}" ShortID="118198262">
+											<ReferenceList>
+												<Reference Name="ControlInput">
+													<ObjectRef Name="pitch" ID="{FA33360D-5DF9-4CF5-AD73-9D6F548B971A}" WorkUnitID="{F71DCA4E-3ACF-4E02-8C33-8F6E9BD58B45}"/>
+												</Reference>
+											</ReferenceList>
+											<Curve Name="" ID="{FB7D0FEF-925F-4ED6-AD77-8C57D03990B3}">
+												<PropertyList>
+													<Property Name="Flags" Type="int32" Value="65537"/>
+												</PropertyList>
+												<PointList>
+													<Point>
+														<XPos>0</XPos>
+														<YPos>-2500</YPos>
+														<Flags>5</Flags>
+													</Point>
+													<Point>
+														<XPos>100</XPos>
+														<YPos>2500</YPos>
+														<Flags>37</Flags>
+													</Point>
+												</PointList>
+											</Curve>
+										</RTPC>
+									</RTPCList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{75FB60AC-0C31-4E02-B4DD-96B6B4574002}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{BD75C167-58EB-4C75-A5CD-2B120D290B5B}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="loop vent" ID="{79851FBB-35C9-478A-858C-A509EA6D9624}" ShortID="406653414">
+									<Language>SFX</Language>
+									<AudioFile>loop vent.wav</AudioFile>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="loop vent" ID="{79851FBB-35C9-478A-858C-A509EA6D9624}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+					</ChildrenList>
+				</ActorMixer>
+			</ChildrenList>
+		</WorkUnit>
+	</AudioObjects>
+</WwiseDocument>

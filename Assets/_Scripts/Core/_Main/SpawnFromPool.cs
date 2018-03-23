@@ -14,7 +14,7 @@ public class SpawnFromPool : MonoBehaviour
     public struct SpawnsObjects
     {
         [Tooltip("Le type d'objet qui est contenue dans le transform")]
-        public GameData.Prefabs objectToSpawn;
+        public GameData.PoolTag objectToSpawn;
         [Tooltip("la parent contenant tout les objets")]
         public Transform parentOfChilds;
     }

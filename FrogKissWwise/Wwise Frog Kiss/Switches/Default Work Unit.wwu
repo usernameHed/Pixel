@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{B171FCDA-56FB-418D-BB4E-A05B7807ED40}" SchemaVersion="85">
+	<Switches>
+		<WorkUnit Name="Default Work Unit" ID="{B171FCDA-56FB-418D-BB4E-A05B7807ED40}" PersistMode="Standalone"/>
+	</Switches>
+</WwiseDocument>

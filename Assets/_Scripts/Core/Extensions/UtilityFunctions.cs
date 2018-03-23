@@ -13,22 +13,6 @@ public static class UtilityFunctions
     #region core script
 
     /// <summary>
-    /// renvoi l'angle entre deux vecteur, avec le 3eme vecteur de référence
-    /// </summary>
-    /// <param name="a">vecteur A</param>
-    /// <param name="b">vecteur B</param>
-    /// <param name="n">reference</param>
-    /// <returns>Retourne un angle en degré</returns>
-    public static float SignedAngleBetween(Vector3 a, Vector3 b, Vector3 n)
-    {
-        float angle = Vector3.Angle(a, b);                                  // angle in [0,180]
-        float sign = Mathf.Sign(Vector3.Dot(n, Vector3.Cross(a, b)));       //Cross for testing -1, 0, 1
-        float signed_angle = angle * sign;                                  // angle in [-179,180]
-        float angle360 = (signed_angle + 360) % 360;                       // angle in [0,360]
-        return (angle360);
-    }
-
-    /// <summary>
     /// get random number between 2;
     /// </summary>
     public static int GetRandomNumber(int minimum, int maximum)
@@ -67,7 +51,7 @@ public static class UtilityFunctions
         Vector3 C = Quaternion.AngleAxis(90 + fovAngle / 2, -first.forward) * -first.right;
 
         RaycastHit hit;
-        if (SignedAngleBetween(first.up, B, first.up) <= SignedAngleBetween(first.up, C, first.up) || fovAngle == 360)
+        if (QuaternionExt.SignedAngleBetween(first.up, B, first.up) <= QuaternionExt.SignedAngleBetween(first.up, C, first.up) || fovAngle == 360)
         {
             //on est dans le bon angle !
             //est-ce qu'on check la distance ?

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{385B9A72-628D-429C-A7B3-3BB078692F22}" SchemaVersion="85">
+	<SoundBanks>
+		<WorkUnit Name="Default Work Unit" ID="{385B9A72-628D-429C-A7B3-3BB078692F22}" PersistMode="Standalone">
+			<ChildrenList>
+				<SoundBank Name="New_SoundBank" ID="{6917B16A-3B4B-431F-AE78-636823B14680}">
+					<ObjectInclusionList>
+						<ObjectRef Name="Play_LOOP" ID="{A8462AE0-92E9-4080-9F6E-AE91783BA4E3}" WorkUnitID="{9F383271-D774-4D0B-AB5E-304080A2F4DA}" Filter="7" Origin="Manual"/>
+						<ObjectRef Name="Play_sfx3D" ID="{2E83C665-9784-4090-8415-AA46868AB063}" WorkUnitID="{9F383271-D774-4D0B-AB5E-304080A2F4DA}" Filter="7" Origin="Manual"/>
+						<ObjectRef Name="Stop_LOOP" ID="{E4A243CE-6FDA-427D-BEE6-6A0461406ACF}" WorkUnitID="{9F383271-D774-4D0B-AB5E-304080A2F4DA}" Filter="7" Origin="Manual"/>
+						<ObjectRef Name="Play_vent" ID="{7AED14D5-DE34-4607-ACA4-E750C41A14BF}" WorkUnitID="{9F383271-D774-4D0B-AB5E-304080A2F4DA}" Filter="7" Origin="Manual"/>
+						<ObjectRef Name="Stop_vent" ID="{E4DFA8E9-9A33-4C70-95CB-BCB04DDDE283}" WorkUnitID="{9F383271-D774-4D0B-AB5E-304080A2F4DA}" Filter="7" Origin="Manual"/>
+						<ObjectRef Name="Play_sfx2D" ID="{A6685703-1413-4ECB-B3FF-EDB44743296D}" WorkUnitID="{9F383271-D774-4D0B-AB5E-304080A2F4DA}" Filter="7" Origin="Manual"/>
+					</ObjectInclusionList>
+					<ObjectExclusionList/>
+					<GameSyncExclusionList/>
+				</SoundBank>
+			</ChildrenList>
+		</WorkUnit>
+	</SoundBanks>
+</WwiseDocument>

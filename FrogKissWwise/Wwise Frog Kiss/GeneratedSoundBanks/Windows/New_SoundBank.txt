@@ -1,0 +1,15 @@
+Event	ID	Name			Wwise Object Path	Notes
+	1350749805	Stop_vent			\Default Work Unit\Stop_vent	
+	1640874226	Stop_LOOP			\Default Work Unit\Stop_LOOP	
+	3394929946	Play_sfx3D			\Default Work Unit\Play_sfx3D	
+	3411707765	Play_sfx2D			\Default Work Unit\Play_sfx2D	
+	4058155063	Play_vent			\Default Work Unit\Play_vent	
+	4266239556	Play_LOOP			\Default Work Unit\Play_LOOP	
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	28040161	loop 1	C:\Users\Aurélien Demey\Documents\WwiseProjects\Wwise Frog Kiss\.cache\Windows\SFX\loop 1_F17FB28C.wem		\Interactive Music Hierarchy\Music placeholder\LOOP\loop 1\loop 1\loop 1		2712724
+	312959866	Sheep_Cartoon_Baa_4	C:\Users\Aurélien Demey\Documents\WwiseProjects\Wwise Frog Kiss\.cache\Windows\SFX\Sheep_Cartoon_Baa_4_1C9C67B2.wem		\Actor-Mixer Hierarchy\Frog Kiss\sfx 3D\Sheep_Cartoon_Baa_4		171072
+	741145507	menu_validation	C:\Users\Aurélien Demey\Documents\WwiseProjects\Wwise Frog Kiss\.cache\Windows\SFX\menu_validation_1C9C67B2.wem		\Actor-Mixer Hierarchy\Frog Kiss\sfx 2D\menu_validation		159724
+	748229991	loop 2	C:\Users\Aurélien Demey\Documents\WwiseProjects\Wwise Frog Kiss\.cache\Windows\SFX\loop 2_F17FB28C.wem		\Interactive Music Hierarchy\Music placeholder\LOOP\loop2\loop 2\loop 2		1354696
+	914008164	bridge	C:\Users\Aurélien Demey\Documents\WwiseProjects\Wwise Frog Kiss\.cache\Windows\SFX\bridge_F17FB28C.wem		\Interactive Music Hierarchy\Music placeholder\LOOP\loop2\bridge\bridge		675796
+

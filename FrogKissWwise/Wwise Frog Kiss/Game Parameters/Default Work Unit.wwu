@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{F71DCA4E-3ACF-4E02-8C33-8F6E9BD58B45}" SchemaVersion="85">
+	<GameParameters>
+		<WorkUnit Name="Default Work Unit" ID="{F71DCA4E-3ACF-4E02-8C33-8F6E9BD58B45}" PersistMode="Standalone">
+			<ChildrenList>
+				<GameParameter Name="pitch" ID="{FA33360D-5DF9-4CF5-AD73-9D6F548B971A}"/>
+			</ChildrenList>
+		</WorkUnit>
+	</GameParameters>
+</WwiseDocument>

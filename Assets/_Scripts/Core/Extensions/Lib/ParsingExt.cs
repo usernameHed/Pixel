@@ -3,7 +3,7 @@ using System.IO;
 using System;
 using System.Text.RegularExpressions;
 using System.Text;
-
+using System.Collections.Generic;
 
 /// <summary>
 /// Fonctions utile
@@ -53,6 +53,15 @@ public static class ParsingExt
     public static string[] GetStringsFromEnum<T>(T[] layers)
     {
         string[] toPush = new string[layers.Length];
+        for (int i = 0; i < toPush.Length; i++)
+        {
+            toPush[i] = layers[i].ToString();
+        }
+        return (toPush);
+    }
+    public static string[] GetStringsFromEnum<T>(List<T> layers)
+    {
+        string[] toPush = new string[layers.Count];
         for (int i = 0; i < toPush.Length; i++)
         {
             toPush[i] = layers[i].ToString();

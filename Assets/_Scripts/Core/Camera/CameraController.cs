@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
-using System.Collections;
 
 /// <summary>
 /// Manage camera
@@ -30,9 +29,9 @@ public class CameraController : MonoBehaviour
     [FoldoutGroup("GamePlay"), Tooltip("Approximation: la caméra est-elle sur sa cible ?"), SerializeField]
     private float focusThreshold = 0f;
 
-
+    // Border margin before unzoom
     [FoldoutGroup("GamePlay"), Tooltip("Border margin de l'axe Z du zoom"), SerializeField]
-    private float borderMarginZ = 4f;
+    private float borderMargin = 4f;
 
     //Fallback target if target list is empty
     [FoldoutGroup("GamePlay"), Space(10), Tooltip("objet que la caméra doit focus s'il n'y a plus de target"), SerializeField]
@@ -45,12 +44,9 @@ public class CameraController : MonoBehaviour
     private float smoothTimeWhenFallBack = 1f;
 
 
-    [FoldoutGroup("GamePlay"), Space(10), Tooltip("position du listener dans la scene"), SerializeField]
-    private Transform fmodListener;
-
     //Target list
     [FoldoutGroup("Debug"), Tooltip("list de target"), SerializeField]
-	private List<CameraTarget> targetList = new List<CameraTarget>();
+    private List<CameraTarget> targetList = new List<CameraTarget>();
     [FoldoutGroup("Debug"), Tooltip("Des que c'est vrai, la camera focus la cameraTarget quand elle n'a plus de cible"), SerializeField]
     private bool fallBack = false;
 
@@ -64,8 +60,6 @@ public class CameraController : MonoBehaviour
 	{
 		get { return averageTargetPosition; }
 	}
-
-    private Vector3 posLisener;
     private float holdSmooth = 0;
 
     #endregion
@@ -83,13 +77,12 @@ public class CameraController : MonoBehaviour
 
     private void InitCamera()
     {
-        posLisener = new Vector3(0, 0, 0);
+        CancelInvoke("FallBack");
         if (holdSmooth == 0)
             holdSmooth = smoothTime;
         else
             smoothTime = holdSmooth;
     }
-
     #endregion
 
     #region Core
@@ -99,14 +92,6 @@ public class CameraController : MonoBehaviour
     private void GameOver()
     {
         Invoke("FallBack", timeBeforeFallBack);
-    }
-
-    /// <summary>
-    /// ici annule le fallback si on a fait restart !!
-    /// </summary>
-    private void RoundStart()
-    {
-        CancelInvoke("FallBack");
     }
 
     private void FallBack()
@@ -120,7 +105,7 @@ public class CameraController : MonoBehaviour
     /// <summary>
     /// Add target to camera
     /// </summary>
-	public void AddTarget(CameraTarget other)
+    public void AddTarget(CameraTarget other)
     {
 		// Check object is not already a target
         if (targetList.IndexOf(other) < 0)
@@ -194,33 +179,25 @@ public class CameraController : MonoBehaviour
             if (i == 0)
             {
                 minX = maxX = target.transform.position.x;
-                minY = maxY = target.transform.position.z;
+                minY = maxY = target.transform.position.y;
             }
             else
             {
 				// Extends min max bounds
                 minX = (target.transform.position.x < minX) ? target.transform.position.x : minX;
                 maxX = (target.transform.position.x > maxX) ? target.transform.position.x : maxX;
-                //minY = (target.transform.position.y < minY) ? target.transform.position.y : minY;
-                //maxY = (target.transform.position.y > maxY) ? target.transform.position.y : maxY;
-                minY = (target.transform.position.z < minY) ? target.transform.position.z : minY;
-                maxY = (target.transform.position.z > maxY) ? target.transform.position.z : maxY;
+                minY = (target.transform.position.y < minY) ? target.transform.position.y : minY;
+                maxY = (target.transform.position.y > maxY) ? target.transform.position.y : maxY;
             }
-
+				
             activeTargetAmount++;
         }
 
         // Find middle point for all targets
         if (activeTargetAmount > 0)
         {
-            /*minX -= borderMarginXYZ[0];
-            maxX += borderMarginXYZ[0];
-            minY -= borderMarginXYZ[1];
-            maxY -= borderMarginXYZ[1];*/
-
-            averagePos.x = (minX + maxX) / 2.0f;
-            //averagePos.y = (minY + maxY) / 2.0F;
-            averagePos.z = (minY + maxY) / 2.0f;
+            averagePos.x = (minX + maxX) / 2.0F;
+            averagePos.y = (minY + maxY) / 2.0F;
         }
 
         // If no targets, select fallback focus
@@ -234,8 +211,7 @@ public class CameraController : MonoBehaviour
 
         // Calculate zoom
         float dist = Mathf.Max(Mathf.Abs(maxX - minX), Mathf.Abs(maxY - minY));
-        //averagePos.z = (targetList.Count > 1) ? -Mathf.Min(Mathf.Max(minZoom, dist + borderMargin), maxZoom) : -defaultZoom;
-        averagePos.y = (targetList.Count > 1) ? Mathf.Min(Mathf.Max(minZoom, dist + borderMarginZ), maxZoom) : defaultZoom;
+        averagePos.z = (targetList.Count > 1) ? -Mathf.Min(Mathf.Max(minZoom, dist + borderMargin), maxZoom) : -defaultZoom;
 
         // Change camera target
         averageTargetPosition = averagePos;
@@ -275,11 +251,8 @@ public class CameraController : MonoBehaviour
     #region unity ending
     private void Update()
     {
-        //freezeCamera = targetList.Count == 0 && fallBackTarget == null;
         SetFreez();
 
-        //if (targetList.Count == 0 && ((fallBackTarget && !fallBack) || fallBackTarget == null))
-        //  freezeCamera = true;
 
         if (updateTimer.Ready())
         {
@@ -295,23 +268,18 @@ public class CameraController : MonoBehaviour
     }
 
     /// <summary>
-	/// Smoothly move camera toward averageTargetPosition
+    /// Smoothly move camera toward averageTargetPosition
     /// </summary>
     private void FixedUpdate()
     {
-		if (freezeCamera || HasReachedTargetPosition ())
-		{
-			return;
-		}
+        if (freezeCamera || HasReachedTargetPosition())
+        {
+            return;
+        }
 
         // Move to desired position
-		transform.position = Vector3.SmoothDamp(transform.position, averageTargetPosition, ref currentVelocity, smoothTime);
+        transform.position = Vector3.SmoothDamp(transform.position, averageTargetPosition, ref currentVelocity, smoothTime);
         //posLisener = transform.position;    //change listenerPosition
-    }
-
-    private void LateUpdate()
-    {
-        fmodListener.SetY(0);
     }
 
     private void OnDisable()

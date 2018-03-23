@@ -72,13 +72,15 @@ public class LevelManager : MonoBehaviour, ILevelManager
     [Button("Restart")]
     public void Restart()
     {
+        if (!coolDownRestart.Ready())
+            return;
 
         ObjectsPooler.Instance.desactiveEveryOneForTransition();
         ObjectsPoolerLocal.Instance.desactiveEveryOneForTransition();
-        LevelInit();
+        //LevelInit();
 
         //GameManager.GetSingleton.RestartGame(true);
-        //GameManager.GetSingleton.SceneManagerLocal.PlayNext();
+        GameManager.Instance.SceneManagerLocal.PlayNext();
     }
 
     [Button("Quit")]

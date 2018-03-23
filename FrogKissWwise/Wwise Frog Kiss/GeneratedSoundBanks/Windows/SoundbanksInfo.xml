@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SoundBanksInfo Platform="Windows" BasePlatform="Windows" SchemaVersion="11" SoundbankVersion="128">
+	<RootPaths>
+		<ProjectRoot>C:\Users\Aurélien Demey\Documents\WwiseProjects\Wwise Frog Kiss\</ProjectRoot>
+		<SourceFilesRoot>C:\Users\Aurélien Demey\Documents\WwiseProjects\Wwise Frog Kiss\.cache\Windows\</SourceFilesRoot>
+		<SoundBanksRoot>C:\Users\Aurélien Demey\Documents\WwiseProjects\Wwise Frog Kiss\GeneratedSoundBanks\Windows\</SoundBanksRoot>
+		<ExternalSourcesInputFile></ExternalSourcesInputFile>
+		<ExternalSourcesOutputRoot>C:\Users\Aurélien Demey\Documents\WwiseProjects\Wwise Frog Kiss\GeneratedSoundBanks\Windows\</ExternalSourcesOutputRoot>
+	</RootPaths>
+	<DialogueEvents/>
+	<StreamedFiles/>
+	<MediaFilesNotInAnyBank/>
+	<SoundBanks>
+		<SoundBank Id="1355168291" Language="SFX">
+			<ObjectPath>Init</ObjectPath>
+			<ShortName>Init</ShortName>
+			<Path>Init.bnk</Path>
+		</SoundBank>
+		<SoundBank Id="4072029455" Language="SFX">
+			<ObjectPath>\SoundBanks\Default Work Unit\New_SoundBank</ObjectPath>
+			<ShortName>New_SoundBank</ShortName>
+			<Path>New_SoundBank.bnk</Path>
+			<IncludedEvents>
+				<Event Id="4266239556" Name="Play_LOOP" ObjectPath="\Events\Default Work Unit\Play_LOOP"/>
+				<Event Id="3411707765" Name="Play_sfx2D" ObjectPath="\Events\Default Work Unit\Play_sfx2D"/>
+				<Event Id="3394929946" Name="Play_sfx3D" ObjectPath="\Events\Default Work Unit\Play_sfx3D"/>
+				<Event Id="4058155063" Name="Play_vent" ObjectPath="\Events\Default Work Unit\Play_vent"/>
+				<Event Id="1640874226" Name="Stop_LOOP" ObjectPath="\Events\Default Work Unit\Stop_LOOP"/>
+				<Event Id="1350749805" Name="Stop_vent" ObjectPath="\Events\Default Work Unit\Stop_vent"/>
+			</IncludedEvents>
+			<IncludedMemoryFiles>
+				<File Id="28040161" Language="SFX">
+					<ShortName>loop 1.wav</ShortName>
+					<Path>SFX\loop 1_F17FB28C.wem</Path>
+				</File>
+				<File Id="312959866" Language="SFX">
+					<ShortName>Sheep_Cartoon_Baa_4.wav</ShortName>
+					<Path>SFX\Sheep_Cartoon_Baa_4_1C9C67B2.wem</Path>
+				</File>
+				<File Id="741145507" Language="SFX">
+					<ShortName>menu_validation.wav</ShortName>
+					<Path>SFX\menu_validation_1C9C67B2.wem</Path>
+				</File>
+				<File Id="748229991" Language="SFX">
+					<ShortName>loop 2.wav</ShortName>
+					<Path>SFX\loop 2_F17FB28C.wem</Path>
+				</File>
+				<File Id="914008164" Language="SFX">
+					<ShortName>bridge.wav</ShortName>
+					<Path>SFX\bridge_F17FB28C.wem</Path>
+				</File>
+			</IncludedMemoryFiles>
+		</SoundBank>
+	</SoundBanks>
+</SoundBanksInfo>

@@ -21,16 +21,27 @@ public static class GameData
     public enum Prefabs
     {
         Link,
+        Player,
     };
+
+    public enum PoolTag
+    {
+        ParticleBump,
+        Link,
+    }
 
     public enum Layers
     {
-
+        Player,
+        Obstacle,
+        Default,
     }
 
     public enum Sounds
     {
-
+        Bump,
+        SpiksOn,
+        SpiksOff,
     }
 
     /// <summary>

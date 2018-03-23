@@ -164,7 +164,7 @@ public class Rope : MonoBehaviour, IKillable
                     + (((1.0f + i) / maxMid) * objectToConnect[1].transform.position.z);
 
             Vector3 posJoint = new Vector3(x1, y1, z1);
-            GameObject newLink = ObjectsPooler.Instance.SpawnFromPool(GameData.Prefabs.Link, posJoint, Quaternion.identity, parentLink);
+            GameObject newLink = ObjectsPooler.Instance.SpawnFromPool(GameData.PoolTag.Link, posJoint, Quaternion.identity, parentLink);
 
             SetupLink(newLink, i);
             listCircular.AddLast(newLink);
@@ -362,7 +362,7 @@ public class Rope : MonoBehaviour, IKillable
         }
 
 
-        GameObject newLink = ObjectsPooler.Instance.SpawnFromPool(GameData.Prefabs.Link, closestLink.transform.position, Quaternion.identity, parentLink);
+        GameObject newLink = ObjectsPooler.Instance.SpawnFromPool(GameData.PoolTag.Link, closestLink.transform.position, Quaternion.identity, parentLink);
         /*SpringJoint jointLink = */newLink.transform.GetOrAddComponent<SpringJoint>();
 
         ChangeMeshRenrered(newLink.GetComponent<MeshRenderer>());
