@@ -1916,7 +1916,7 @@ MonoBehaviour:
   jumpForce: 60
   gravity: 9.81
   fallMultiplier: 10
-  stayHold: 0
+  stayHold: 1
   coolDownJump:
     timeCoolDown: 0.5
   onJump:
@@ -1977,7 +1977,7 @@ MonoBehaviour:
   idPlayer: 0
   isSith: 1
   turnRateArrow: 600
-  speed: 4.5
+  speed: 5.5
   gravity: 9.81
   maxVelocityChange: 10
   repulseOtherWhenTouchOnAir: 0

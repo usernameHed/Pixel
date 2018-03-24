@@ -499,7 +499,7 @@ MonoBehaviour:
   jumpForce: 15
   gravity: 9.81
   fallMultiplier: 10
-  stayHold: 0
+  stayHold: 1
   coolDownJump:
     timeCoolDown: 0.5
   onJump:

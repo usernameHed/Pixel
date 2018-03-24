@@ -108,7 +108,6 @@ public class BetterJump : MonoBehaviour
 	{
         if (!playerController.Grounded && !hasJustJump)
         {
-            Debug.Log("ici gravity");
             rb.velocity += playerController.NormalCollide * Physics.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
             Debug.DrawRay(transform.position, playerController.NormalCollide, Color.magenta, 1f);
         }

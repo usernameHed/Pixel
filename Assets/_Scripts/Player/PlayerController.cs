@@ -582,7 +582,7 @@ public class PlayerController : MonoBehaviour, IKillable
             return;
 
         StopAction();
-        GameManager.Instance.CameraObject.GetComponent<ScreenShake>().Shake();
+        GameManager.Instance.CameraObject.GetComponent<ScreenShake>().ShakeCamera();
         ObjectsPooler.Instance.SpawnFromPool(GameData.PoolTag.DeathPlayer, transform.position, Quaternion.identity, ObjectsPooler.Instance.transform);
         PlayerConnected.Instance.setVibrationPlayer(idPlayer, onDie);   
         enabledObject = false;
