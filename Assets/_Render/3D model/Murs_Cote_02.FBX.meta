@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 38adf4fce5385b74c8c4b9398603c4aa
-timeCreated: 1521883027
+guid: 6bf79d9d12c8de04eb7bfec38154aeee
+timeCreated: 1521893905
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -10,14 +10,10 @@ ModelImporter:
     2100000: 'Material #25'
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Etagere
+    4300000: Object001
+    7400000: Take 001
     9500000: //RootNode
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: 'Material #25'
-    second: {fileID: 2100000, guid: 899d369d275d78346973c2b00fbeb08a, type: 2}
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0
