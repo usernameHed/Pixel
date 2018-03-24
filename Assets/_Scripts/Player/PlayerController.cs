@@ -40,6 +40,8 @@ public class PlayerController : MonoBehaviour, IKillable
     [FoldoutGroup("Object"), Tooltip("list des layer de collisions"), SerializeField]
     private List<GameData.Layers> listLayerToCollide;
 
+    [FoldoutGroup("Debug"), Tooltip("ref"), SerializeField]
+    private SuperPower superPower;
     [FoldoutGroup("Debug"), Tooltip("wallJump 180"), SerializeField]
     public float angleWallJumpRight = 0f;
     [FoldoutGroup("Debug"), Tooltip("walljump 0"), SerializeField]
@@ -190,12 +192,12 @@ public class PlayerController : MonoBehaviour, IKillable
 
             if (dir < 0)
             {
-                Debug.Log(targetVelocity.magnitude);
+                //Debug.Log(targetVelocity.magnitude);
                 return (-right * targetVelocity.magnitude);
             }
             else
             {
-                Debug.Log(targetVelocity.magnitude);
+                //Debug.Log(targetVelocity.magnitude);
                 return (right * targetVelocity.magnitude);
             }
         }
@@ -436,6 +438,16 @@ public class PlayerController : MonoBehaviour, IKillable
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag(GameData.Prefabs.SuperPower.ToString()) && !isSith)
+        {
+            superPower.SetSuperPower();
+            ObjectsPooler.Instance.SpawnFromPool(GameData.PoolTag.DeathPlayer, transform.position, Quaternion.identity, ObjectsPooler.Instance.transform);
+            Destroy(other.gameObject);
+        }
+    }
+
     /// <summary>
     /// trigger le collider à 0.7 (se produit avant le collisionStay)
     /// sauvegarde la direction player - point de contact
@@ -453,6 +465,7 @@ public class PlayerController : MonoBehaviour, IKillable
             SetNewCollider(tmpNormal);
 
             grounded = true;
+            betterJump.OnGrounded();
 
             CollisionAction(other.gameObject);
 
@@ -471,6 +484,7 @@ public class PlayerController : MonoBehaviour, IKillable
             ResetCoolDownGroundedIfGrounded(tmpNormal);
             SetNewCollider(tmpNormal);
             grounded = true;
+            betterJump.OnGrounded();
         }
     }
 
@@ -550,6 +564,7 @@ public class PlayerController : MonoBehaviour, IKillable
             return;
 
         StopAction();
+        GameManager.Instance.CameraObject.GetComponent<ScreenShake>().Shake();
         enabledObject = false;
         gameObject.SetActive(false);
     }

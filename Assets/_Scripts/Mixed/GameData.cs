@@ -16,12 +16,14 @@ public static class GameData
         GameOver,       //est appelé quand on trigger un gameOver
         GamePadConnectionChange,    //est appelé a chaque co/deco de manette
         AdditiveJustFinishLoad,
+        SuperPower
     };
 
     public enum Prefabs
     {
         Link,
         Player,
+        SuperPower,
     };
 
     public enum PoolTag

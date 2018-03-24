@@ -91,18 +91,28 @@ public class BetterJump : MonoBehaviour
         return Mathf.Sqrt(2 * jumpForce * gravity);
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    public void OnGrounded()
+    {
+        if (hasJustJump)
+        {
+            Debug.Log("ici grounded");
+            hasJustJump = false;
+            PlayerConnected.Instance.setVibrationPlayer(playerController.IdPlayer, onGrounded);
+        }
+    }
+
     private void FixedUpdate ()
 	{
         if (!playerController.Grounded && !hasJustJump)
         {
+            Debug.Log("ici gravity");
             rb.velocity += playerController.NormalCollide * Physics.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
             Debug.DrawRay(transform.position, playerController.NormalCollide, Color.magenta, 1f);
         }
-        else if (playerController.Grounded && hasJustJump)
-        {
-            hasJustJump = false;
-            PlayerConnected.Instance.setVibrationPlayer(playerController.IdPlayer, onGrounded);
-        }
+        
         //rb.velocity
         /*
         if (rb.velocity.y < 0)

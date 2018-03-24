@@ -14,6 +14,7 @@ TagManager:
   - DeathPlayer
   - PickupRepulseActive
   - Enemy
+  - SuperPower
   layers:
   - Default
   - TransparentFX
