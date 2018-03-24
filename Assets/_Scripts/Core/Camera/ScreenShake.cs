@@ -1,53 +1,87 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿///Daniel Moore (Firedan1176) - Firedan1176.webs.com/
+///26 Dec 2015
+///
+///Shakes camera parent object
+
 using UnityEngine;
+using System.Collections;
+using Sirenix.OdinInspector;
 
 public class ScreenShake : MonoBehaviour {
 
-    [SerializeField] private  float screenBump = 0.25f;
-    [SerializeField] private float shakeDuration = 5f;
+    [FoldoutGroup("GamePlay"), OnValueChanged("ShakeCamera"), Tooltip("est-on un sith ?"), SerializeField]
+    public bool debugMode = false;//Test-run/Call ShakeCamera() on start
 
-    private float shakeTimer;
-    private Vector3 camPosition;
-    private float xPos;
-    private float yPos;
+    public float shakeAmountValue;//The amount to shake this frame.
+    public float shakeDurationValue;//The duration this frame.
 
-	// Use this for initialization
-	void Start ()
-    {
-        camPosition = transform.localPosition;
-        shakeTimer = 0;
-        xPos = 0;
-        yPos = 0;
+    public float shakeAmount;//The amount to shake this frame.
+	public float shakeDuration;//The duration this frame.
+ 
+	//Readonly values...
+	float shakePercentage;//A percentage (0-1) representing the amount of shake to be applied when setting rotation.
+	float startAmount;//The initial shake amount (to determine percentage), set when ShakeCamera is called.
+	float startDuration;//The initial shake duration, set when ShakeCamera is called.
+ 
+	bool isRunning = false;	//Is the coroutine running right now?
+ 
+	public bool smooth;//Smooth rotation?
+	public float smoothAmount = 5f;//Amount to smooth
+ 
+	void Start () {
+ 
+		if(debugMode) ShakeCamera ();
 	}
-   
-    public void Shake()
-    {
-        lock(this)
+ 
+ 
+	public void ShakeCamera() {
+
+        shakeAmount = shakeAmountValue;
+        shakeDuration = shakeDurationValue;
+
+        startAmount = shakeAmount;//Set default (start) values
+		startDuration = shakeDuration;//Set default (start) values
+ 
+		if (!isRunning) StartCoroutine (Shake());//Only call the coroutine if it isn't currently running. Otherwise, just set the variables.
+        else
         {
-            if (shakeTimer <= shakeDuration)
-            {
-                xPos = Random.Range(-1, 2) * screenBump;
-                yPos = Random.Range(-1, 2) * screenBump;
 
-                transform.localPosition = new Vector3(xPos, yPos, -13);
-
-                shakeTimer++;
-                StartCoroutine(ShakeWaiting());
-            }
-            else
-            {
-                transform.localPosition = camPosition;
-                shakeTimer = 0;
-            }
         }
-    }
-   
-    IEnumerator ShakeWaiting()
-    {
-        yield return new WaitForSeconds(0.05f);
-        Shake();
-        yield return null;
-    }
+	}
+ 
+	public void ShakeCamera(float amount, float duration) {
+ 
+		shakeAmount += amount;//Add to the current amount.
+		startAmount = shakeAmount;//Reset the start amount, to determine percentage.
+		shakeDuration += duration;//Add to the current time.
+		startDuration = shakeDuration;//Reset the start time.
+ 
+		if(!isRunning) StartCoroutine (Shake());//Only call the coroutine if it isn't currently running. Otherwise, just set the variables.
+	}
+ 
+ 
+	IEnumerator Shake() {
+		isRunning = true;
+ 
+		while (shakeDuration > 0.01f) {
+			Vector3 rotationAmount = Random.insideUnitSphere * shakeAmount;//A Vector3 to add to the Local Rotation
+			rotationAmount.z = 0;//Don't change the Z; it looks funny.
+ 
+			shakePercentage = shakeDuration / startDuration;//Used to set the amount of shake (% * startAmount).
+ 
+			shakeAmount = startAmount * shakePercentage;//Set the amount of shake (% * startAmount).
+			shakeDuration = Mathf.Lerp(shakeDuration, 0, Time.deltaTime);//Lerp the time, so it is less and tapers off towards the end.
+ 
+ 
+			if(smooth)
+				transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.Euler(rotationAmount), Time.deltaTime * smoothAmount);
+			else
+				transform.localRotation = Quaternion.Euler (rotationAmount);//Set the local rotation the be the rotation amount.
+ 
+			yield return null;
+		}
+		transform.localRotation = Quaternion.identity;//Set the local rotation to 0 when done, just to get rid of any fudging stuff.
+		isRunning = false;
+	}
+ 
 }
-

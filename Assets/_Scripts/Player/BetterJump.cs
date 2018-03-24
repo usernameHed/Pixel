@@ -1,4 +1,5 @@
 ﻿using Sirenix.OdinInspector;
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -6,7 +7,7 @@ public class BetterJump : MonoBehaviour
 {
     #region Attributes
     [FoldoutGroup("GamePlay"), OnValueChanged("InitValue"), Tooltip("hauteur maximal du saut"), SerializeField]
-    private float jumpHeight = 2.0f;
+    private float jumpForce = 2.0f;
     [FoldoutGroup("GamePlay"), Tooltip("gravité du saut"), SerializeField]
     private float gravity = 9.81f;
     [FoldoutGroup("GamePlay"), Tooltip("gravité du saut"), SerializeField]
@@ -16,6 +17,11 @@ public class BetterJump : MonoBehaviour
     [Space(10)]
     [FoldoutGroup("GamePlay"), Tooltip("cooldown du jump"), SerializeField]
     private FrequencyCoolDown coolDownJump;
+
+    [FoldoutGroup("GamePlay"), Tooltip("vibration quand on jump"), SerializeField]
+    private Vibration onJump;
+    [FoldoutGroup("GamePlay"), Tooltip("vibration quand on se pose"), SerializeField]
+    private Vibration onGrounded;
 
 
     [FoldoutGroup("Debug"), Tooltip("ref"), SerializeField]
@@ -28,7 +34,7 @@ public class BetterJump : MonoBehaviour
     private Vector3 initialVelocity;
 
     private bool jumpStop = false;
-    //public bool JumpStop { get { return (jumpStop); } }
+    private bool hasJustJump = false;
 
     #endregion
 
@@ -66,6 +72,9 @@ public class BetterJump : MonoBehaviour
     public bool Jump(Vector3 dir)
     {
         coolDownJump.StartCoolDown();
+        PlayerConnected.Instance.setVibrationPlayer(playerController.IdPlayer, onJump);
+
+        hasJustJump = true;
 
         Vector3 jumpForce = dir * CalculateJumpVerticalSpeed();
         rb.velocity = jumpForce;
@@ -79,28 +88,29 @@ public class BetterJump : MonoBehaviour
     {
         // From the jump height and gravity we deduce the upwards speed 
         // for the character to reach at the apex.
-        return Mathf.Sqrt(2 * jumpHeight * gravity);
+        return Mathf.Sqrt(2 * jumpForce * gravity);
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public void OnGrounded()
+    {
+        if (hasJustJump)
+        {
+            Debug.Log("ici grounded");
+            hasJustJump = false;
+            PlayerConnected.Instance.setVibrationPlayer(playerController.IdPlayer, onGrounded);
+        }
     }
 
     private void FixedUpdate ()
 	{
-        if (!playerController.Grounded)
+        if (!playerController.Grounded && !hasJustJump)
         {
-            Debug.Log("retourne sur terre !");
             rb.velocity += playerController.NormalCollide * Physics.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
             Debug.DrawRay(transform.position, playerController.NormalCollide, Color.magenta, 1f);
         }
-        //rb.velocity
-        /*
-        if (rb.velocity.y < 0)
-		{
-            
-		}
-        else if (rb.velocity.y > 0 && !inputPlayer.JumpInput)
-        {
-            rb.velocity += Vector3.up * Physics.gravity.y * (lowMultiplier - 1) * Time.fixedDeltaTime;
-        }
-        */
     }
 
     private void Update()

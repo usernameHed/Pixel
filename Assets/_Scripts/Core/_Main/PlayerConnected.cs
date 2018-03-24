@@ -1,11 +1,28 @@
 ﻿using UnityEngine;
 using Rewired;
 using Sirenix.OdinInspector;
+using System;
 
 /// <summary>
 /// Gère la connexion / déconnexion des manettes
 /// <summary>
+[Serializable]
+public struct Vibration
+{
+    [FoldoutGroup("Vibration"), Tooltip("vibre le rotor droit"), SerializeField]
+    public bool vibrateLeft;
+    [FoldoutGroup("Vibration"), EnableIf("vibrateLeft"), Range(0, 1), Tooltip("force du rotor"), SerializeField]
+    public float strenthLeft;
+    [FoldoutGroup("Vibration"), EnableIf("vibrateLeft"), Range(0, 10), Tooltip("temps de vibration"), SerializeField]
+    public float durationLeft;
 
+    [FoldoutGroup("Vibration"), Tooltip("cooldown du jump"), SerializeField]
+    public bool vibrateRight;
+    [FoldoutGroup("Vibration"), EnableIf("vibrateRight"), Range(0, 1), Tooltip("cooldown du jump"), SerializeField]
+    public float strenthRight;
+    [FoldoutGroup("Vibration"), EnableIf("vibrateRight"), Range(0, 10), Tooltip("cooldown du jump"), SerializeField]
+    public float durationRight;
+}
 
 public class PlayerConnected : SingletonMono<PlayerConnected>
 {
@@ -14,9 +31,9 @@ public class PlayerConnected : SingletonMono<PlayerConnected>
     #region variable
 
     [FoldoutGroup("Vibration"), Tooltip("Active les vibrations")]  public bool enabledVibration = true;
-    [FoldoutGroup("Vibration"), Tooltip("the first motor")]        public int motorIndex = 0; 
+    /*[FoldoutGroup("Vibration"), Tooltip("the first motor")]        public int motorIndex = 0; 
     [FoldoutGroup("Vibration"), Tooltip("full motor speed")]       public float motorLevel = 1.0f;
-    [FoldoutGroup("Vibration"), Tooltip("durée de la vibration")]  public float duration = 2.0f;
+    [FoldoutGroup("Vibration"), Tooltip("durée de la vibration")]  public float duration = 2.0f;*/
 
     public bool simulatePlayerOneifNoGamePad = false;   //Si aucune manette n'est connecté, active le player 1 avec le clavier !
     public bool[] playerArrayConnected;                      //tableau d'état des controller connecté
@@ -170,6 +187,21 @@ public class PlayerConnected : SingletonMono<PlayerConnected>
         if (!enabledVibration)
             return;
         getPlayer(id).SetVibration(motorIndex, motorLevel, duration);
+    }
+    
+    /// <summary>
+    /// set les vibrations du gamepad
+    /// </summary>
+    /// <param name="id">l'id du joueur</param>
+    public void setVibrationPlayer(int id, Vibration vibration)
+    {
+        if (!enabledVibration)
+            return;
+
+        if (vibration.vibrateLeft)
+            getPlayer(id).SetVibration(0, vibration.strenthLeft, vibration.durationLeft);
+        if (vibration.vibrateRight)
+            getPlayer(id).SetVibration(1, vibration.strenthRight, vibration.durationRight);
     }
 
 

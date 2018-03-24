@@ -54,5 +54,9 @@ MonoBehaviour:
   pools:
   - tag: 0
     prefab: {fileID: 1551932104604348, guid: 08ad5b94817038a44a07f56bc17f73a3, type: 2}
+    size: 100
+    shouldExpand: 0
+  - tag: 2
+    prefab: {fileID: 1643204372404494, guid: 8ba0e978a7edf8844b12967c9704e2bc, type: 2}
     size: 10
     shouldExpand: 0
