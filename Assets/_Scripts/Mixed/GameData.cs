@@ -28,6 +28,7 @@ public static class GameData
     {
         ParticleBump,
         Link,
+        DeathPlayer,
     }
 
     public enum Layers

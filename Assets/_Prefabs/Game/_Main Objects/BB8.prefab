@@ -1477,6 +1477,9 @@ MonoBehaviour:
   speed: 10
   gravity: 9.81
   maxVelocityChange: 10
+  repulseOtherWhenTouchOnAir: 1
+  coolDownSelfRepulsion:
+    timeCoolDown: 0.2
   angleDifferenceWall: 10
   angleDifferenceCeilling: 30
   dirArrow: {fileID: 4718851731018878}

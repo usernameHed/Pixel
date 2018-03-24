@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour, IKillable
 
     [FoldoutGroup("GamePlay"), Tooltip("est-on un sith ?"), SerializeField]
     private bool isSith = false;
+    public bool IsSith { get { return isSith; } }
 
     [FoldoutGroup("GamePlay"), Tooltip("list des layer de collisions"), SerializeField]
     private float turnRateArrow = 400f;
@@ -22,7 +23,13 @@ public class PlayerController : MonoBehaviour, IKillable
     public float gravity = 9.81f;
     [FoldoutGroup("GamePlay"), Tooltip(""), SerializeField]
     public float maxVelocityChange = 10.0f;
-    
+
+    [FoldoutGroup("GamePlay"), Tooltip(""), SerializeField]
+    public bool repulseOtherWhenTouchOnAir = true;
+    [FoldoutGroup("GamePlay"), Tooltip("cooldown de repulsion"), SerializeField]
+    private FrequencyCoolDown coolDownSelfRepulsion; //O.2
+    public FrequencyCoolDown CoolDownSelfRepulsion { get { return (coolDownSelfRepulsion); } }
+
     [FoldoutGroup("GamePlay"), Tooltip("défini si on est en wallJump ou pas selon la différence normal / variable wallJump 0 - 180"), SerializeField]
     public float angleDifferenceWall = 10f;
     [FoldoutGroup("GamePlay"), Tooltip("défini si on est en wallJump ou pas selon la différence normal / variable wallJump 0 - 180"), SerializeField]
@@ -345,6 +352,25 @@ public class PlayerController : MonoBehaviour, IKillable
         }
     }
 
+    /// <summary>
+    /// renvoi vrai si il n'y a qu'un normal dans le tableau
+    /// </summary>
+    /// <returns></returns>
+    private bool IsOnlyOneNormal()
+    {
+        int number = 0;
+        for (int i = 0; i < colliderNormalArray.Length; i++)
+        {
+            if (colliderNormalArray[i] != Vector3.zero)
+            {
+                number++;
+            }
+        }
+        if (number == 1)
+            return (true);
+        return (false);
+    }
+
     private void DisplayNormalArray()
     {
         for (int i = 0; i < colliderNormalArray.Length; i++)
@@ -419,11 +445,17 @@ public class PlayerController : MonoBehaviour, IKillable
     {
         if (coolDownGroundedJump.IsReady() && GameData.IsInList(listLayerToCollide, other.gameObject.layer))
         {
+            
+
             Vector3 point = other.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
             Vector3 tmpNormal = (point - transform.position) * -1;
             ResetCoolDownGroundedIfGrounded(tmpNormal);
             SetNewCollider(tmpNormal);
+
             grounded = true;
+
+            CollisionAction(other.gameObject);
+
         }
     }
 
@@ -442,9 +474,48 @@ public class PlayerController : MonoBehaviour, IKillable
         }
     }
 
+    /// <summary>
+    /// action de collisions
+    /// renvoi vrai si on force le jump, faux si on jump pas
+    /// </summary>
+    private bool CollisionAction(GameObject other)
+    {
+        //ici 2 BB8 se touche...
+        if (!isSith && other.HasComponent<PlayerController>() && !other.GetComponent<PlayerController>().IsSith)
+        {
+            //ici on est en l'air (ou plutot... si on a qu'une seul normal... ça veut dire qu'il y a des chance
+            //que la seul collision qu'on ai, c'est celui avec le player (donc on est en l'air)
+            if (IsOnlyOneNormal() && coolDownSelfRepulsion.IsReady() && repulseOtherWhenTouchOnAir)
+            {
+                //si l'autre n'est pas en l'air, set son coolDown pour pas qu'il saute aussi !
+                if (other.GetComponent<PlayerController>().Grounded)
+                {
+                    other.GetComponent<PlayerController>().CoolDownSelfRepulsion.StartCoolDown();
+                }
+
+                //saute !
+                coolDownSelfRepulsion.StartCoolDown();
+                SetUpNormalCollide();
+                ActualyJump(normalCollide);
+                return (true);
+            }
+        }
+        return (false);
+    }
+
     private void StopAction()
     {
         stopAction = false;
+    }
+
+    /// <summary>
+    /// set la normal par rapport à la somme des 1-4
+    /// </summary>
+    private void SetUpNormalCollide()
+    {
+        Vector3 normalMedium = QuaternionExt.GetMiddleOfXVector(colliderNormalArray);
+        if (normalMedium != Vector3.zero)
+            normalCollide = normalMedium;
     }
     #endregion
 
@@ -463,9 +534,7 @@ public class PlayerController : MonoBehaviour, IKillable
         if (stopAction)
             return;
 
-        Vector3 normalMedium = QuaternionExt.GetMiddleOfXVector(colliderNormalArray);
-        if (normalMedium != Vector3.zero)
-            normalCollide = normalMedium;
+        SetUpNormalCollide();
 
         TryToMove();
         TryToJump();
