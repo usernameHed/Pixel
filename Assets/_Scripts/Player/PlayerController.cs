@@ -35,6 +35,9 @@ public class PlayerController : MonoBehaviour, IKillable
     [FoldoutGroup("GamePlay"), Tooltip("défini si on est en wallJump ou pas selon la différence normal / variable wallJump 0 - 180"), SerializeField]
     public float angleDifferenceCeilling = 30f;
 
+    [FoldoutGroup("GamePlay"), Tooltip("vibration quand on jump"), SerializeField]
+    private Vibration onDie;
+
     [FoldoutGroup("Object"), Tooltip("direction du joystick"), SerializeField]
     private Transform dirArrow;
     [FoldoutGroup("Object"), Tooltip("list des layer de collisions"), SerializeField]
@@ -42,6 +45,7 @@ public class PlayerController : MonoBehaviour, IKillable
 
     [FoldoutGroup("Debug"), Tooltip("ref"), SerializeField]
     private SuperPower superPower;
+    public SuperPower SuperPowerScript { get { return (superPower); } }
     [FoldoutGroup("Debug"), Tooltip("wallJump 180"), SerializeField]
     public float angleWallJumpRight = 0f;
     [FoldoutGroup("Debug"), Tooltip("walljump 0"), SerializeField]
@@ -514,6 +518,20 @@ public class PlayerController : MonoBehaviour, IKillable
                 return (true);
             }
         }
+        //si je suis un sith, et que l'autre n'en ai pas un...
+        else if (isSith && other.HasComponent<PlayerController>() && !other.GetComponent<PlayerController>().IsSith)
+        {
+            //s'il n'est pas en mode superpower, on le tue !
+            if (!other.GetComponent<PlayerController>().SuperPowerScript.SuperPowerActived)
+            {
+                other.GetComponent<PlayerController>().Kill();
+            }
+            else
+            {
+                other.GetComponent<PlayerController>().Kill();
+                Kill();
+            }
+        }
         return (false);
     }
 
@@ -565,6 +583,8 @@ public class PlayerController : MonoBehaviour, IKillable
 
         StopAction();
         GameManager.Instance.CameraObject.GetComponent<ScreenShake>().Shake();
+        ObjectsPooler.Instance.SpawnFromPool(GameData.PoolTag.DeathPlayer, transform.position, Quaternion.identity, ObjectsPooler.Instance.transform);
+        PlayerConnected.Instance.setVibrationPlayer(idPlayer, onDie);   
         enabledObject = false;
         gameObject.SetActive(false);
     }

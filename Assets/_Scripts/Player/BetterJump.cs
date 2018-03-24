@@ -112,18 +112,6 @@ public class BetterJump : MonoBehaviour
             rb.velocity += playerController.NormalCollide * Physics.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
             Debug.DrawRay(transform.position, playerController.NormalCollide, Color.magenta, 1f);
         }
-        
-        //rb.velocity
-        /*
-        if (rb.velocity.y < 0)
-		{
-            
-		}
-        else if (rb.velocity.y > 0 && !inputPlayer.JumpInput)
-        {
-            rb.velocity += Vector3.up * Physics.gravity.y * (lowMultiplier - 1) * Time.fixedDeltaTime;
-        }
-        */
     }
 
     private void Update()

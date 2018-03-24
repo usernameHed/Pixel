@@ -1980,10 +1980,21 @@ MonoBehaviour:
   speed: 4.5
   gravity: 9.81
   maxVelocityChange: 10
+  repulseOtherWhenTouchOnAir: 0
+  coolDownSelfRepulsion:
+    timeCoolDown: 1
   angleDifferenceWall: 10
   angleDifferenceCeilling: 30
+  onDie:
+    vibrateLeft: 1
+    strenthLeft: 0.6
+    durationLeft: 0.8
+    vibrateRight: 1
+    strenthRight: 0.6
+    durationRight: 0.8
   dirArrow: {fileID: 4209899374423670}
   listLayerToCollide: 020000000000000001000000
+  superPower: {fileID: 0}
   angleWallJumpRight: 0
   angleWallJumpLeft: 180
   angleCeiling: 270
