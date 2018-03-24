@@ -1398,7 +1398,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf0766f20f2c44c478cbac72eb7e5ce3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpHeight: 6
+  jumpForce: 15
   gravity: 9.81
   fallMultiplier: 10
   stayHold: 0
@@ -1458,7 +1458,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   idPlayer: 0
-  turnRateArrow: 1000
+  turnRateArrow: 300
   speed: 10
   gravity: 9.81
   maxVelocityChange: 10

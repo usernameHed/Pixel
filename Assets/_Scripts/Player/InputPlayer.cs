@@ -44,8 +44,8 @@ public class InputPlayer : MonoBehaviour
         horizRight = PlayerConnected.Instance.getPlayer(playerController.IdPlayer).GetAxis("Move Horizontal Right");
         vertiRight = PlayerConnected.Instance.getPlayer(playerController.IdPlayer).GetAxis("Move Vertical Right");
 
-        jumpInput = PlayerConnected.Instance.getPlayer(playerController.IdPlayer).GetButton("RightTrigger1");
-        jumpUpInput = PlayerConnected.Instance.getPlayer(playerController.IdPlayer).GetButtonUp("RightTrigger1");
+        jumpInput = PlayerConnected.Instance.getPlayer(playerController.IdPlayer).GetButton("RightTrigger2") || PlayerConnected.Instance.getPlayer(playerController.IdPlayer).GetButton("LeftTrigger2");
+        jumpUpInput = PlayerConnected.Instance.getPlayer(playerController.IdPlayer).GetButtonUp("RightTrigger2") || PlayerConnected.Instance.getPlayer(playerController.IdPlayer).GetButton("LeftTrigger2");
     }
     #endregion
 

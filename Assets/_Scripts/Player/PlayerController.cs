@@ -180,10 +180,12 @@ public class PlayerController : MonoBehaviour, IKillable
 
             if (dir < 0)
             {
+                Debug.Log(targetVelocity.magnitude);
                 return (-right * targetVelocity.magnitude);
             }
             else
             {
+                Debug.Log(targetVelocity.magnitude);
                 return (right * targetVelocity.magnitude);
             }
         }
@@ -202,40 +204,7 @@ public class PlayerController : MonoBehaviour, IKillable
         {
             if (InputPlayerScript.JumpInput)
             {
-                Vector3 finalVelocityDir = Vector3.zero;
-
-                //si le player ne bouge pas
-                if (InputPlayerScript.Horiz == 0 && InputPlayerScript.Verti == 0)
-                {
-                    //si la vélocité est grande... alors il faut faire quelque chose ?
-                    // Get the velocity
-                    Vector3 verticalMove = rb.velocity;
-                    verticalMove.x = 0;
-                    verticalMove.z = 0;
-                    Debug.Log(verticalMove.sqrMagnitude);
-                    float sqrVelocityY = verticalMove.sqrMagnitude;
-
-                    if (sqrVelocityY == 0)
-                    {
-                        Debug.Log("ici on bouge pas, et velocity à 0...");
-                        finalVelocityDir = normalCollide.normalized;
-                    }
-                    else if (sqrVelocityY > margeSpeedYWhenStopped/* && !contactFromTrigger*/)
-                    {
-                        Debug.Log("on ne bouge pas, mais on est en chute / saut, ET on vient d'un contact par collision ONLY");
-                        finalVelocityDir = GetDirWhenJumpAndMoving();   //get la direction du joystick / normal / les 2...
-                    }
-                    else
-                    {
-                        Debug.Log("on est immobile (ou en chute, trigger touche only)");
-                        finalVelocityDir = normalCollide.normalized;    //jumper dans la direction de la normal
-                    }
-                }
-                else
-                {
-                    //on bouge et on saute
-                    finalVelocityDir = GetDirWhenJumpAndMoving();   //get la direction du joystick / normal / les 2...
-                }
+                Vector3 finalVelocityDir = GetDirWhenJumpAndMoving();   //get la direction du joystick / normal / les 2...
 
                 //ici jump, selon la direction voulu, en ajoutant la force du saut
                 ActualyJump(finalVelocityDir);
