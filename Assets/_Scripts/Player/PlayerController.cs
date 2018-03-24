@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 using Sirenix.OdinInspector;
-using Obi;
 using System.Collections.Generic;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -12,7 +11,6 @@ public class PlayerController : MonoBehaviour, IKillable
     private int idPlayer = 0;
     public int IdPlayer { set { idPlayer = value; } get { return idPlayer; } }
 
-    
     [FoldoutGroup("GamePlay"), Tooltip("list des layer de collisions"), SerializeField]
     private float turnRateArrow = 400f;
     [FoldoutGroup("GamePlay"), Tooltip(""), SerializeField]
@@ -53,6 +51,8 @@ public class PlayerController : MonoBehaviour, IKillable
     private FrequencyCoolDown coolDownGrounded;
     [FoldoutGroup("Debug"), Tooltip("cooldown du jump (influe sur le mouvements du perso)"), SerializeField]
     private FrequencyCoolDown coolDownGroundedJump; //O.2
+    [FoldoutGroup("Debug"), Tooltip("Marge de vitesse: quand on appuis sur aucune touche, mais qu'on jump: si notre vitesse vertical est suppérieur à cette valeur, on saute dans la direction de l'arrow (et non de la normal précédente)"), SerializeField]
+    private float debugDiferenceAngleBetweenInputAndPlayer = 30f;
 
     [FoldoutGroup("Debug"), Tooltip("ref"), SerializeField]
     private InputPlayer inputPlayer;
@@ -68,8 +68,6 @@ public class PlayerController : MonoBehaviour, IKillable
     private Rigidbody rb;           //ref du rb
     [FoldoutGroup("Debug"), Tooltip("ref"), SerializeField]
     private BetterJump betterJump;
-    [FoldoutGroup("Debug"), Tooltip("ref"), SerializeField]
-    private Grip grip;
     #endregion
 
     #region Initialize
@@ -123,7 +121,8 @@ public class PlayerController : MonoBehaviour, IKillable
             return;
 
         // Calculate how fast we should be moving
-        Vector3 targetVelocity = new Vector3(InputPlayerScript.Horiz, InputPlayerScript.Verti, 0);
+        //Vector3 targetVelocity = new Vector3(InputPlayerScript.Horiz, InputPlayerScript.Verti, 0);
+        Vector3 targetVelocity = FindTheRightDir();
         targetVelocity = transform.TransformDirection(targetVelocity);
         targetVelocity *= speed;
 
@@ -141,35 +140,12 @@ public class PlayerController : MonoBehaviour, IKillable
             float angleDirInput = QuaternionExt.GetAngleFromVector(targetVelocity); //direction de l'input (droite ou gauche, 0 ou 180)
             float anglePlayer = QuaternionExt.GetAngleFromVector(velocityChange);   //angle de l'inertie du joueur (droite ou gauche, mais peut être l'inverse de l'input !)
 
-            //Debug.DrawRay(transform.position, velocityChange, Color.magenta, 5f);
-
             //si on est égal, alors l'intertie en x est la meme que la direction de l'input
             //important, car si l'inverse: alors on laché la touche ?
-            if (angleDirInput == anglePlayer && normalCollide != Vector3.zero)   
+            float diff;
+            if (QuaternionExt.IsAngleCloseToOtherByAmount(angleDirInput, anglePlayer, debugDiferenceAngleBetweenInputAndPlayer, out diff) && normalCollide != Vector3.zero)   
             {
-                //Debug.Log("normal: " + angleNormal + ", input:" + angleDirInput + ", player:" + anglePlayer);
-
-                int onWall = WhatKindOfNormalIsIt(normalCollide);
-                
-                switch (onWall)
-                {
-                    /*case 1:
-                        Debug.Log("ici ne pas continuer vers la gauche");
-                        coolDownGrounded.StartCoolDown();
-                        break;
-                    case -1:
-                        Debug.Log("ici ne pas continuer vers la droite");
-                        coolDownGrounded.StartCoolDown();
-                        break;
-                    case 2: //on est sur le plafond
-                    case 0: //on est pas sur un mur*/
-                    default:
-                        Debug.Log("ici move normalement, ne rien faire si vecteur de l'inertie INVERSE de normal collision ?? ET si on est sur un plafond, slider ??");
-                        //Debug.Log("normal: " + angleNormal + ", input:" + angleDirInput + ", player:" + anglePlayer);
-                        //ici on est pas en wallJump, on peut bouger normalement !
-                        break;
-
-                }
+                Debug.Log("move normalement !");
             }
             else if (normalCollide == Vector3.zero)
             {
@@ -184,6 +160,37 @@ public class PlayerController : MonoBehaviour, IKillable
         }
 
         
+    }
+
+    /// <summary>
+    /// set la direction des inputs selon la normal !
+    /// </summary>
+    /// <returns></returns>
+    private Vector3 FindTheRightDir()
+    {
+        // Calculate how fast we should be moving
+        Vector3 targetVelocity = new Vector3(InputPlayerScript.Horiz, InputPlayerScript.Verti, 0);
+        //targetVelocity = transform.TransformDirection(targetVelocity);
+
+        //si on veut bouger...
+        if (targetVelocity.x != 0 || targetVelocity.y != 0)
+        {
+            Vector3 right = QuaternionExt.CrossProduct(normalCollide, Vector3.forward).normalized * targetVelocity.magnitude;
+            float dir = QuaternionExt.DotProduct(targetVelocity, right);
+
+            if (dir < 0)
+            {
+                return (-right);
+            }
+            else
+            {
+                return (right);
+            }
+        }
+        else
+        {
+            return (Vector3.zero);
+        }
     }
 
     private void TryToJump()
