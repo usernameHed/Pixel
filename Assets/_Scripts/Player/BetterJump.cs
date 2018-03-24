@@ -71,6 +71,8 @@ public class BetterJump : MonoBehaviour
     /// </summary>
     public bool Jump(Vector3 dir)
     {
+        playerController.Anim.SetBool("Jump", true);
+
         coolDownJump.StartCoolDown();
         PlayerConnected.Instance.setVibrationPlayer(playerController.IdPlayer, onJump);
 
@@ -98,6 +100,7 @@ public class BetterJump : MonoBehaviour
     {
         if (hasJustJump)
         {
+            playerController.Anim.SetBool("Jump", false);
             Debug.Log("ici grounded");
             hasJustJump = false;
             PlayerConnected.Instance.setVibrationPlayer(playerController.IdPlayer, onGrounded);

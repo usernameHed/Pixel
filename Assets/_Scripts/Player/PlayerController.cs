@@ -38,6 +38,10 @@ public class PlayerController : MonoBehaviour, IKillable
     [FoldoutGroup("GamePlay"), Tooltip("vibration quand on jump"), SerializeField]
     private Vibration onDie;
 
+    [FoldoutGroup("GamePlay"), Tooltip("Animator du joueur"), SerializeField]
+    private Animator anim;
+    public Animator Anim { get { return (anim); } }
+
     [FoldoutGroup("Object"), Tooltip("direction du joystick"), SerializeField]
     private Transform dirArrow;
     [FoldoutGroup("Object"), Tooltip("list des layer de collisions"), SerializeField]
@@ -138,7 +142,8 @@ public class PlayerController : MonoBehaviour, IKillable
 
         // Calculate how fast we should be moving
         //Vector3 targetVelocity = new Vector3(InputPlayerScript.Horiz, InputPlayerScript.Verti, 0);
-        Vector3 targetVelocity = FindTheRightDir();
+        Vector3 inputPlayer = FindTheRightDir();
+        Vector3 targetVelocity = inputPlayer;
         targetVelocity = transform.TransformDirection(targetVelocity);
         targetVelocity *= speed;
 
@@ -173,6 +178,15 @@ public class PlayerController : MonoBehaviour, IKillable
             }
 
             rb.AddForce(velocityChange, ForceMode.VelocityChange);
+
+            anim.SetBool("Run", true);  //déplacement
+        }
+        
+        if (inputPlayer == Vector3.zero)
+        {
+            //stop le déplacement
+            anim.SetBool("Run", false);
+            Debug.Log("ici stoppé");
         }
 
         
@@ -548,6 +562,7 @@ public class PlayerController : MonoBehaviour, IKillable
         Vector3 normalMedium = QuaternionExt.GetMiddleOfXVector(colliderNormalArray);
         if (normalMedium != Vector3.zero)
             normalCollide = normalMedium;
+        anim.transform.rotation = Quaternion.Euler(normalCollide);
     }
     #endregion
 
