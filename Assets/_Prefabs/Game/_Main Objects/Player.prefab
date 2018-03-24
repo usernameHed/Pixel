@@ -1400,6 +1400,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpHeight: 6
   gravity: 9.81
+  fallMultiplier: 10
   stayHold: 0
   coolDownJump:
     timeCoolDown: 0.5
@@ -1480,10 +1481,10 @@ MonoBehaviour:
     timeCoolDown: 1
   coolDownGroundedJump:
     timeCoolDown: 0.2
+  debugDiferenceAngleBetweenInputAndPlayer: 179
   inputPlayer: {fileID: 114669656874546736}
   rb: {fileID: 54146100963101564}
   betterJump: {fileID: 114597218946347534}
-  grip: {fileID: 0}
 --- !u!114 &114951671183239300
 MonoBehaviour:
   m_ObjectHideFlags: 1

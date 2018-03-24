@@ -15,6 +15,10 @@ public class InputPlayer : MonoBehaviour
     public float Horiz { get { return (horiz); } }
     private float verti;    //input verti
     public float Verti { get { return (verti); } }
+    private float horizRight;    //input horiz
+    public float HorizRight { get { return (horizRight); } }
+    private float vertiRight;    //input verti
+    public float VertiRight { get { return (vertiRight); } }
     private bool jumpInput; //jump input
     public bool JumpInput { get { return (jumpInput); } }
     private bool jumpUpInput; //jump input
@@ -37,11 +41,11 @@ public class InputPlayer : MonoBehaviour
     {
         horiz = PlayerConnected.Instance.getPlayer(playerController.IdPlayer).GetAxis("Move Horizontal");
         verti = PlayerConnected.Instance.getPlayer(playerController.IdPlayer).GetAxis("Move Vertical");
-        jumpInput = PlayerConnected.Instance.getPlayer(playerController.IdPlayer).GetButton("FireA");
-        jumpUpInput = PlayerConnected.Instance.getPlayer(playerController.IdPlayer).GetButtonUp("FireA");
-        gripInput = PlayerConnected.Instance.getPlayer(playerController.IdPlayer).GetButton("FireX");
-        gripUpInput = PlayerConnected.Instance.getPlayer(playerController.IdPlayer).GetButtonUp("FireX");
-        gripDownInput = PlayerConnected.Instance.getPlayer(playerController.IdPlayer).GetButtonDown("FireX");
+        horizRight = PlayerConnected.Instance.getPlayer(playerController.IdPlayer).GetAxis("Move Horizontal Right");
+        vertiRight = PlayerConnected.Instance.getPlayer(playerController.IdPlayer).GetAxis("Move Vertical Right");
+
+        jumpInput = PlayerConnected.Instance.getPlayer(playerController.IdPlayer).GetButton("RightTrigger1");
+        jumpUpInput = PlayerConnected.Instance.getPlayer(playerController.IdPlayer).GetButtonUp("RightTrigger1");
     }
     #endregion
 

@@ -337,10 +337,10 @@ public class PlayerController : MonoBehaviour, IKillable
     /// </summary>
     private void ChangeDirectionArrow()
     {
-        if (!(InputPlayerScript.Horiz == 0 && InputPlayerScript.Verti == 0))
+        if (!(InputPlayerScript.HorizRight == 0 && InputPlayerScript.VertiRight == 0))
         {
-            dirArrow.rotation = QuaternionExt.DirObject(dirArrow.rotation, InputPlayerScript.Horiz, -InputPlayerScript.Verti, turnRateArrow, QuaternionExt.TurnType.Z);
-        }            
+            dirArrow.rotation = QuaternionExt.DirObject(dirArrow.rotation, InputPlayerScript.HorizRight, -InputPlayerScript.VertiRight, turnRateArrow, QuaternionExt.TurnType.Z);
+        }
     }
 
     /// <summary>
