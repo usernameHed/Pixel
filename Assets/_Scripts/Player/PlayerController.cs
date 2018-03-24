@@ -128,6 +128,12 @@ public class PlayerController : MonoBehaviour, IKillable
 
             }
         }
+        else
+        {
+            //stop le déplacement
+            anim.SetBool("Run", false);
+            Debug.Log("ici stoppé");
+        }
     }
 
     /// <summary>
@@ -179,14 +185,8 @@ public class PlayerController : MonoBehaviour, IKillable
 
             rb.AddForce(velocityChange, ForceMode.VelocityChange);
 
-            anim.SetBool("Run", true);  //déplacement
-        }
-        
-        if (inputPlayer == Vector3.zero)
-        {
-            //stop le déplacement
-            anim.SetBool("Run", false);
-            Debug.Log("ici stoppé");
+
+             anim.SetBool("Run", true);  //déplacement
         }
 
         
@@ -350,6 +350,7 @@ public class PlayerController : MonoBehaviour, IKillable
         {
             dirArrow.rotation = QuaternionExt.DirObject(dirArrow.rotation, normalCollide.x, -normalCollide.y, turnRateArrow, QuaternionExt.TurnType.Z);
         }
+        anim.transform.rotation = dirArrow.rotation;
     }
 
     /// <summary>
@@ -562,7 +563,6 @@ public class PlayerController : MonoBehaviour, IKillable
         Vector3 normalMedium = QuaternionExt.GetMiddleOfXVector(colliderNormalArray);
         if (normalMedium != Vector3.zero)
             normalCollide = normalMedium;
-        anim.transform.rotation = Quaternion.Euler(normalCollide);
     }
     #endregion
 

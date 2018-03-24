@@ -604,6 +604,20 @@ Prefab:
       propertyPath: cameraController
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4179474489421686, guid: 9fb3f57496f178d48a3ba21caf5f5880, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114916501286600408, guid: 9fb3f57496f178d48a3ba21caf5f5880,
+        type: 2}
+      propertyPath: normalCollide.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114916501286600408, guid: 9fb3f57496f178d48a3ba21caf5f5880,
+        type: 2}
+      propertyPath: colliderNormalArray.Array.data[1].z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9fb3f57496f178d48a3ba21caf5f5880, type: 2}
   m_IsPrefabParent: 0
@@ -1255,7 +1269,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1055901625757286, guid: 9fb3f57496f178d48a3ba21caf5f5880, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114609055067265658, guid: 9fb3f57496f178d48a3ba21caf5f5880,
         type: 2}
@@ -10803,7 +10817,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1055901625757286, guid: 9fb3f57496f178d48a3ba21caf5f5880, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114609055067265658, guid: 9fb3f57496f178d48a3ba21caf5f5880,
         type: 2}
