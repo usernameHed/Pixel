@@ -1913,7 +1913,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf0766f20f2c44c478cbac72eb7e5ce3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 50
+  jumpForce: 60
   gravity: 9.81
   fallMultiplier: 10
   stayHold: 0
@@ -1963,7 +1963,7 @@ MonoBehaviour:
   idPlayer: 0
   isSith: 1
   turnRateArrow: 600
-  speed: 5
+  speed: 4.5
   gravity: 9.81
   maxVelocityChange: 10
   angleDifferenceWall: 10
