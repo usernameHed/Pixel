@@ -41,9 +41,10 @@ GameObject:
   - component: {fileID: 23561098049888800}
   - component: {fileID: 95961883695148922}
   - component: {fileID: 64032768582578734}
+  - component: {fileID: 135096560918357736}
   m_Layer: 0
   m_Name: Cristaux
-  m_TagString: Untagged
+  m_TagString: SuperPower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -414,7 +415,7 @@ MeshCollider:
   m_GameObject: {fileID: 1197810809902730}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Convex: 1
   m_CookingOptions: 14
@@ -510,3 +511,15 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!135 &135096560918357736
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1197810809902730}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.044213105
+  m_Center: {x: 0.004510237, y: 0.00299188, z: 0.039759163}

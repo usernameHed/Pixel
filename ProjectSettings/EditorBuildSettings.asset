@@ -11,6 +11,3 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/2_Game.unity
     guid: f8cc59a35ec107a40a603bc3bccd1be3
-  - enabled: 1
-    path: Assets/_Scenes/2_Game_thomas2.unity
-    guid: d38add34866f4a741860110756d92e05
