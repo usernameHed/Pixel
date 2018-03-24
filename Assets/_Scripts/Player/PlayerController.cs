@@ -175,16 +175,16 @@ public class PlayerController : MonoBehaviour, IKillable
         //si on veut bouger...
         if (targetVelocity.x != 0 || targetVelocity.y != 0)
         {
-            Vector3 right = QuaternionExt.CrossProduct(normalCollide, Vector3.forward).normalized * targetVelocity.magnitude;
+            Vector3 right = QuaternionExt.CrossProduct(normalCollide, Vector3.forward).normalized;
             float dir = QuaternionExt.DotProduct(targetVelocity, right);
 
             if (dir < 0)
             {
-                return (-right);
+                return (-right * targetVelocity.magnitude);
             }
             else
             {
-                return (right);
+                return (right * targetVelocity.magnitude);
             }
         }
         else
@@ -259,7 +259,7 @@ public class PlayerController : MonoBehaviour, IKillable
     {
         Vector3 finalVelocityDir = Vector3.zero;
 
-        //get la direction du joystick
+        //get la direction du joystick de visé
         Vector3 dirArrowPlayer = getDirArrow();
 
         //get le dot product normal -> dir Arrow
@@ -290,10 +290,16 @@ public class PlayerController : MonoBehaviour, IKillable
         }
         else
         {
+            /*
             Debug.Log("ici on est proche du 90°, faire la bisection !");
             //ici l'angle normal - direction est proche de 90°, ducoup on fait le milieu des 2 axe
             //ici faire la moyenne des 2 vecteur normal, et direction arrow
             finalVelocityDir = QuaternionExt.GetMiddleOf2Vector(normalCollide, dirArrowPlayer);
+            */
+
+            //direction visé par le joueur
+            Debug.Log("Direction de l'arrow !" + dotDirPlayer);
+            finalVelocityDir = dirArrowPlayer.normalized;
         }
         return (finalVelocityDir);
     }
@@ -340,6 +346,10 @@ public class PlayerController : MonoBehaviour, IKillable
         if (!(InputPlayerScript.HorizRight == 0 && InputPlayerScript.VertiRight == 0))
         {
             dirArrow.rotation = QuaternionExt.DirObject(dirArrow.rotation, InputPlayerScript.HorizRight, -InputPlayerScript.VertiRight, turnRateArrow, QuaternionExt.TurnType.Z);
+        }
+        else
+        {
+            dirArrow.rotation = QuaternionExt.DirObject(dirArrow.rotation, normalCollide.x, -normalCollide.y, turnRateArrow, QuaternionExt.TurnType.Z);
         }
     }
 
