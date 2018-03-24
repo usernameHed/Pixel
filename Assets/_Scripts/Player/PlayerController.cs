@@ -11,6 +11,9 @@ public class PlayerController : MonoBehaviour, IKillable
     private int idPlayer = 0;
     public int IdPlayer { set { idPlayer = value; } get { return idPlayer; } }
 
+    [FoldoutGroup("GamePlay"), Tooltip("est-on un sith ?"), SerializeField]
+    private bool isSith = false;
+
     [FoldoutGroup("GamePlay"), Tooltip("list des layer de collisions"), SerializeField]
     private float turnRateArrow = 400f;
     [FoldoutGroup("GamePlay"), Tooltip(""), SerializeField]
@@ -312,7 +315,7 @@ public class PlayerController : MonoBehaviour, IKillable
     /// </summary>
     private void ChangeDirectionArrow()
     {
-        if (!(InputPlayerScript.HorizRight == 0 && InputPlayerScript.VertiRight == 0))
+        if (!(InputPlayerScript.HorizRight == 0 && InputPlayerScript.VertiRight == 0) && !isSith)
         {
             dirArrow.rotation = QuaternionExt.DirObject(dirArrow.rotation, InputPlayerScript.HorizRight, -InputPlayerScript.VertiRight, turnRateArrow, QuaternionExt.TurnType.Z);
         }
