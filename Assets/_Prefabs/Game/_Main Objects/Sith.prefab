@@ -1919,6 +1919,20 @@ MonoBehaviour:
   stayHold: 0
   coolDownJump:
     timeCoolDown: 0.5
+  onJump:
+    vibrateLeft: 1
+    strenthLeft: 0.5
+    durationLeft: 0.1
+    vibrateRight: 1
+    strenthRight: 0.5
+    durationRight: 0.1
+  onGrounded:
+    vibrateLeft: 0
+    strenthLeft: 0
+    durationLeft: 0
+    vibrateRight: 1
+    strenthRight: 0.5
+    durationRight: 0.1
   rb: {fileID: 54709018866557224}
   inputPlayer: {fileID: 114930037190053524}
   playerController: {fileID: 114694346257542350}

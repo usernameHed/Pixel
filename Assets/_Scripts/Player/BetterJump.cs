@@ -1,4 +1,5 @@
 ﻿using Sirenix.OdinInspector;
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -16,6 +17,11 @@ public class BetterJump : MonoBehaviour
     [Space(10)]
     [FoldoutGroup("GamePlay"), Tooltip("cooldown du jump"), SerializeField]
     private FrequencyCoolDown coolDownJump;
+
+    [FoldoutGroup("GamePlay"), Tooltip("vibration quand on jump"), SerializeField]
+    private Vibration onJump;
+    [FoldoutGroup("GamePlay"), Tooltip("vibration quand on se pose"), SerializeField]
+    private Vibration onGrounded;
 
 
     [FoldoutGroup("Debug"), Tooltip("ref"), SerializeField]
@@ -66,6 +72,8 @@ public class BetterJump : MonoBehaviour
     public bool Jump(Vector3 dir)
     {
         coolDownJump.StartCoolDown();
+        PlayerConnected.Instance.setVibrationPlayer(playerController.IdPlayer, onJump);
+
         hasJustJump = true;
 
         Vector3 jumpForce = dir * CalculateJumpVerticalSpeed();
@@ -93,6 +101,7 @@ public class BetterJump : MonoBehaviour
         else if (playerController.Grounded && hasJustJump)
         {
             hasJustJump = false;
+            PlayerConnected.Instance.setVibrationPlayer(playerController.IdPlayer, onGrounded);
         }
         //rb.velocity
         /*

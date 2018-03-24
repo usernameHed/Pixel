@@ -8781,11 +8781,6 @@ Prefab:
       propertyPath: m_Name
       value: BB8 - 1
       objectReference: {fileID: 0}
-    - target: {fileID: 54146100963101564, guid: 9fb3f57496f178d48a3ba21caf5f5880,
-        type: 2}
-      propertyPath: m_CollisionDetection
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9fb3f57496f178d48a3ba21caf5f5880, type: 2}
   m_IsPrefabParent: 0
@@ -10928,9 +10923,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enabledVibration: 1
-  motorIndex: 0
-  motorLevel: 1
-  duration: 2
   simulatePlayerOneifNoGamePad: 1
   playerArrayConnected: 01000000
 --- !u!114 &2098139284
