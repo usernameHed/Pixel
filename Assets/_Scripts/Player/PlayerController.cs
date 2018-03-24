@@ -350,7 +350,7 @@ public class PlayerController : MonoBehaviour, IKillable
         {
             dirArrow.rotation = QuaternionExt.DirObject(dirArrow.rotation, normalCollide.x, -normalCollide.y, turnRateArrow, QuaternionExt.TurnType.Z);
         }
-        anim.transform.rotation = dirArrow.rotation;
+        anim.transform.rotation = QuaternionExt.DirObject(anim.transform.rotation, normalCollide.x, -normalCollide.y, turnRateArrow, QuaternionExt.TurnType.Z);
     }
 
     /// <summary>
