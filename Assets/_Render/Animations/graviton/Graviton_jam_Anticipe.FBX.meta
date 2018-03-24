@@ -1,0 +1,194 @@
+fileFormatVersion: 2
+guid: 402ccbba3aca3a549aa1d95d8cad656a
+timeCreated: 1521897806
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: boule
+    100002: Bras_D
+    100004: Bras_G
+    100006: CTRL_GRAVITON00
+    100008: CTRL_GRAVITON01
+    100010: CTRL_GRAVITON02
+    100012: CTRL_GRAVITON04
+    100014: CTRL_GRAVITON06
+    100016: CTRL_GRAVITON07
+    100018: CTRL_GRAVITON08
+    100020: CTRL_GRAVITON09
+    100022: CTRL_GRAVITON10
+    100024: CTRL_GRAVITON11
+    100026: CTRL_GRAVITON12
+    100028: CTRL_GRAVITON13
+    100030: CTRL_GRAVITON14
+    100032: CTRL_GRAVITON_MASTER
+    100034: extrude_inf_dr
+    100036: extrude_inf_g
+    100038: extrude_sup_dr
+    100040: extrude_sup_g
+    100042: //RootNode
+    100044: jambe_dr
+    100046: jambe_g
+    100048: tete
+    400000: boule
+    400002: Bras_D
+    400004: Bras_G
+    400006: CTRL_GRAVITON00
+    400008: CTRL_GRAVITON01
+    400010: CTRL_GRAVITON02
+    400012: CTRL_GRAVITON04
+    400014: CTRL_GRAVITON06
+    400016: CTRL_GRAVITON07
+    400018: CTRL_GRAVITON08
+    400020: CTRL_GRAVITON09
+    400022: CTRL_GRAVITON10
+    400024: CTRL_GRAVITON11
+    400026: CTRL_GRAVITON12
+    400028: CTRL_GRAVITON13
+    400030: CTRL_GRAVITON14
+    400032: CTRL_GRAVITON_MASTER
+    400034: extrude_inf_dr
+    400036: extrude_inf_g
+    400038: extrude_sup_dr
+    400040: extrude_sup_g
+    400042: //RootNode
+    400044: jambe_dr
+    400046: jambe_g
+    400048: tete
+    2100000: 01 - Default
+    2300000: boule
+    2300002: extrude_inf_dr
+    2300004: extrude_inf_g
+    2300006: extrude_sup_dr
+    2300008: extrude_sup_g
+    2300010: tete
+    3300000: boule
+    3300002: extrude_inf_dr
+    3300004: extrude_inf_g
+    3300006: extrude_sup_dr
+    3300008: extrude_sup_g
+    3300010: tete
+    4300000: Bras_D
+    4300002: jambe_dr
+    4300004: Bras_G
+    4300006: tete
+    4300008: extrude_sup_g
+    4300010: boule
+    4300012: extrude_inf_dr
+    4300014: extrude_inf_g
+    4300016: extrude_sup_dr
+    4300018: jambe_g
+    7400000: anticipe_graviton
+    9500000: //RootNode
+    13700000: Bras_D
+    13700002: Bras_G
+    13700004: jambe_dr
+    13700006: jambe_g
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: anticipe_graviton
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 8
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

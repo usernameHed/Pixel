@@ -1,23 +1,91 @@
 fileFormatVersion: 2
-guid: 38adf4fce5385b74c8c4b9398603c4aa
-timeCreated: 1521883027
+guid: 65ed36b4ad03ab2488fea44891478971
+timeCreated: 1521894711
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
-    2100000: 'Material #25'
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: Etagere
+    100000: Line001
+    100002: Line002
+    100004: Line003
+    100006: molecule_01
+    100008: molecule_02
+    100010: molecule_03
+    100012: //RootNode
+    100014: planete_001
+    100016: planete_02
+    100018: planete_03
+    100020: planete_04
+    100022: planete_05
+    100024: planete_06
+    100026: planete_07
+    400000: Line001
+    400002: Line002
+    400004: Line003
+    400006: molecule_01
+    400008: molecule_02
+    400010: molecule_03
+    400012: //RootNode
+    400014: planete_001
+    400016: planete_02
+    400018: planete_03
+    400020: planete_04
+    400022: planete_05
+    400024: planete_06
+    400026: planete_07
+    2100000: 'Material #49'
+    2100002: anneaux
+    2300000: Line001
+    2300002: Line002
+    2300004: Line003
+    2300006: molecule_01
+    2300008: molecule_02
+    2300010: molecule_03
+    2300012: planete_001
+    2300014: planete_02
+    2300016: planete_03
+    2300018: planete_04
+    2300020: planete_05
+    2300022: planete_06
+    2300024: planete_07
+    3300000: Line001
+    3300002: Line002
+    3300004: Line003
+    3300006: molecule_01
+    3300008: molecule_02
+    3300010: molecule_03
+    3300012: planete_001
+    3300014: planete_02
+    3300016: planete_03
+    3300018: planete_04
+    3300020: planete_05
+    3300022: planete_06
+    3300024: planete_07
+    4300000: planete_07
+    4300002: Line001
+    4300004: Line002
+    4300006: planete_001
+    4300008: planete_02
+    4300010: planete_04
+    4300012: planete_05
+    4300014: planete_06
+    4300016: molecule_02
+    4300018: molecule_03
+    4300020: Line003
+    4300022: planete_03
+    4300024: molecule_01
     9500000: //RootNode
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: 'Material #25'
-    second: {fileID: 2100000, guid: 899d369d275d78346973c2b00fbeb08a, type: 2}
+      name: 'Material #49'
+    second: {fileID: 2100000, guid: f859aeb8d2b5ae24ca63346519173099, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: anneaux
+    second: {fileID: 2100000, guid: fd2eb87ec55bb4647a3695e5fd419959, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
