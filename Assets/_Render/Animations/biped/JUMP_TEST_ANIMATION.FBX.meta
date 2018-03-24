@@ -73,7 +73,7 @@ ModelImporter:
     400064: PERSO_TEST_Animation
     2100000: PM3D_Nickz_humanMaleAverage_defaultMat
     4300000: PERSO_TEST_Animation
-    7400000: jump_test
+    7400000: jump
     9500000: //RootNode
     13700000: PERSO_TEST_Animation
   externalObjects: {}
@@ -104,7 +104,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: jump_test
+      name: jump
       takeName: Take 001
       firstFrame: 0
       lastFrame: 12
