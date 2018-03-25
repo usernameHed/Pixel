@@ -92,6 +92,7 @@ GameObject:
   - component: {fileID: 114930037190053524}
   - component: {fileID: 114694346257542350}
   - component: {fileID: 114423922072640484}
+  - component: {fileID: 114626179076181754}
   - component: {fileID: 114415732407671992}
   - component: {fileID: 54709018866557224}
   m_Layer: 9
@@ -1015,9 +1016,7 @@ MonoBehaviour:
   rb: {fileID: 54709018866557224}
   inputPlayer: {fileID: 114930037190053524}
   playerController: {fileID: 114694346257542350}
-  lengthPositionAttractPoint: 2
-  lengthInputForceAttractPoint: 0
-  forceAttractPoint: 10
+  attractor: {fileID: 114626179076181754}
 --- !u!114 &114532609498382224
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1045,6 +1044,27 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114626179076181754
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1178619759665604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 681564bac27207d4c80a27700afd7b82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lengthPositionAttractPoint: 1
+  forceAttractPoint: 10
+  hasAttractPoint: 0
+  sizeDistanceForSaveSquare: 0.5
+  differenceAngleNormalForUpdatePosition: 5
+  coolDownCreateAttractPoint:
+    timeCoolDown: 0.1
+  playerController: {fileID: 114694346257542350}
+  betterJump: {fileID: 114423922072640484}
+  rb: {fileID: 54709018866557224}
 --- !u!114 &114694346257542350
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1056,7 +1076,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 023191d3b699d5a4db83801cbfe3dde3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idPlayer: 0
+  idPlayer: 1
   isSith: 1
   turnRateArrow: 600
   speed: 5.5

@@ -1713,9 +1713,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 681564bac27207d4c80a27700afd7b82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lengthPositionAttractPoint: 2
+  lengthPositionAttractPoint: 1
   forceAttractPoint: 10
   hasAttractPoint: 0
+  sizeDistanceForSaveSquare: 0.5
+  differenceAngleNormalForUpdatePosition: 5
   coolDownCreateAttractPoint:
     timeCoolDown: 0.1
   playerController: {fileID: 114916501286600408}

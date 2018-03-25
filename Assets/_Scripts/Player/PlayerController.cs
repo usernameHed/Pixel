@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour, IKillable
 
     [FoldoutGroup("Debug"), Tooltip("vecteur de la normal"), SerializeField]
     private Vector3 normalCollide = Vector3.up;
-    public Vector3 NormalCollide { get { return (normalCollide); } }
+    public Vector3 NormalCollide { set { normalCollide = value; } get { return (normalCollide); } }
 
     [FoldoutGroup("Debug"), Tooltip("Marge des 90° du jump (0 = toujours en direction de l'arrow, 0.1 = si angle(normal, arrow) se rapproche de 90, on vise le millieu normal-arrow"), SerializeField]
     private float margeHoriz = 0.1f;
@@ -73,6 +73,8 @@ public class PlayerController : MonoBehaviour, IKillable
     private FrequencyCoolDown coolDownGroundedJump; //O.2
     [FoldoutGroup("Debug"), Tooltip("Marge de vitesse: quand on appuis sur aucune touche, mais qu'on jump: si notre vitesse vertical est suppérieur à cette valeur, on saute dans la direction de l'arrow (et non de la normal précédente)"), SerializeField]
     private float debugDiferenceAngleBetweenInputAndPlayer = 30f;
+    //[FoldoutGroup("Debug"), Tooltip(""), SerializeField]
+    //private float little = 0.1f;
 
     [FoldoutGroup("Debug"), Tooltip("ref"), SerializeField]
     private InputPlayer inputPlayer;
@@ -208,9 +210,9 @@ public class PlayerController : MonoBehaviour, IKillable
             Vector3 right = QuaternionExt.CrossProduct(normalCollide, Vector3.forward).normalized;
             float dir = QuaternionExt.DotProduct(targetVelocity, right);
 
-            return (right * dir);
+            //return (right * dir);
 
-            /*if (dir < 0)
+            if (dir < 0)
             {
                 //Debug.Log(targetVelocity.magnitude);
                 return (-right * targetVelocity.magnitude);
@@ -219,7 +221,7 @@ public class PlayerController : MonoBehaviour, IKillable
             {
                 //Debug.Log(targetVelocity.magnitude);
                 return (right * targetVelocity.magnitude);
-            }*/
+            }
         }
         else
         {
@@ -343,7 +345,7 @@ public class PlayerController : MonoBehaviour, IKillable
         {
             dirArrow.rotation = QuaternionExt.DirObject(dirArrow.rotation, normalCollide.x, -normalCollide.y, turnRateArrow, QuaternionExt.TurnType.Z);
         }
-        anim.transform.rotation = QuaternionExt.DirObject(anim.transform.rotation, normalCollide.x, -normalCollide.y, turnRateArrow, QuaternionExt.TurnType.Z);
+        //anim.transform.rotation = QuaternionExt.DirObject(anim.transform.rotation, normalCollide.x, -normalCollide.y, turnRateArrow, QuaternionExt.TurnType.Z);
     }
 
     /// <summary>
@@ -454,11 +456,21 @@ public class PlayerController : MonoBehaviour, IKillable
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag(GameData.Prefabs.SuperPower.ToString()) && !isSith)
+        if (other.gameObject.CompareTag(GameData.Prefabs.SuperPower.ToString()))
         {
-            superPower.SetSuperPower();
-            ObjectsPooler.Instance.SpawnFromPool(GameData.PoolTag.DeathPlayer, transform.position, Quaternion.identity, ObjectsPooler.Instance.transform);
-            Destroy(other.gameObject);
+            if (!isSith)
+            {
+                superPower.SetSuperPower();
+                ObjectsPooler.Instance.SpawnFromPool(GameData.PoolTag.DeathPlayer, transform.position, Quaternion.identity, ObjectsPooler.Instance.transform);
+                Destroy(other.gameObject);
+
+                normalCollide = rb.velocity.normalized;
+                JumpFromCollision();
+            }
+            else
+            {
+                Kill();
+            }
         }
     }
 
@@ -473,10 +485,16 @@ public class PlayerController : MonoBehaviour, IKillable
         {
             Vector3 point = other.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
             Vector3 normal = (point - transform.position) * -1;
-            CollisionMecanics(normal);
-            betterJump.OnGrounded(other.gameObject);
 
-            CollisionAction(other.gameObject);
+
+            //ResetCoolDownGroundedIfGrounded(normal);
+            SetNewCollider(normal);
+            //grounded = true;
+            //betterJump.ApplyGravity(normalCollide);
+
+            //betterJump.OnGrounded(other.gameObject);
+
+            //CollisionAction(other.gameObject);
         }
     }
 
@@ -490,19 +508,14 @@ public class PlayerController : MonoBehaviour, IKillable
         {
             //setup la normal
             Vector3 normal = other.contacts[0].normal;
-            CollisionMecanics(normal);
+
+
+            ResetCoolDownGroundedIfGrounded(normal);
+            SetNewCollider(normal);
+            grounded = true;
+
             betterJump.OnGrounded(other.gameObject); 
         }
-    }
-
-    /// <summary>
-    /// mécaniques quand on est au sol
-    /// </summary>
-    private void CollisionMecanics(Vector3 normal)
-    {
-        ResetCoolDownGroundedIfGrounded(normal);
-        SetNewCollider(normal);
-        grounded = true;
     }
 
     /// <summary>
@@ -510,9 +523,12 @@ public class PlayerController : MonoBehaviour, IKillable
     /// </summary>
     /// <param name="applyThisForce">si vrai: on change manuellement la velocité du jump</param>
     /// <param name="force">si applyThisForce vrai: on change manuellement force du jump à force</param>
+    public void JumpFromCollision(Vector3 dir)
+    {
+        SetupJumpFromPlayerController(dir, true);
+    }
     public void JumpFromCollision(bool applyThisForce = false, float force = 0)
     {
-        coolDownSelfRepulsion.StartCoolDown();
         SetUpNormalCollide();
 
         SetupJumpFromPlayerController(Vector3.zero, false);
@@ -530,18 +546,22 @@ public class PlayerController : MonoBehaviour, IKillable
         {
             //ici on est en l'air (ou plutot... si on a qu'une seul normal... ça veut dire qu'il y a des chance
             //que la seul collision qu'on ai, c'est celui avec le player (donc on est en l'air)
-            if (IsOnlyOneNormal() && coolDownSelfRepulsion.IsReady() && repulseOtherWhenTouchOnAir)
+            if (/*IsOnlyOneNormal() &&*/ coolDownSelfRepulsion.IsReady() && repulseOtherWhenTouchOnAir)
             {
+                /*
                 //si l'autre n'est pas en l'air, set son coolDown pour pas qu'il saute aussi !
                 if (other.GetComponent<PlayerController>().Grounded)
                 {
                     other.GetComponent<PlayerController>().CoolDownSelfRepulsion.StartCoolDown();
                 }
+                */
+                coolDownSelfRepulsion.StartCoolDown();
 
-                //saute !
-                JumpFromCollision();
+                Vector3 jumpDir = -(other.transform.position - transform.position).normalized;
+                JumpFromCollision(jumpDir);                    //saute !
                 return (true);
             }
+
         }
         //si je suis un sith, et que l'autre n'en ai pas un...
         else if (isSith && other.HasComponent<PlayerController>() && !other.GetComponent<PlayerController>().IsSith)
@@ -556,6 +576,7 @@ public class PlayerController : MonoBehaviour, IKillable
                 other.GetComponent<PlayerController>().Kill();
                 Kill();
             }
+            
         }
         return (false);
     }

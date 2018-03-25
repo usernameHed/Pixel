@@ -34,7 +34,32 @@ public class Attractor : MonoBehaviour
     [FoldoutGroup("Debug"), Tooltip("ref"), SerializeField]
     private Rigidbody rb;
 
-    private Vector3 worldLastPosition;      //save la derniere position grounded...
+    private Vector3 [] worldLastPosition = new Vector3[3];      //save la derniere position grounded...
+    private void WorldLastPositionSet(Vector3 newValue)
+    {
+        Vector3 next = Vector3.zero;
+        for (int i = 0; i < worldLastPosition.Length - 1; i++)
+        {
+            if (i == 0)
+            {
+                next = worldLastPosition[0];
+                worldLastPosition[0] = newValue;
+            }                
+            else
+            {
+                Vector3 tmpValue = worldLastPosition[i];
+                worldLastPosition[i] = next;
+                next = tmpValue;                
+            }
+        }
+    }
+    private Vector3 WorldLastPositionGetIndex(int index)
+    {
+        index = (index < 0) ? 0 : index;
+        index = (index >= worldLastPosition.Length) ? worldLastPosition.Length - 1 : index;
+        return (worldLastPosition[index]);
+    }
+
     private Vector3 worldPreviousNormal;    //et sa dernière normal accepté par le changement d'angle
     private Vector3 worldLastNormal;        //derniere normal enregistré, peut import le changement position/angle
     private Vector3 positionAttractPoint;        //direction de l'attractPoint
@@ -56,6 +81,7 @@ public class Attractor : MonoBehaviour
     #endregion
 
     #region Core
+
     /// <summary>
     /// ici reset l'attractor anti gravité
     /// </summary>
@@ -73,11 +99,18 @@ public class Attractor : MonoBehaviour
     {
         ResetAttractPoint();    //ici se reset, on est sur le ground !
 
-        //si la normal à changé, update la position + normal !
-        if (worldPreviousNormal != playerController.NormalCollide)
-        {
-            worldLastNormal = playerController.NormalCollide;   //avoir toujours une normal à jour
+        worldLastNormal = playerController.NormalCollide;   //avoir toujours une normal à jour
+        float distForSave = (WorldLastPositionGetIndex(0) - transform.position).sqrMagnitude;
 
+        //si la distance entre les 2 point est trop grande, dans tout les cas, save la nouvelle position !
+        if (distForSave > sizeDistanceForSaveSquare)
+        {
+            WorldLastPositionSet(transform.position); //save la position onGround
+            DebugExtension.DebugWireSphere(WorldLastPositionGetIndex(0), Color.yellow, 0.5f, 1f);
+        }
+        //si la normal à changé, update la position + normal !
+        else if (worldPreviousNormal != playerController.NormalCollide)
+        {
             //ici changement de position SEULEMENT si l'angle de la normal diffère de X
             float anglePreviousNormal = QuaternionExt.GetAngleFromVector(worldPreviousNormal);
             float angleNormalPlayer = QuaternionExt.GetAngleFromVector(worldLastNormal);
@@ -93,24 +126,14 @@ public class Attractor : MonoBehaviour
             {
 
                 //ici change la normal, ET la position
-                worldLastPosition = transform.position; //save la position onGround
+                WorldLastPositionSet(transform.position); //save la position onGround
                 worldPreviousNormal = worldLastNormal;
 
-                DebugExtension.DebugWireSphere(worldLastPosition, Color.yellow, 0.5f, 1);
-                Debug.DrawRay(transform.position, worldPreviousNormal, Color.magenta, 1f);
+                DebugExtension.DebugWireSphere(WorldLastPositionGetIndex(0), Color.yellow, 0.5f, 1f);
+                Debug.DrawRay(transform.position, worldPreviousNormal, Color.yellow, 1f);
             }
 
             //coolDownUpdatePos.StartCoolDown();
-        }
-        else
-        {
-            //si la normal n'a pas changé, regarder pour la position si on est plus loin
-            float distForSave = (worldLastPosition - transform.position).sqrMagnitude;
-            if (distForSave > sizeDistanceForSaveSquare)
-            {
-                worldLastPosition = transform.position; //save la position onGround
-                DebugExtension.DebugWireSphere(worldLastPosition, Color.yellow, 0.5f, 1);
-            }
         }
     }
 
@@ -128,36 +151,57 @@ public class Attractor : MonoBehaviour
 
         Debug.Log("ici on stup l'attract point !");
 
-        //lengthInputForceAttractPoint = playerController.FindTheRightDir().magnitude;    //ici la force de l'attract point ! (0 - 1)
-        lengthInputForceAttractPoint = rb.velocity.magnitude;    //ici la force de l'attract point ! (0 - MAxVelocityPlayer)
+        lengthInputForceAttractPoint = playerController.FindTheRightDir().magnitude;    //ici la force de l'attract point ! (0 - 1)
+        //lengthInputForceAttractPoint = rb.velocity.magnitude;    //ici la force de l'attract point ! (0 - MAxVelocityPlayer)
 
         //TODOO
         //ici la pos ancien, + X dans le sens de la normal précédente ??
-        DebugExtension.DebugWireSphere(worldLastPosition, Color.red, 2f, 1);
-        positionAttractPoint = worldLastPosition - worldLastNormal * lengthPositionAttractPoint;
+        positionAttractPoint = WorldLastPositionGetIndex(1) - worldLastNormal * lengthPositionAttractPoint;
 
-        DebugExtension.DebugWireSphere(positionAttractPoint, Color.blue, 2f, 1);
-        Debug.Break();
+        DebugExtension.DebugWireSphere(WorldLastPositionGetIndex(1), Color.red, 1f, 2f);          //ancienne pos
+        DebugExtension.DebugWireSphere(positionAttractPoint, Color.blue, 1f, 2f);      //nouvel pos
+        Debug.DrawRay(WorldLastPositionGetIndex(0), worldLastNormal * 4, Color.red, 2f);      //last normal
+        //Debug.Break();
     }
 
     /// <summary>
     /// ici attire le player s'il ne faut
     /// </summary>
-    private void AttractPlayer()
+    public void SetNewNormalForceWhenFlying()
     {
         if (!hasAttractPoint)
             return;
 
         Debug.Log("Ici attract player jusqu'a ce qu'il soit sur le sol (ou hors limite ???)");
 
-        dirAttractPoint = (positionAttractPoint - transform.position).normalized * lengthInputForceAttractPoint;
-        dirAttractPoint *= lengthInputForceAttractPoint;    //applique le ration de la velocité du ribidbody
+        dirAttractPoint = (positionAttractPoint - transform.position).normalized;
+        //dirAttractPoint *= lengthInputForceAttractPoint;    //applique le ration de la velocité du ribidbody
         dirAttractPoint *= forceAttractPoint;               //applique la force de l'attractPoint !
 
         //rb.velocity += dirAttractPoint * Physics.gravity.y * (betterJump.FallMultiplier - 1) * Time.fixedDeltaTime;
         //Debug.DrawRay(transform.position, dirAttractPoint, Color.magenta, 1f);
 
+        if (dirAttractPoint == Vector3.zero)
+        {
+            Debug.LogWarning("vecteur zero antigravité !");
+            return;
+        }
 
+        Debug.Log("TODO: milieu de dirAttractPoint & worldLastNormal");
+        //Debug.Log();
+
+        float signVector = QuaternionExt.DotProduct(dirAttractPoint, -worldLastNormal);
+        if (signVector > 0)
+        {
+            playerController.NormalCollide = -QuaternionExt.GetMiddleOf2Vector(dirAttractPoint, -worldLastNormal);
+        }
+        else
+        {
+            playerController.NormalCollide = -QuaternionExt.GetMiddleOf2Vector(dirAttractPoint, worldLastNormal);
+        }
+        //playerController.NormalCollide = -dirAttractPoint;
+
+        Debug.DrawRay(transform.position, playerController.NormalCollide, Color.magenta, 10f);      //last normal
         //ici renvoyer vrai ou faux selon si le dir est derriere la derniere normal ?
         //pour pas appliquer la vieille force de normal après...
     }

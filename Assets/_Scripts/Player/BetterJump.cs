@@ -137,7 +137,8 @@ public class BetterJump : MonoBehaviour
         if (other.gameObject.CompareTag(GameData.Prefabs.Bumper.ToString()))
         {
             //playerController.JumpFromCollision(true, rb.velocity.magnitude);   //setup le playerController avant de jumper
-            playerController.JumpFromCollision();   //setup le playerController avant de jumper
+            Vector3 jumpDir = -(other.transform.position - transform.position).normalized;
+            playerController.JumpFromCollision(jumpDir);   //setup le playerController avant de jumper
         }
     }
 
@@ -153,7 +154,12 @@ public class BetterJump : MonoBehaviour
     private void ApplyGravity()
     {
         rb.velocity += playerController.NormalCollide * Physics.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
-        Debug.DrawRay(transform.position, playerController.NormalCollide, Color.magenta, 1f);
+        //Debug.DrawRay(transform.position, playerController.NormalCollide, Color.magenta, 1f);
+    }
+    public void ApplyGravity(Vector3 dir, float force = 1)
+    {
+        rb.velocity += dir * force * Physics.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
+        //Debug.DrawRay(transform.position, playerController.NormalCollide, Color.magenta, 1f);
     }
 
     private void FixedUpdate ()
@@ -163,6 +169,7 @@ public class BetterJump : MonoBehaviour
         {
             
             NotGroundedNorJumped();
+            attractor.SetNewNormalForceWhenFlying();
             //Debug.Log("ici applique la gravité, on tombe !");
             ApplyGravity(); //ici enlever ??
         }
