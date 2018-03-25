@@ -43,7 +43,7 @@ public class CameraTarget : MonoBehaviour
 	// Unity functions
 	private void OnEnable()
 	{
-		if (onEnableAdd)
+		if (onEnableAdd && gameObject.activeSelf)
 		{
 			AddTarget ();
 		}

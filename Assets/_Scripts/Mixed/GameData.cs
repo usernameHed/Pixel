@@ -24,6 +24,7 @@ public static class GameData
         Link,
         Player,
         SuperPower,
+        Bumper,
     };
 
     public enum PoolTag

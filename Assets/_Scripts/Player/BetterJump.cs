@@ -12,6 +12,7 @@ public class BetterJump : MonoBehaviour
     private float gravity = 9.81f;
     [FoldoutGroup("GamePlay"), Tooltip("gravité du saut"), SerializeField]
     private float fallMultiplier = 1.0f;
+    public float FallMultiplier { get { return (fallMultiplier); } }
     [FoldoutGroup("GamePlay"), Tooltip("jumper constament en restant appuyé ?"), SerializeField]
     private bool stayHold = false;
     [Space(10)]
@@ -30,11 +31,13 @@ public class BetterJump : MonoBehaviour
     private InputPlayer inputPlayer;
     [FoldoutGroup("Debug"), Tooltip("ref"), SerializeField]
     private PlayerController playerController;
+    [FoldoutGroup("Debug"), Tooltip("ref"), SerializeField]
+    private Attractor attractor;
 
     private Vector3 initialVelocity;
 
-    private bool jumpStop = false;
-    private bool hasJustJump = false;
+    private bool jumpStop = false;      //forcer l'arrêt du jump, pour forcer le joueur a lacher la touche
+    private bool hasJumpAndFlying = false;   //a-t-on juste jumpé ?
 
     #endregion
 
@@ -47,6 +50,7 @@ public class BetterJump : MonoBehaviour
     private void InitValue()
     {
         jumpStop = false;
+        hasJumpAndFlying = false;
     }
     #endregion
 
@@ -67,19 +71,36 @@ public class BetterJump : MonoBehaviour
     }
 
     /// <summary>
-    /// jump !
+    /// Jump (on est sur de vouloir jump)
     /// </summary>
-    public bool Jump(Vector3 dir)
+    /// <param name="dir">direction du jump</param>
+    /// <returns>retourne vrai si on a jumpé</returns>
+    public bool Jump(Vector3 dir, bool applyThisForce = false, float force = 0)
     {
-        playerController.Anim.SetBool("Jump", true);
+        //s'il n'y a pas de direction, erreur ???
+        if (dir == Vector3.zero)
+        {
+            dir = Vector3.up;
+            //ici pas de rotation ?? 
+            Debug.Log("pas de rotation ! up de base !");
+        }
 
-        coolDownJump.StartCoolDown();
-        PlayerConnected.Instance.setVibrationPlayer(playerController.IdPlayer, onJump);
+        //playerController.Anim.SetBool("Jump", true);
 
-        hasJustJump = true;
+        coolDownJump.StartCoolDown();   //set le coolDown du jump
+        PlayerConnected.Instance.setVibrationPlayer(playerController.IdPlayer, onJump); //set vibration de saut
 
-        Vector3 jumpForce = dir * CalculateJumpVerticalSpeed();
+        hasJumpAndFlying = true; //on vient de sauter ! tant qu'on retombe pas, on est vrai
+
+        //applique soit la force de saut, soit la force défini dans les parametres
+        Vector3 jumpForce = (!applyThisForce) ? dir * CalculateJumpVerticalSpeed() : dir * force;
+
         rb.velocity = jumpForce;
+
+        Debug.DrawRay(transform.position, jumpForce, Color.red, 5f);
+        GameObject particle = ObjectsPooler.Instance.SpawnFromPool(GameData.PoolTag.ParticleBump, transform.position, Quaternion.identity, ObjectsPooler.Instance.transform);
+        particle.transform.rotation = QuaternionExt.LookAtDir(jumpForce * -1);
+
 
         if (!stayHold)
             jumpStop = true;
@@ -93,26 +114,62 @@ public class BetterJump : MonoBehaviour
         return Mathf.Sqrt(2 * jumpForce * gravity);
     }
 
+    
+
     /// <summary>
-    /// 
+    /// est appelé a chaque fois qu'il est grounded
     /// </summary>
-    public void OnGrounded()
+    /// <param name="other">le type de sol</param>
+    public void OnGrounded(GameObject other)
     {
-        if (hasJustJump)
+        //ici gère si on vient d'atterrrire...
+        if (hasJumpAndFlying)
         {
-            playerController.Anim.SetBool("Jump", false);
-            Debug.Log("ici grounded");
-            hasJustJump = false;
+            //playerController.Anim.SetBool("Jump", false);
+            Debug.Log("ici just grounded");
+            hasJumpAndFlying = false;
             PlayerConnected.Instance.setVibrationPlayer(playerController.IdPlayer, onGrounded);
         }
+        attractor.SaveLastPositionOnground(); //ici save la position, et se reset !
+
+        //ici regarde si l'objet de collision est du type Bumper, si oui, on saute !
+        //force le saut si on est sur un bumper...
+        if (other.gameObject.CompareTag(GameData.Prefabs.Bumper.ToString()))
+        {
+            //playerController.JumpFromCollision(true, rb.velocity.magnitude);   //setup le playerController avant de jumper
+            playerController.JumpFromCollision();   //setup le playerController avant de jumper
+        }
+    }
+
+    /// <summary>
+    /// est appelé a chaque fois qu'il n'est pas grounded, et qu'on a pas sauté
+    /// </summary>
+    private void NotGroundedNorJumped()
+    {
+        //ici c'est la première fois qu'on touche plus le sol, alors que on a pas sauté ! faire quelque chose !
+        attractor.SetUpAttractPoint();
+    }
+
+    private void ApplyGravity()
+    {
+        rb.velocity += playerController.NormalCollide * Physics.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
+        Debug.DrawRay(transform.position, playerController.NormalCollide, Color.magenta, 1f);
     }
 
     private void FixedUpdate ()
 	{
-        if (!playerController.Grounded && !hasJustJump)
+        //si le player n'est pas grounded... et qu'on a pas sauté de nous même...
+        if (!playerController.Grounded && !hasJumpAndFlying)
         {
-            rb.velocity += playerController.NormalCollide * Physics.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
-            Debug.DrawRay(transform.position, playerController.NormalCollide, Color.magenta, 1f);
+            
+            NotGroundedNorJumped();
+            //Debug.Log("ici applique la gravité, on tombe !");
+            ApplyGravity(); //ici enlever ??
+        }
+        else if (playerController.Grounded)
+        {
+            //applique la physique quand on est grounded !
+            ApplyGravity();
         }
     }
 

@@ -131,8 +131,8 @@ public class PlayerController : MonoBehaviour, IKillable
         else
         {
             //stop le déplacement
-            anim.SetBool("Run", false);
-            Debug.Log("ici stoppé");
+            //anim.SetBool("Run", false);
+            //Debug.Log("ici stoppé");
         }
     }
 
@@ -170,9 +170,9 @@ public class PlayerController : MonoBehaviour, IKillable
             //si on est égal, alors l'intertie en x est la meme que la direction de l'input
             //important, car si l'inverse: alors on laché la touche ?
             float diff;
-            if (QuaternionExt.IsAngleCloseToOtherByAmount(angleDirInput, anglePlayer, debugDiferenceAngleBetweenInputAndPlayer, out diff) && normalCollide != Vector3.zero)   
+            if (QuaternionExt.IsAngleCloseToOtherByAmount(angleDirInput, anglePlayer, debugDiferenceAngleBetweenInputAndPlayer, out diff) && normalCollide != Vector3.zero)
             {
-                Debug.Log("move normalement !");
+                //Debug.Log("move normalement !");
             }
             else if (normalCollide == Vector3.zero)
             {
@@ -180,13 +180,13 @@ public class PlayerController : MonoBehaviour, IKillable
             }
             else
             {
-                Debug.Log("ralenti progressivement ??");
+                //Debug.Log("ralenti progressivement ??");
             }
 
             rb.AddForce(velocityChange, ForceMode.VelocityChange);
 
 
-             anim.SetBool("Run", true);  //déplacement
+             //anim.SetBool("Run", true);  //déplacement
         }
 
         
@@ -196,7 +196,7 @@ public class PlayerController : MonoBehaviour, IKillable
     /// set la direction des inputs selon la normal !
     /// </summary>
     /// <returns></returns>
-    private Vector3 FindTheRightDir()
+    public Vector3 FindTheRightDir()
     {
         // Calculate how fast we should be moving
         Vector3 targetVelocity = new Vector3(InputPlayerScript.Horiz, InputPlayerScript.Verti, 0);
@@ -208,7 +208,9 @@ public class PlayerController : MonoBehaviour, IKillable
             Vector3 right = QuaternionExt.CrossProduct(normalCollide, Vector3.forward).normalized;
             float dir = QuaternionExt.DotProduct(targetVelocity, right);
 
-            if (dir < 0)
+            return (right * dir);
+
+            /*if (dir < 0)
             {
                 //Debug.Log(targetVelocity.magnitude);
                 return (-right * targetVelocity.magnitude);
@@ -217,7 +219,7 @@ public class PlayerController : MonoBehaviour, IKillable
             {
                 //Debug.Log(targetVelocity.magnitude);
                 return (right * targetVelocity.magnitude);
-            }
+            }*/
         }
         else
         {
@@ -237,7 +239,7 @@ public class PlayerController : MonoBehaviour, IKillable
                 Vector3 finalVelocityDir = GetDirWhenJumpAndMoving();   //get la direction du joystick / normal / les 2...
 
                 //ici jump, selon la direction voulu, en ajoutant la force du saut
-                ActualyJump(finalVelocityDir);
+                SetupJumpFromPlayerController(finalVelocityDir, true);
             }
         }
         else
@@ -317,24 +319,15 @@ public class PlayerController : MonoBehaviour, IKillable
     /// <summary>
     /// jump à une direction donnée
     /// </summary>
-    /// <param name="dir"></param>
-    private void ActualyJump(Vector3 dir)
+    /// <param name="dir">direction du jump</param>
+    /// <param name="automaticlyLaunchJump">si oui, appelle le jump du jumpScript, sinon, attendre...</param>
+    private void SetupJumpFromPlayerController(Vector3 dir, bool automaticlyLaunchJump)
     {
-        if (dir == Vector3.zero)
-        {
-            dir = Vector3.up;
-            //ici pas de rotation ?? 
-            Debug.Log("pas de rotation ! up de base !");
-        }
-
-        Debug.DrawRay(transform.position, dir, Color.red, 5f);
-        GameObject particle = ObjectsPooler.Instance.SpawnFromPool(GameData.PoolTag.ParticleBump, transform.position, Quaternion.identity, ObjectsPooler.Instance.transform);
-        particle.transform.rotation = QuaternionExt.LookAtDir(dir * -1);
-
         grounded = false;
         coolDownGroundedJump.StartCoolDown();
 
-        betterJump.Jump(dir);
+        if (automaticlyLaunchJump)
+            betterJump.Jump(dir);
     }
 
     /// <summary>
@@ -392,6 +385,7 @@ public class PlayerController : MonoBehaviour, IKillable
         return (false);
     }
 
+    /*
     private void DisplayNormalArray()
     {
         for (int i = 0; i < colliderNormalArray.Length; i++)
@@ -402,6 +396,7 @@ public class PlayerController : MonoBehaviour, IKillable
             }
         }
     }
+    */
 
     /// <summary>
     /// retourne 0 si pas en mur, 1 sur droite, -1 si gauche, 2 si plafond
@@ -476,18 +471,12 @@ public class PlayerController : MonoBehaviour, IKillable
     {
         if (coolDownGroundedJump.IsReady() && GameData.IsInList(listLayerToCollide, other.gameObject.layer))
         {
-            
-
             Vector3 point = other.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
-            Vector3 tmpNormal = (point - transform.position) * -1;
-            ResetCoolDownGroundedIfGrounded(tmpNormal);
-            SetNewCollider(tmpNormal);
-
-            grounded = true;
-            betterJump.OnGrounded();
+            Vector3 normal = (point - transform.position) * -1;
+            CollisionMecanics(normal);
+            betterJump.OnGrounded(other.gameObject);
 
             CollisionAction(other.gameObject);
-
         }
     }
 
@@ -499,12 +488,35 @@ public class PlayerController : MonoBehaviour, IKillable
     {
         if (coolDownGroundedJump.IsReady() && GameData.IsInList(listLayerToCollide, other.gameObject.layer))
         {
-            Vector3 tmpNormal = other.contacts[0].normal;
-            ResetCoolDownGroundedIfGrounded(tmpNormal);
-            SetNewCollider(tmpNormal);
-            grounded = true;
-            betterJump.OnGrounded();
+            //setup la normal
+            Vector3 normal = other.contacts[0].normal;
+            CollisionMecanics(normal);
+            betterJump.OnGrounded(other.gameObject); 
         }
+    }
+
+    /// <summary>
+    /// mécaniques quand on est au sol
+    /// </summary>
+    private void CollisionMecanics(Vector3 normal)
+    {
+        ResetCoolDownGroundedIfGrounded(normal);
+        SetNewCollider(normal);
+        grounded = true;
+    }
+
+    /// <summary>
+    /// on provoque un jump depusi le code
+    /// </summary>
+    /// <param name="applyThisForce">si vrai: on change manuellement la velocité du jump</param>
+    /// <param name="force">si applyThisForce vrai: on change manuellement force du jump à force</param>
+    public void JumpFromCollision(bool applyThisForce = false, float force = 0)
+    {
+        coolDownSelfRepulsion.StartCoolDown();
+        SetUpNormalCollide();
+
+        SetupJumpFromPlayerController(Vector3.zero, false);
+        betterJump.Jump(normalCollide, applyThisForce, force);
     }
 
     /// <summary>
@@ -527,9 +539,7 @@ public class PlayerController : MonoBehaviour, IKillable
                 }
 
                 //saute !
-                coolDownSelfRepulsion.StartCoolDown();
-                SetUpNormalCollide();
-                ActualyJump(normalCollide);
+                JumpFromCollision();
                 return (true);
             }
         }
@@ -586,7 +596,7 @@ public class PlayerController : MonoBehaviour, IKillable
         TryToMove();
         TryToJump();
 
-        DisplayNormalArray();
+        //DisplayNormalArray();
         ListExt.ClearArray(colliderNormalArray);
         grounded = false;
     }

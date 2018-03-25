@@ -15,6 +15,7 @@ TagManager:
   - PickupRepulseActive
   - Enemy
   - SuperPower
+  - Bumper
   layers:
   - Default
   - TransparentFX

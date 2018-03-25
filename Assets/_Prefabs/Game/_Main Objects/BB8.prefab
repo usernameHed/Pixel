@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 114916501286600408}
   - component: {fileID: 114547858037407714}
   - component: {fileID: 114597218946347534}
+  - component: {fileID: 114941258686156592}
   - component: {fileID: 114357585291201202}
   - component: {fileID: 54146100963101564}
   m_Layer: 9
@@ -206,7 +207,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1418262511089222
 GameObject:
   m_ObjectHideFlags: 1
@@ -1121,7 +1122,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1055901625757286}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1582,6 +1583,7 @@ MonoBehaviour:
   rb: {fileID: 54146100963101564}
   inputPlayer: {fileID: 114669656874546736}
   playerController: {fileID: 114916501286600408}
+  attractor: {fileID: 114941258686156592}
 --- !u!114 &114609055067265658
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1659,7 +1661,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 023191d3b699d5a4db83801cbfe3dde3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idPlayer: 1
+  idPlayer: 0
   isSith: 0
   turnRateArrow: 300
   speed: 10
@@ -1700,6 +1702,25 @@ MonoBehaviour:
   inputPlayer: {fileID: 114669656874546736}
   rb: {fileID: 54146100963101564}
   betterJump: {fileID: 114597218946347534}
+--- !u!114 &114941258686156592
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1055901625757286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 681564bac27207d4c80a27700afd7b82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lengthPositionAttractPoint: 2
+  forceAttractPoint: 10
+  hasAttractPoint: 0
+  coolDownCreateAttractPoint:
+    timeCoolDown: 0.1
+  playerController: {fileID: 114916501286600408}
+  betterJump: {fileID: 114597218946347534}
+  rb: {fileID: 54146100963101564}
 --- !u!114 &114951671183239300
 MonoBehaviour:
   m_ObjectHideFlags: 1
