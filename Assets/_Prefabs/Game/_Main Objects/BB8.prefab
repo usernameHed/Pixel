@@ -1667,6 +1667,7 @@ MonoBehaviour:
   speed: 10
   gravity: 9.81
   maxVelocityChange: 10
+  propulseWhenNewGround: 3
   repulseOtherWhenTouchOnAir: 1
   coolDownSelfRepulsion:
     timeCoolDown: 0.2
@@ -1700,7 +1701,8 @@ MonoBehaviour:
     timeCoolDown: 0.2
   debugDiferenceAngleBetweenInputAndPlayer: 179
   debugDiferenceAngleBetweenInputAndLastInput: 10
-  debugCloseValueNormal: 0.05
+  debugCloseValueNormal: 0.1
+  debugCloseValueAngleInput: 89
   inputPlayer: {fileID: 114669656874546736}
   rb: {fileID: 54146100963101564}
   betterJump: {fileID: 114597218946347534}

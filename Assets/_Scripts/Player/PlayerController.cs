@@ -23,6 +23,8 @@ public class PlayerController : MonoBehaviour, IKillable
     public float gravity = 9.81f;
     [FoldoutGroup("GamePlay"), Tooltip(""), SerializeField]
     public float maxVelocityChange = 10.0f;
+    [FoldoutGroup("GamePlay"), Tooltip(""), SerializeField]
+    public float propulseWhenNewGround = 1f;
 
     [FoldoutGroup("GamePlay"), Tooltip(""), SerializeField]
     public bool repulseOtherWhenTouchOnAir = true;
@@ -77,6 +79,8 @@ public class PlayerController : MonoBehaviour, IKillable
     private float debugDiferenceAngleBetweenInputAndLastInput = 30f;
     [FoldoutGroup("Debug"), Tooltip("valeur en x et y où une normal est considéré comme suffisament proche d'une autre"), SerializeField]
     private float debugCloseValueNormal = 0.02f;
+    [FoldoutGroup("Debug"), Tooltip("valeur en x et y où une normal est considéré comme suffisament proche d'une autre"), SerializeField]
+    private float debugCloseValueAngleInput = 89f;
     //[FoldoutGroup("Debug"), Tooltip(""), SerializeField]
     //private float little = 0.1f;
 
@@ -177,13 +181,25 @@ public class PlayerController : MonoBehaviour, IKillable
         targetVelocity *= speed;
 
 
-        //ici propulse un peu si: l'angle de la direction précédente a changé de beaucoup, mais pas de +95;
-        float angleInputPlayer = QuaternionExt.GetAngleFromVector(inputPlayer);
-        float angleLastInputDir = QuaternionExt.GetAngleFromVector(lastInputDir);
-        float diffLastInput;
-        if (QuaternionExt.IsAngleCloseToOtherByAmount(angleInputPlayer, angleInputPlayer, debugDiferenceAngleBetweenInputAndLastInput, out diffLastInput))
+        
+        Debug.DrawRay(transform.position, inputPlayer, Color.yellow, 1f);
+        Debug.DrawRay(transform.position, lastInputDir, Color.red, 1f);
+
+        if (!(UtilityFunctions.IsClose(inputPlayer.x, lastInputDir.x, debugCloseValueNormal)
+            && UtilityFunctions.IsClose(inputPlayer.y, lastInputDir.y, debugCloseValueNormal)))
         {
-            Debug.Log("ici propulse un peu !");
+            //Debug.Log("ici propulse un peu !");
+            //ici propulse un peu si: l'angle de la direction précédente a changé de beaucoup, mais pas de +95;
+            float angleInputPlayer = QuaternionExt.GetAngleFromVector(inputPlayer);
+            float angleLastInputDir = QuaternionExt.GetAngleFromVector(lastInputDir);
+
+            float diffLastInput;
+            if (QuaternionExt.IsAngleCloseToOtherByAmount(angleInputPlayer, angleLastInputDir, debugCloseValueAngleInput, out diffLastInput))
+            {
+                Debug.Log("ici propulse !");
+                rb.AddForce(inputPlayer * propulseWhenNewGround, ForceMode.VelocityChange);
+            }
+
         }
         lastInputDir = inputPlayer;
         
@@ -570,7 +586,17 @@ public class PlayerController : MonoBehaviour, IKillable
 
             betterJump.AttractorScript.StartCoolDown();
 
-            betterJump.OnGrounded(other.gameObject); 
+            betterJump.OnGrounded();
+
+            //ici regarde si l'objet de collision est du type Bumper, si oui, on saute !
+            //force le saut si on est sur un bumper...
+            if (other.gameObject.CompareTag(GameData.Prefabs.Bumper.ToString()) && coolDownSelfRepulsion.IsReady())
+            {
+
+                coolDownSelfRepulsion.StartCoolDown();
+                Vector3 jumpDir = -(other.transform.position - transform.position).normalized;
+                JumpFromCollision(jumpDir);   //setup le playerController avant de jumper
+            }
         }
     }
 
@@ -669,12 +695,12 @@ public class PlayerController : MonoBehaviour, IKillable
             return;
 
         SetUpNormalCollide();
-        Debug.DrawRay(transform.position, NormalCollide, Color.yellow, 3f);
+        //Debug.DrawRay(transform.position, NormalCollide, Color.yellow, 3f);
 
         TryToMove();
         TryToJump();
 
-        DisplayNormalArray();
+        //DisplayNormalArray();
         ListExt.ClearArray(colliderNormalArray);
         grounded = false;
     }

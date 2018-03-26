@@ -115,7 +115,7 @@ public class Attractor : MonoBehaviour
         if (distForSave > sizeDistanceForSaveSquare)
         {
             WorldLastPositionSet(transform.position); //save la position onGround
-            DebugExtension.DebugWireSphere(WorldLastPositionGetIndex(0), Color.yellow, 0.5f, 1f);
+            //DebugExtension.DebugWireSphere(WorldLastPositionGetIndex(0), Color.yellow, 0.5f, 1f);
         }
         //si la normal à changé, update la position + normal !
         else if (worldPreviousNormal != playerController.NormalCollide)
@@ -138,7 +138,7 @@ public class Attractor : MonoBehaviour
                 WorldLastPositionSet(transform.position); //save la position onGround
                 worldPreviousNormal = worldLastNormal;
 
-                DebugExtension.DebugWireSphere(WorldLastPositionGetIndex(0), Color.yellow, 0.5f, 1f);
+                //DebugExtension.DebugWireSphere(WorldLastPositionGetIndex(0), Color.yellow, 0.5f, 1f);
                 //Debug.DrawRay(transform.position, worldPreviousNormal, Color.yellow, 1f);
             }
 
@@ -167,8 +167,8 @@ public class Attractor : MonoBehaviour
         //ici la pos ancien, + X dans le sens de la normal précédente ??
         positionAttractPoint = WorldLastPositionGetIndex(1) - worldLastNormal * lengthPositionAttractPoint;
 
-        DebugExtension.DebugWireSphere(WorldLastPositionGetIndex(1), Color.red, 1f, 2f);          //ancienne pos
-        DebugExtension.DebugWireSphere(positionAttractPoint, Color.blue, 1f, 2f);      //nouvel pos
+        //DebugExtension.DebugWireSphere(WorldLastPositionGetIndex(1), Color.red, 1f, 2f);          //ancienne pos
+        //DebugExtension.DebugWireSphere(positionAttractPoint, Color.blue, 1f, 2f);      //nouvel pos
         //Debug.DrawRay(WorldLastPositionGetIndex(0), worldLastNormal * 4, Color.red, 2f);      //last normal
     }
 
@@ -180,7 +180,7 @@ public class Attractor : MonoBehaviour
         if (!hasAttractPoint)
             return;
 
-        Debug.Log("Ici attract player jusqu'a ce qu'il soit sur le sol (ou hors limite ???)");
+        //Debug.Log("Ici attract player jusqu'a ce qu'il soit sur le sol (ou hors limite ???)");
 
         dirAttractPoint = (positionAttractPoint - transform.position).normalized;
         //dirAttractPoint *= lengthInputForceAttractPoint;    //applique le ration de la velocité du ribidbody
@@ -191,11 +191,11 @@ public class Attractor : MonoBehaviour
 
         if (dirAttractPoint == Vector3.zero)
         {
-            Debug.LogWarning("vecteur zero antigravité !");
+            //Debug.LogWarning("vecteur zero antigravité !");
             return;
         }
 
-        Debug.Log("TODO: milieu de dirAttractPoint & worldLastNormal");
+        //Debug.Log("TODO: milieu de dirAttractPoint & worldLastNormal");
         //Debug.Log();
 
         float signVector = QuaternionExt.DotProduct(dirAttractPoint, -worldLastNormal);

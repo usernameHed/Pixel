@@ -121,7 +121,7 @@ public class BetterJump : MonoBehaviour
     /// est appelé a chaque fois qu'il est grounded
     /// </summary>
     /// <param name="other">le type de sol</param>
-    public void OnGrounded(GameObject other)
+    public void OnGrounded()
     {
         //ici gère si on vient d'atterrrire...
         if (hasJumpAndFlying)
@@ -133,14 +133,7 @@ public class BetterJump : MonoBehaviour
         }
         attractor.SaveLastPositionOnground(); //ici save la position, et se reset !
 
-        //ici regarde si l'objet de collision est du type Bumper, si oui, on saute !
-        //force le saut si on est sur un bumper...
-        if (other.gameObject.CompareTag(GameData.Prefabs.Bumper.ToString()))
-        {
-            //playerController.JumpFromCollision(true, rb.velocity.magnitude);   //setup le playerController avant de jumper
-            Vector3 jumpDir = -(other.transform.position - transform.position).normalized;
-            playerController.JumpFromCollision(jumpDir);   //setup le playerController avant de jumper
-        }
+        
     }
 
     /// <summary>
