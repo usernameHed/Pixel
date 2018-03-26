@@ -1699,6 +1699,8 @@ MonoBehaviour:
   coolDownGroundedJump:
     timeCoolDown: 0.2
   debugDiferenceAngleBetweenInputAndPlayer: 179
+  debugDiferenceAngleBetweenInputAndLastInput: 10
+  debugCloseValueNormal: 0.05
   inputPlayer: {fileID: 114669656874546736}
   rb: {fileID: 54146100963101564}
   betterJump: {fileID: 114597218946347534}
@@ -1714,7 +1716,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lengthPositionAttractPoint: 1
-  forceAttractPoint: 10
+  forceAttractPoint: 2
   hasAttractPoint: 0
   sizeDistanceForSaveSquare: 0.5
   differenceAngleNormalForUpdatePosition: 5

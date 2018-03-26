@@ -73,6 +73,10 @@ public class PlayerController : MonoBehaviour, IKillable
     private FrequencyCoolDown coolDownGroundedJump; //O.2
     [FoldoutGroup("Debug"), Tooltip("Marge de vitesse: quand on appuis sur aucune touche, mais qu'on jump: si notre vitesse vertical est suppérieur à cette valeur, on saute dans la direction de l'arrow (et non de la normal précédente)"), SerializeField]
     private float debugDiferenceAngleBetweenInputAndPlayer = 30f;
+    [FoldoutGroup("Debug"), Tooltip("Marge de vitesse: quand on appuis sur aucune touche, mais qu'on jump: si notre vitesse vertical est suppérieur à cette valeur, on saute dans la direction de l'arrow (et non de la normal précédente)"), SerializeField]
+    private float debugDiferenceAngleBetweenInputAndLastInput = 30f;
+    [FoldoutGroup("Debug"), Tooltip("valeur en x et y où une normal est considéré comme suffisament proche d'une autre"), SerializeField]
+    private float debugCloseValueNormal = 0.02f;
     //[FoldoutGroup("Debug"), Tooltip(""), SerializeField]
     //private float little = 0.1f;
 
@@ -85,6 +89,13 @@ public class PlayerController : MonoBehaviour, IKillable
 
     private bool enabledObject = true;  //le script est-il enabled ?
     private bool stopAction = false;    //le joueur est-il stopé ?
+
+    /*[FoldoutGroup("Debug"), Tooltip("inputSmoothDisplay"), SerializeField]
+    private Vector3 inputSmooth;
+    [FoldoutGroup("Debug"), Tooltip("inputSmooth speed"), SerializeField]
+    private float speedSmooth = 0.5f;
+    static float timeInterpolation = 0.0f;      // starting value for the Lerp*/
+    private Vector3 lastInputDir;
 
     [FoldoutGroup("Debug"), Tooltip("ref"), SerializeField]
     private Rigidbody rb;           //ref du rb
@@ -107,6 +118,7 @@ public class PlayerController : MonoBehaviour, IKillable
         rb.freezeRotation = true;
         ListExt.ClearArray(colliderNormalArray);
 
+        //timeInterpolation = 0;
         enabledObject = true;
         stopAction = false;
     }
@@ -151,9 +163,30 @@ public class PlayerController : MonoBehaviour, IKillable
         // Calculate how fast we should be moving
         //Vector3 targetVelocity = new Vector3(InputPlayerScript.Horiz, InputPlayerScript.Verti, 0);
         Vector3 inputPlayer = FindTheRightDir();
+
+
+        /*inputSmooth = new Vector3(Mathf.Lerp(inputSmooth.x, inputPlayer.x, timeInterpolation), Mathf.Lerp(inputSmooth.y, inputPlayer.y, timeInterpolation), 0);
+        timeInterpolation += speedSmooth * Time.fixedDeltaTime;
+        if (timeInterpolation > 1)
+            timeInterpolation -= 1;
+        Debug.Log(inputSmooth);
+
+        Vector3 targetVelocity = inputSmooth;*/
         Vector3 targetVelocity = inputPlayer;
         targetVelocity = transform.TransformDirection(targetVelocity);
         targetVelocity *= speed;
+
+
+        //ici propulse un peu si: l'angle de la direction précédente a changé de beaucoup, mais pas de +95;
+        float angleInputPlayer = QuaternionExt.GetAngleFromVector(inputPlayer);
+        float angleLastInputDir = QuaternionExt.GetAngleFromVector(lastInputDir);
+        float diffLastInput;
+        if (QuaternionExt.IsAngleCloseToOtherByAmount(angleInputPlayer, angleInputPlayer, debugDiferenceAngleBetweenInputAndLastInput, out diffLastInput))
+        {
+            Debug.Log("ici propulse un peu !");
+        }
+        lastInputDir = inputPlayer;
+        
 
         // Apply a force that attempts to reach our target velocity
         Vector3 velocity = rb.velocity;
@@ -210,9 +243,9 @@ public class PlayerController : MonoBehaviour, IKillable
             Vector3 right = QuaternionExt.CrossProduct(normalCollide, Vector3.forward).normalized;
             float dir = QuaternionExt.DotProduct(targetVelocity, right);
 
-            //return (right * dir);
+            return (right * dir);
 
-            if (dir < 0)
+            /*if (dir < 0)
             {
                 //Debug.Log(targetVelocity.magnitude);
                 return (-right * targetVelocity.magnitude);
@@ -221,7 +254,7 @@ public class PlayerController : MonoBehaviour, IKillable
             {
                 //Debug.Log(targetVelocity.magnitude);
                 return (right * targetVelocity.magnitude);
-            }
+            }*/
         }
         else
         {
@@ -358,6 +391,18 @@ public class PlayerController : MonoBehaviour, IKillable
         if (ListExt.IsInArray(colliderNormalArray, otherNormal))
             return;
 
+        //avant de commencer, vérifie encore si il y a une normal identique
+        for (int i = 0; i < colliderNormalArray.Length; i++)
+        {
+            if (UtilityFunctions.IsClose(colliderNormalArray[i].x, otherNormal.x, debugCloseValueNormal)
+                && UtilityFunctions.IsClose(colliderNormalArray[i].y, otherNormal.y, debugCloseValueNormal))
+            {
+                Debug.Log("trop proche d'une autre !");
+                return;
+            }
+        }
+
+
         for (int i = 0; i < colliderNormalArray.Length; i++)
         {
             if (colliderNormalArray[i] == Vector3.zero)
@@ -387,18 +432,20 @@ public class PlayerController : MonoBehaviour, IKillable
         return (false);
     }
 
-    /*
+    /// <summary>
+    /// affiche toute les normals de l'array
+    /// </summary>
     private void DisplayNormalArray()
     {
         for (int i = 0; i < colliderNormalArray.Length; i++)
         {
             if (colliderNormalArray[i] != Vector3.zero)
             {
-                Debug.DrawRay(transform.position, colliderNormalArray[i], Color.magenta, 1f);
+                Debug.DrawRay(transform.position, colliderNormalArray[i], Color.magenta, 3f);
             }
         }
     }
-    */
+    
 
     /// <summary>
     /// retourne 0 si pas en mur, 1 sur droite, -1 si gauche, 2 si plafond
@@ -487,10 +534,17 @@ public class PlayerController : MonoBehaviour, IKillable
             Vector3 normal = (point - transform.position) * -1;
 
 
-            //ResetCoolDownGroundedIfGrounded(normal);
+            ResetCoolDownGroundedIfGrounded(normal);
             SetNewCollider(normal);
+
+            betterJump.AttractorScript.StartCoolDown();
+
+            if (!grounded)
+            {
+                betterJump.ApplyGravity(normalCollide);
+            }
             //grounded = true;
-            //betterJump.ApplyGravity(normalCollide);
+
 
             //betterJump.OnGrounded(other.gameObject);
 
@@ -513,6 +567,8 @@ public class PlayerController : MonoBehaviour, IKillable
             ResetCoolDownGroundedIfGrounded(normal);
             SetNewCollider(normal);
             grounded = true;
+
+            betterJump.AttractorScript.StartCoolDown();
 
             betterJump.OnGrounded(other.gameObject); 
         }
@@ -613,11 +669,12 @@ public class PlayerController : MonoBehaviour, IKillable
             return;
 
         SetUpNormalCollide();
+        Debug.DrawRay(transform.position, NormalCollide, Color.yellow, 3f);
 
         TryToMove();
         TryToJump();
 
-        //DisplayNormalArray();
+        DisplayNormalArray();
         ListExt.ClearArray(colliderNormalArray);
         grounded = false;
     }

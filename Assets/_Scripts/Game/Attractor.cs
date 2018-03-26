@@ -65,6 +65,8 @@ public class Attractor : MonoBehaviour
     private Vector3 positionAttractPoint;        //direction de l'attractPoint
     private Vector3 dirAttractPoint;
 
+    private float forceAttractPointConstant = 10000f;   //why ???
+
     #endregion
 
     #region Initialization
@@ -76,11 +78,18 @@ public class Attractor : MonoBehaviour
     private void InitValue()
     {
         hasAttractPoint = false;
-        coolDownCreateAttractPoint.StartCoolDown();
+        StartCoolDown();
     }
     #endregion
 
     #region Core
+    /// <summary>
+    /// 
+    /// </summary>
+    public void StartCoolDown()
+    {
+        coolDownCreateAttractPoint.StartCoolDown();
+    }
 
     /// <summary>
     /// ici reset l'attractor anti gravité
@@ -130,7 +139,7 @@ public class Attractor : MonoBehaviour
                 worldPreviousNormal = worldLastNormal;
 
                 DebugExtension.DebugWireSphere(WorldLastPositionGetIndex(0), Color.yellow, 0.5f, 1f);
-                Debug.DrawRay(transform.position, worldPreviousNormal, Color.yellow, 1f);
+                //Debug.DrawRay(transform.position, worldPreviousNormal, Color.yellow, 1f);
             }
 
             //coolDownUpdatePos.StartCoolDown();
@@ -147,7 +156,7 @@ public class Attractor : MonoBehaviour
             return;
 
         hasAttractPoint = true;
-        coolDownCreateAttractPoint.StartCoolDown();
+        StartCoolDown();
 
         Debug.Log("ici on stup l'attract point !");
 
@@ -160,8 +169,7 @@ public class Attractor : MonoBehaviour
 
         DebugExtension.DebugWireSphere(WorldLastPositionGetIndex(1), Color.red, 1f, 2f);          //ancienne pos
         DebugExtension.DebugWireSphere(positionAttractPoint, Color.blue, 1f, 2f);      //nouvel pos
-        Debug.DrawRay(WorldLastPositionGetIndex(0), worldLastNormal * 4, Color.red, 2f);      //last normal
-        //Debug.Break();
+        //Debug.DrawRay(WorldLastPositionGetIndex(0), worldLastNormal * 4, Color.red, 2f);      //last normal
     }
 
     /// <summary>
@@ -176,7 +184,7 @@ public class Attractor : MonoBehaviour
 
         dirAttractPoint = (positionAttractPoint - transform.position).normalized;
         //dirAttractPoint *= lengthInputForceAttractPoint;    //applique le ration de la velocité du ribidbody
-        dirAttractPoint *= forceAttractPoint;               //applique la force de l'attractPoint !
+        dirAttractPoint *= forceAttractPointConstant;               //applique la force de l'attractPoint !
 
         //rb.velocity += dirAttractPoint * Physics.gravity.y * (betterJump.FallMultiplier - 1) * Time.fixedDeltaTime;
         //Debug.DrawRay(transform.position, dirAttractPoint, Color.magenta, 1f);
@@ -201,9 +209,11 @@ public class Attractor : MonoBehaviour
         }
         //playerController.NormalCollide = -dirAttractPoint;
 
-        Debug.DrawRay(transform.position, playerController.NormalCollide, Color.magenta, 10f);      //last normal
+        //Debug.DrawRay(transform.position, playerController.NormalCollide, Color.magenta, 10f);      //last normal
         //ici renvoyer vrai ou faux selon si le dir est derriere la derniere normal ?
         //pour pas appliquer la vieille force de normal après...
+        
+        rb.AddForce(playerController.NormalCollide * -forceAttractPoint, ForceMode.VelocityChange);
     }
 
     

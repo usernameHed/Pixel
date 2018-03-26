@@ -33,6 +33,13 @@ public static class UtilityFunctions
         return (topCorner.x >= -xMargin && bottomCorner.x <= 1 + xMargin && topCorner.y >= -yMargin && bottomCorner.y <= 1 + yMargin);
     }
 
+    public static bool IsClose(float x1, float x2, float factor)
+    {
+        if (Mathf.Abs(x1 - x2) < factor)
+            return (true);
+        return (false);
+    }
+
     /// <summary>
     /// Test si l'objet est dans la range d'un autre
     /// (pour visualiser la range dans l'éditeur, attacher le script DrawSolidArc

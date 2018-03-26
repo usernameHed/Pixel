@@ -33,6 +33,7 @@ public class BetterJump : MonoBehaviour
     private PlayerController playerController;
     [FoldoutGroup("Debug"), Tooltip("ref"), SerializeField]
     private Attractor attractor;
+    public Attractor AttractorScript { get { return (attractor); } }
 
     private Vector3 initialVelocity;
 
