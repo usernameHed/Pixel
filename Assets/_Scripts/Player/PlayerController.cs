@@ -564,7 +564,7 @@ public class PlayerController : MonoBehaviour, IKillable
 
             //betterJump.OnGrounded(other.gameObject);
 
-            //CollisionAction(other.gameObject);
+            CollisionAction(other.gameObject);
         }
     }
 
@@ -713,7 +713,7 @@ public class PlayerController : MonoBehaviour, IKillable
         StopAction();
         GameManager.Instance.CameraObject.GetComponent<ScreenShake>().ShakeCamera();
         ObjectsPooler.Instance.SpawnFromPool(GameData.PoolTag.DeathPlayer, transform.position, Quaternion.identity, ObjectsPooler.Instance.transform);
-        PlayerConnected.Instance.setVibrationPlayer(idPlayer, onDie);   
+        PlayerConnected.Instance.setVibrationPlayer(idPlayer, onDie);
         enabledObject = false;
         gameObject.SetActive(false);
     }

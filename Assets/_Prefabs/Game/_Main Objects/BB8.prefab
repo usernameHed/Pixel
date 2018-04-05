@@ -1663,7 +1663,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idPlayer: 0
   isSith: 0
-  turnRateArrow: 300
+  turnRateArrow: 600
   speed: 10
   gravity: 9.81
   maxVelocityChange: 10

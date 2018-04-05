@@ -132,8 +132,6 @@ public class BetterJump : MonoBehaviour
             PlayerConnected.Instance.setVibrationPlayer(playerController.IdPlayer, onGrounded);
         }
         attractor.SaveLastPositionOnground(); //ici save la position, et se reset !
-
-        
     }
 
     /// <summary>

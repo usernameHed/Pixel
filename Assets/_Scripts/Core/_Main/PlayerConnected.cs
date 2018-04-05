@@ -3,9 +3,10 @@ using Rewired;
 using Sirenix.OdinInspector;
 using System;
 
+
 /// <summary>
-/// Gère la connexion / déconnexion des manettes
-/// <summary>
+/// effectue une vibration
+/// </summary>
 [Serializable]
 public struct Vibration
 {
@@ -24,6 +25,9 @@ public struct Vibration
     public float durationRight;
 }
 
+/// <summary>
+/// Gère la connexion / déconnexion des manettes
+/// <summary>
 public class PlayerConnected : SingletonMono<PlayerConnected>
 {
     protected PlayerConnected() { } // guarantee this will be always a singleton only - can't use the constructor!
