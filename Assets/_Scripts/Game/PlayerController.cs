@@ -102,15 +102,6 @@ public class PlayerController : MonoBehaviour, IKillable
     }
 
     /// <summary>
-    /// ici prend une noisette !
-    /// </summary>
-    public void GetNoisette()
-    {
-        Debug.Log("ici on a une noistte");
-
-    }
-
-    /// <summary>
     /// Direction arrow
     /// </summary>
     private void ChangeDirectionArrow()
