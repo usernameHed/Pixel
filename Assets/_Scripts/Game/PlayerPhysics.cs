@@ -5,8 +5,13 @@ using UnityEngine;
 public class PlayerPhysics : MonoBehaviour
 {
     #region Attributes
-    [FoldoutGroup("GamePlay"), Tooltip("gravité du saut"), SerializeField]
-    private float fallMultiplier = 1.0f;
+    [FoldoutGroup("GamePlay"), Tooltip("gravité de base"), SerializeField]
+    private float gravityMultiplier = 1.0f;
+
+    [FoldoutGroup("GamePlay"), Tooltip("gravité de base"), SerializeField]
+    private float fallMultiplier = 2.5f;
+    [FoldoutGroup("GamePlay"), Tooltip("gravité de base"), SerializeField]
+    private float lowMultiplier = 2.5f;
 
     [Space(10)]
 
@@ -39,7 +44,7 @@ public class PlayerPhysics : MonoBehaviour
     /// <param name="other">le type de sol</param>
     public void IsGrounded()
     {
-        attractor.SaveLastPositionOnground(); //ici save la position, et se reset !
+        //attractor.SaveLastPositionOnground(); //ici save la position, et se reset !
     }
 
     /// <summary>
@@ -48,23 +53,39 @@ public class PlayerPhysics : MonoBehaviour
     private void NotGroundedNorJumped()
     {
         //ici c'est la première fois qu'on touche plus le sol, alors que on a pas sauté ! faire quelque chose !
-        attractor.SetUpAttractPoint();
+        //attractor.SetUpAttractPoint();
     }
 
     private void ApplyGravity()
     {
         //si le player n'est pas grounded... et qu'on a pas sauté de nous même...
-        if (!worldCollision.IsGroundedSafe() && !playerJump.IsJumping())
+        if (!worldCollision.IsGroundedSafe()/* && !playerJump.IsJumping()*/)
         {
             NotGroundedNorJumped();
-            attractor.SetNewNormalForceWhenFlying();
+            //attractor.SetNewNormalForceWhenFlying();
             //Debug.Log("ici applique la gravité, on tombe !");
-            PhysicsExt.ApplyConstForce(rb, worldCollision.GetSumNormalSafe(), fallMultiplier);
+
+            /*if (rb.velocity.y < 0)
+            {
+                Debug.Log("ici gravité fall");
+                //rb.velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
+                PhysicsExt.ApplyConstForce(rb, worldCollision.GetLastPersistSumNormalSafe(), fallMultiplier);
+            }
+            else if (rb.velocity.y > 0 && !inputPlayer.JumpInput)
+            {
+                PhysicsExt.ApplyConstForce(rb, worldCollision.GetLastPersistSumNormalSafe(), lowMultiplier);
+                Debug.Log("ici gravité up");
+            }*/
+
+            //Debug.Log("ici gravité normal jump");
+            PhysicsExt.ApplyConstForce(rb, worldCollision.GetLastPersistSumNormalSafe(), gravityMultiplier);
         }
         else if (worldCollision.IsGroundedSafe())
         {
             //applique la physique quand on est grounded !
-            PhysicsExt.ApplyConstForce(rb, worldCollision.GetSumNormalSafe(), fallMultiplier);
+            //Debug.Log("physics ground");
+            //Debug.Log("ici ground physics");
+            PhysicsExt.ApplyConstForce(rb, worldCollision.GetSumNormalSafe(), gravityMultiplier);
         }
     }
 

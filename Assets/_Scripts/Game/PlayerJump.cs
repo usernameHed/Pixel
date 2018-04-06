@@ -118,6 +118,7 @@ public class PlayerJump : MonoBehaviour
             //ici pas de rotation ?? 
             Debug.Log("pas de rotation ! up de base !");
         }
+        Debug.Log("ici jump !");
 
         //playerController.Anim.SetBool("Jump", true);
 
@@ -200,9 +201,6 @@ public class PlayerJump : MonoBehaviour
         finalVelocityDir = QuaternionExt.GetMiddleOf2Vector(worldCollision.GetSumNormalSafe(), dirMovement);
 
         Debug.DrawRay(transform.position, dirMovement, Color.blue, 1f);
-
-        Debug.Break();
-
 
         /*//get la direction du joystick de visé
         Vector3 dirArrowPlayer = playerController.GetDirArrow();

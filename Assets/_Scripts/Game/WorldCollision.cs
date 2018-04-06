@@ -542,6 +542,14 @@ public class WorldCollision : MonoBehaviour
     }
 
     /// <summary>
+    /// Get la dernière some de normal de manière safe
+    /// </summary>
+    public Vector3 GetLastPersistSumNormalSafe()
+    {
+        return (normalSumCollidePrevious);
+    }
+
+    /// <summary>
     /// ici set la normal...
     /// </summary>
     public void SetSumNormal(Vector3 newNormal)
