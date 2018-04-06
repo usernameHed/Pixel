@@ -18,6 +18,8 @@ public class PlayerPhysics : MonoBehaviour
     [FoldoutGroup("Debug"), Tooltip("cooldown du déplacement horizontal"), SerializeField]
     private PlayerJump playerJump;
     [FoldoutGroup("Debug"), Tooltip("cooldown du déplacement horizontal"), SerializeField]
+    private PlayerDash playerDash;
+    [FoldoutGroup("Debug"), Tooltip("cooldown du déplacement horizontal"), SerializeField]
     private WorldCollision worldCollision;
     [FoldoutGroup("Debug"), Tooltip("ref"), SerializeField]
     private Rigidbody rb;
@@ -52,7 +54,7 @@ public class PlayerPhysics : MonoBehaviour
     /// </summary>
     private void NotGroundedNorJumped()
     {
-        if (!playerJump.IsJumping())
+        if (!playerJump.IsJumping() && !playerDash.IsDashing())
         {
             //ici c'est la première fois qu'on touche plus le sol, alors que on a pas sauté ! faire quelque chose !
             attractor.SetUpAttractPoint();
@@ -61,6 +63,10 @@ public class PlayerPhysics : MonoBehaviour
 
     private void ApplyGravity()
     {
+        //aucune force quand on dash !
+        if (playerDash.IsDashing())
+            return;
+
         //si le player n'est pas grounded... et qu'on a pas sauté de nous même...
         if (!worldCollision.IsGroundedSafe()/* && !playerJump.IsJumping()*/)
         {

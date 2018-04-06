@@ -20,6 +20,7 @@ public class PlayerJump : MonoBehaviour
     private Vibration onJump;
     [FoldoutGroup("Jump"), Tooltip("vibration quand on se pose"), SerializeField]
     private Vibration onGrounded;
+    public Vibration OnGrounded { get { return (onGrounded); } }
 
 
     [FoldoutGroup("Jump"), Tooltip(""), SerializeField]
@@ -33,6 +34,8 @@ public class PlayerJump : MonoBehaviour
     private PlayerController playerController;
     [FoldoutGroup("Debug"), Tooltip("ref"), SerializeField]
     private InputPlayer inputPlayer;
+    [FoldoutGroup("Debug"), Tooltip("ref"), SerializeField]
+    private PlayerDash playerDash;
     [FoldoutGroup("Debug"), Tooltip("ref"), SerializeField]
     private Rigidbody rb;           //ref du rb
 
@@ -192,6 +195,8 @@ public class PlayerJump : MonoBehaviour
 
         Vector3 dirMovement = playerMove.FindTheRightDir();
 
+        playerDash.SaveLastDirInput(dirMovement);
+
         if (dirMovement == Vector3.zero)
         {
             dirMovement = worldCollision.GetSumNormalSafe();
@@ -261,7 +266,7 @@ public class PlayerJump : MonoBehaviour
             Jump(dir);
     }
 
-    /// <summary>
+    /*/// <summary>
     /// on provoque un jump depusi le code
     /// </summary>
     /// <param name="applyThisForce">si vrai: on change manuellement la velocité du jump</param>
@@ -274,7 +279,7 @@ public class PlayerJump : MonoBehaviour
     {
         ActuallyJump(Vector3.zero, false);
         Jump(worldCollision.GetSumNormalSafe(), applyThisForce, force);
-    }
+    }*/
 
     private void StopAction()
     {

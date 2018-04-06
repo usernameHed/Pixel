@@ -93,6 +93,13 @@ public class WorldCollision : MonoBehaviour
     public FrequencyCoolDown CoolDownDesesperateAirMove { get { return (coolDownDesesperateAirMove); } }
     private bool isRestartedTimer = false;
 
+    [FoldoutGroup("Debug"), Tooltip("ref"), SerializeField]
+    private PlayerController playerController;
+    [FoldoutGroup("Debug"), Tooltip("ref"), SerializeField]
+    private Rigidbody rb;
+    [FoldoutGroup("Debug"), Tooltip("ref"), SerializeField]
+    private float forceStay = 2f;
+
     private const float angleDifference = 22.5f;    //défini la différence entre 2 type de mur
     #endregion
 
@@ -611,6 +618,8 @@ public class WorldCollision : MonoBehaviour
                 lastCollisionTypeVolatyle = CollisionType.InAir;
                 normalSumCollideVolatyle = Vector3.zero;
 
+                playerController.SetPlayerParent(null);
+
                 if (!isRestartedTimer)
                 {
                     coolDownDesesperateAirMove.StartCoolDown();
@@ -662,6 +671,9 @@ public class WorldCollision : MonoBehaviour
             SetNewCollider(normal);                     //set les normals des collisions
             SetNewObjectCollision(other.gameObject);    //set l'objet en collision
             SetGrounded(true, true, other.gameObject.layer);
+
+            //transform.SetParent(other.transform);
+            //PhysicsExt.ApplyConstForce(rb, normal, forceStay);
             //groundedDedug = true;
         }
     }
@@ -680,6 +692,8 @@ public class WorldCollision : MonoBehaviour
             SetNewCollider(normal);                     //set les normals des collisions
             SetNewObjectCollision(other.gameObject);    //set l'objet en collision
             SetGrounded(true, true, other.gameObject.layer);
+
+            playerController.SetPlayerParent(other.transform);
             //groundedDedug = true;
         }
     }
