@@ -174,6 +174,17 @@ public class Attractor : MonoBehaviour
         DebugExtension.DebugWireSphere(WorldLastPositionGetIndex(1), Color.red, 1f, 2f);          //ancienne pos
         DebugExtension.DebugWireSphere(positionAttractPoint, Color.blue, 1f, 2f);      //nouvel pos
         Debug.DrawRay(WorldLastPositionGetIndex(0), worldLastNormal * 4, Color.red, 2f);      //last normal
+
+        //Debug.Break();
+    }
+
+    /// <summary>
+    /// ici renvoi si on a ou non un attract point
+    /// </summary>
+    /// <returns></returns>
+    public bool HasAttractPoint()
+    {
+        return (hasAttractPoint);
     }
 
     /// <summary>

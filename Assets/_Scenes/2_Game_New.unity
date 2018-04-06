@@ -9350,6 +9350,7 @@ GameObject:
   - component: {fileID: 928328586}
   - component: {fileID: 928328583}
   - component: {fileID: 928328584}
+  - component: {fileID: 928328585}
   - component: {fileID: 643964061}
   - component: {fileID: 928328582}
   m_Layer: 9
@@ -9430,7 +9431,30 @@ MonoBehaviour:
   rb: {fileID: 928328582}
   inputPlayer: {fileID: 928328587}
   playerController: {fileID: 928328586}
-  attractor: {fileID: 0}
+  attractor: {fileID: 928328585}
+--- !u!114 &928328585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 928328581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 681564bac27207d4c80a27700afd7b82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lengthPositionAttractPoint: 1
+  forceAttractPoint: 2
+  hasAttractPoint: 0
+  sizeDistanceForSaveSquare: 0.5
+  differenceAngleNormalForUpdatePosition: 5
+  coolDownCreateAttractPoint:
+    timeCoolDown: 1
+  playerController: {fileID: 928328586}
+  playerMove: {fileID: 928328593}
+  worldCollision: {fileID: 928328592}
+  betterJump: {fileID: 928328584}
+  rb: {fileID: 928328582}
 --- !u!114 &928328586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10257,7 +10281,7 @@ MonoBehaviour:
   cameraObject: {fileID: 597985316}
   sceneToLoad:
   - active: 1
-    scene: 2_Game
+    scene: 2_Game_New
     loadAtStart: 0
     loadAfterXSecond: 2
     fade: 1
@@ -10265,9 +10289,9 @@ MonoBehaviour:
     additive: 0
     swapWhenLoaded: 0
     sceneToChargeAfterAdditive: 
-  - active: 1
+  - active: 0
     scene: 1_Menu
-    loadAtStart: 1
+    loadAtStart: 0
     loadAfterXSecond: 2
     fade: 1
     fadeTime: 1.5

@@ -44,7 +44,7 @@ public class PlayerPhysics : MonoBehaviour
     /// <param name="other">le type de sol</param>
     public void IsGrounded()
     {
-        //attractor.SaveLastPositionOnground(); //ici save la position, et se reset !
+        attractor.SaveLastPositionOnground(); //ici save la position, et se reset !
     }
 
     /// <summary>
@@ -52,8 +52,11 @@ public class PlayerPhysics : MonoBehaviour
     /// </summary>
     private void NotGroundedNorJumped()
     {
-        //ici c'est la première fois qu'on touche plus le sol, alors que on a pas sauté ! faire quelque chose !
-        //attractor.SetUpAttractPoint();
+        if (!playerJump.IsJumping())
+        {
+            //ici c'est la première fois qu'on touche plus le sol, alors que on a pas sauté ! faire quelque chose !
+            attractor.SetUpAttractPoint();
+        }
     }
 
     private void ApplyGravity()
@@ -62,8 +65,13 @@ public class PlayerPhysics : MonoBehaviour
         if (!worldCollision.IsGroundedSafe()/* && !playerJump.IsJumping()*/)
         {
             NotGroundedNorJumped();
-            //attractor.SetNewNormalForceWhenFlying();
+
+            attractor.SetNewNormalForceWhenFlying();
             //Debug.Log("ici applique la gravité, on tombe !");
+
+            //ne pas appliquer les autres force quand on a un attract point !
+            if (attractor.HasAttractPoint())
+                return;
 
             if (!inputPlayer.JumpInput)
             {
