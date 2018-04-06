@@ -20,37 +20,19 @@ public class PlayerController : MonoBehaviour, IKillable
 
     [FoldoutGroup("GamePlay"), Tooltip("vibration quand on jump"), SerializeField]
     private Vibration onDie;
-
-    [FoldoutGroup("GamePlay"), Tooltip("Animator du joueur"), SerializeField]
-    private Animator anim;
-    public Animator Anim { get { return (anim); } }
-
-
-    [FoldoutGroup("Repulse"), Tooltip(""), SerializeField]
-    public bool repulseOtherWhenTouchOnAir = true;
-    [FoldoutGroup("Repulse"), Tooltip("cooldown de repulsion"), SerializeField]
-    private FrequencyCoolDown coolDownSelfRepulsion; //O.2
-    public FrequencyCoolDown CoolDownSelfRepulsion { get { return (coolDownSelfRepulsion); } }
+    
     [FoldoutGroup("Repulse"), Tooltip("cooldown de repulsion"), SerializeField]
     private FrequencyCoolDown coolDownParent; //O.2
 
     [FoldoutGroup("Object"), Tooltip("direction du joystick"), SerializeField]
     private Transform dirArrow;
 
-    [FoldoutGroup("Debug"), Tooltip("ref"), SerializeField]
-    private SuperPower superPower;
-    public SuperPower SuperPowerScript { get { return (superPower); } }
 
     [FoldoutGroup("Debug"), Tooltip("cooldown du déplacement horizontal"), SerializeField]
-    private PlayerJump playerJump;
-    [FoldoutGroup("Debug"), Tooltip("cooldown du déplacement horizontal"), SerializeField]
     private WorldCollision worldCollision;
-    [FoldoutGroup("Debug"), Tooltip("ref"), SerializeField]
-    private InputPlayer inputPlayer;
+
     [FoldoutGroup("Debug"), Tooltip("ref"), SerializeField]
     private Rigidbody rb;           //ref du rb
-    [FoldoutGroup("Debug"), Tooltip("ref"), SerializeField]
-    private PlayerPhysics betterJump;
 
     private bool enabledObject = true;  //le script est-il enabled ?
     private bool stopAction = false;    //le joueur est-il stopé ?

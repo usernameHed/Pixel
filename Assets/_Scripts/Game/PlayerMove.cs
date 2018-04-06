@@ -27,7 +27,9 @@ public class PlayerMove : MonoBehaviour
     private InputPlayer inputPlayer;
     [FoldoutGroup("Debug"), Tooltip("ref"), SerializeField]
     private Rigidbody rb;           //ref du rb
-    
+    [FoldoutGroup("Debug"), Tooltip("ref"), SerializeField]
+    private AnimController animController;           //ref du rb
+
     private bool stopAction = false;    //le joueur est-il stopé ?
     private Vector3 lastInputDir;
     #endregion
@@ -173,6 +175,16 @@ public class PlayerMove : MonoBehaviour
         {
             Vector3 right = QuaternionExt.CrossProduct(worldCollision.GetSumNormalSafe(), Vector3.forward).normalized;
             float dir = QuaternionExt.DotProduct(targetVelocity, right);
+
+            if (dir < 0)
+            {
+                animController.Turn(false, dir);
+                //return (-greenVector);
+            }
+            else if (dir > 0)
+            {
+                animController.Turn(true, dir);
+            }
 
             return (right * dir);
         }
