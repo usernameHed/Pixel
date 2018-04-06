@@ -26,6 +26,8 @@ public class PlayerJump : MonoBehaviour
     private float margeHoriz = 0.1f;
 
     [FoldoutGroup("Debug"), Tooltip("cooldown du déplacement horizontal"), SerializeField]
+    private PlayerMove playerMove;
+    [FoldoutGroup("Debug"), Tooltip("cooldown du déplacement horizontal"), SerializeField]
     private WorldCollision worldCollision;
     [FoldoutGroup("Debug"), Tooltip("cooldown du déplacement horizontal"), SerializeField]
     private PlayerController playerController;
@@ -89,7 +91,7 @@ public class PlayerJump : MonoBehaviour
                 Vector3 finalVelocityDir = GetDirWhenJumpAndMoving();   //get la direction du joystick / normal / les 2...
 
                 //ici jump, selon la direction voulu, en ajoutant la force du saut
-                SetupJumpFromPlayerController(finalVelocityDir, true);
+                ActuallyJump(finalVelocityDir, true);
             }
         }
         else
@@ -187,7 +189,22 @@ public class PlayerJump : MonoBehaviour
     {
         Vector3 finalVelocityDir = Vector3.zero;
 
-        //get la direction du joystick de visé
+        Vector3 dirMovement = playerMove.FindTheRightDir();
+
+        if (dirMovement == Vector3.zero)
+        {
+            dirMovement = worldCollision.GetSumNormalSafe();
+            Debug.Log("ici normal !");
+        }
+
+        finalVelocityDir = QuaternionExt.GetMiddleOf2Vector(worldCollision.GetSumNormalSafe(), dirMovement);
+
+        Debug.DrawRay(transform.position, dirMovement, Color.blue, 1f);
+
+        Debug.Break();
+
+
+        /*//get la direction du joystick de visé
         Vector3 dirArrowPlayer = playerController.GetDirArrow();
 
         //get le dot product normal -> dir Arrow
@@ -218,17 +235,17 @@ public class PlayerJump : MonoBehaviour
         }
         else
         {
-            /*
+            
             Debug.Log("ici on est proche du 90°, faire la bisection !");
             //ici l'angle normal - direction est proche de 90°, ducoup on fait le milieu des 2 axe
             //ici faire la moyenne des 2 vecteur normal, et direction arrow
-            finalVelocityDir = QuaternionExt.GetMiddleOf2Vector(normalCollide, dirArrowPlayer);
-            */
+            //finalVelocityDir = QuaternionExt.GetMiddleOf2Vector(normalCollide, dirArrowPlayer);
+            
 
             //direction visé par le joueur
             Debug.Log("Direction de l'arrow !" + dotDirPlayer);
             finalVelocityDir = dirArrowPlayer.normalized;
-        }
+        }*/
         return (finalVelocityDir);
     }
 
@@ -237,7 +254,7 @@ public class PlayerJump : MonoBehaviour
     /// </summary>
     /// <param name="dir">direction du jump</param>
     /// <param name="automaticlyLaunchJump">si oui, appelle le jump du jumpScript, sinon, attendre...</param>
-    private void SetupJumpFromPlayerController(Vector3 dir, bool automaticlyLaunchJump)
+    private void ActuallyJump(Vector3 dir, bool automaticlyLaunchJump)
     {
         worldCollision.HasJustJump();   //cooldown des worldCollision
         worldCollision.CoolDownGroundedJump.StartCoolDown();
@@ -253,11 +270,11 @@ public class PlayerJump : MonoBehaviour
     /// <param name="force">si applyThisForce vrai: on change manuellement force du jump à force</param>
     public void JumpFromCollision(Vector3 dir)
     {
-        SetupJumpFromPlayerController(dir, true);
+        ActuallyJump(dir, true);
     }
     public void JumpFromCollision(bool applyThisForce = false, float force = 0)
     {
-        SetupJumpFromPlayerController(Vector3.zero, false);
+        ActuallyJump(Vector3.zero, false);
         Jump(worldCollision.GetSumNormalSafe(), applyThisForce, force);
     }
 

@@ -9565,6 +9565,7 @@ MonoBehaviour:
     strenthRight: 0.3
     durationRight: 0.1
   margeHoriz: 0.1
+  playerMove: {fileID: 928328593}
   worldCollision: {fileID: 928328592}
   playerController: {fileID: 928328586}
   inputPlayer: {fileID: 928328587}
