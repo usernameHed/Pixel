@@ -41,6 +41,7 @@ public static class GameData
         Obstacle,
         Default,
         NoMove,
+        Bump,
     }
 
     public enum Sounds
@@ -48,6 +49,7 @@ public static class GameData
         Bump,
         SpiksOn,
         SpiksOff,
+        Bounce,
     }
 
     /// <summary>

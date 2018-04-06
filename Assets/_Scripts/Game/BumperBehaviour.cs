@@ -64,7 +64,7 @@ public class BumperBehaviour : MonoBehaviour
     private void DoBump(GameObject obj)
     {
         //sound bump
-        //SoundManager.GetSingleton.playSound(GameData.Sounds.Bump.ToString() + transform.GetInstanceID().ToString());
+        SoundManager.GetSingleton.playSound(GameData.Sounds.Bounce.ToString() + transform.GetInstanceID().ToString());
 
 
         Rigidbody rbOther = obj.GetComponent<Rigidbody>();
@@ -83,11 +83,12 @@ public class BumperBehaviour : MonoBehaviour
             particle.transform.rotation = QuaternionExt.LookAtDir(dir);
         }*/
 
+        float force = rbOther.velocity.magnitude;
 
         rbOther.ClearVelocity();    //clear velocity du rigidbody
 
-
-        rbOther.AddForce(dir * -forceObjects, ForceMode.VelocityChange);
+        rbOther.AddForce(dir * -force, ForceMode.VelocityChange);
+        //rbOther.AddForce(dir * -forceObjects, ForceMode.VelocityChange);
     }
 
     /// <summary>

@@ -153,6 +153,18 @@ public class SceneManagerLocal : MonoBehaviour
         //ici gère les unloads ?
     }
 
+    public void PlayIndex(int index, bool unloadFirst = true)
+    {
+        if (unloadFirst)
+            SceneManagerGlobal.Instance.UnloadScene(sceneToLoad[0].scene);
+
+        ObjectsPooler.Instance.desactiveEveryOneForTransition();
+        ObjectsPoolerLocal.Instance.desactiveEveryOneForTransition();
+
+        SceneManagerGlobal.Instance.JumpToScene(sceneToLoad[index].scene, sceneToLoad[index].fade, sceneToLoad[index].fadeTime);    //hard code du previous ?
+        //ici gère les unloads ?
+    }
+
     [FoldoutGroup("Debug"), Button("Quit")]
     public void Quit()
     {

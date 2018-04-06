@@ -26,6 +26,9 @@ public class Attractor : MonoBehaviour
 
     [FoldoutGroup("Debug"), Tooltip("ref"), SerializeField]
     private FrequencyCoolDown coolDownCreateAttractPoint;   //0.1, activé au démarage !
+    [FoldoutGroup("Debug"), Tooltip("cooldown du jump"), SerializeField]
+    private FrequencyCoolDown coolDownAttractorWhenJump;    //1.5
+    public FrequencyCoolDown CoolDownAttractorWhenJump { get { return (coolDownAttractorWhenJump); } }
 
     [FoldoutGroup("Debug"), Tooltip("ref"), SerializeField]
     private PlayerController playerController;
@@ -104,6 +107,7 @@ public class Attractor : MonoBehaviour
             return;
         Debug.Log("reset Attract Point");
         hasAttractPoint = false;
+        coolDownAttractorWhenJump.Reset();
     }
     /// <summary>
     /// on est grounded, en profite pour sauvegarder la position !
@@ -192,7 +196,7 @@ public class Attractor : MonoBehaviour
     /// </summary>
     public void SetNewNormalForceWhenFlying()
     {
-        if (!hasAttractPoint)
+        if (!hasAttractPoint || !coolDownAttractorWhenJump.IsReady())
             return;
 
         //Debug.Log("Ici attract player jusqu'a ce qu'il soit sur le sol (ou hors limite ???)");

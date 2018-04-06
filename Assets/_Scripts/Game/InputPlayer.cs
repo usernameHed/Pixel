@@ -30,6 +30,8 @@ public class InputPlayer : MonoBehaviour
     private bool gripUpInput; //grip input up
     public bool GripUpInput { get { return (gripUpInput); } }
 
+    private float dashInput; //grip input hold
+    public float DashInput { get { return (dashInput); } }
     #endregion
 
     #region Initialization
@@ -44,8 +46,10 @@ public class InputPlayer : MonoBehaviour
         horizRight = PlayerConnected.Instance.getPlayer(playerController.IdPlayer).GetAxis("Move Horizontal Right");
         vertiRight = PlayerConnected.Instance.getPlayer(playerController.IdPlayer).GetAxis("Move Vertical Right");
 
-        jumpInput = PlayerConnected.Instance.getPlayer(playerController.IdPlayer).GetButton("FireA") || PlayerConnected.Instance.getPlayer(playerController.IdPlayer).GetButton("RightTrigger2") || PlayerConnected.Instance.getPlayer(playerController.IdPlayer).GetButton("LeftTrigger2");
-        jumpUpInput = PlayerConnected.Instance.getPlayer(playerController.IdPlayer).GetButtonUp("FireA") || PlayerConnected.Instance.getPlayer(playerController.IdPlayer).GetButtonUp("RightTrigger2") || PlayerConnected.Instance.getPlayer(playerController.IdPlayer).GetButton("LeftTrigger2");
+        jumpInput = PlayerConnected.Instance.getPlayer(playerController.IdPlayer).GetButton("FireA");
+        jumpUpInput = PlayerConnected.Instance.getPlayer(playerController.IdPlayer).GetButtonUp("FireA");
+
+        dashInput = PlayerConnected.Instance.getPlayer(playerController.IdPlayer).GetAxis("RightTrigger2");
     }
     #endregion
 

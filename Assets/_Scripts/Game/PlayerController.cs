@@ -31,8 +31,9 @@ public class PlayerController : MonoBehaviour, IKillable
     [FoldoutGroup("Repulse"), Tooltip("cooldown de repulsion"), SerializeField]
     private FrequencyCoolDown coolDownSelfRepulsion; //O.2
     public FrequencyCoolDown CoolDownSelfRepulsion { get { return (coolDownSelfRepulsion); } }
+    [FoldoutGroup("Repulse"), Tooltip("cooldown de repulsion"), SerializeField]
+    private FrequencyCoolDown coolDownParent; //O.2
 
-    
     [FoldoutGroup("Object"), Tooltip("direction du joystick"), SerializeField]
     private Transform dirArrow;
 
@@ -71,6 +72,36 @@ public class PlayerController : MonoBehaviour, IKillable
 
         enabledObject = true;
         stopAction = false;
+    }
+
+    public void SetPlayerParent(Transform other)
+    {
+        if (!coolDownParent.IsReady())
+            return;
+        coolDownParent.StartCoolDown();
+
+        return;
+
+
+        if (other == null && transform.parent != null)
+        {
+            transform.SetParent(other);
+            transform.rotation = Quaternion.identity;
+            //transform.localScale = new Vector3(1, 1, 1);
+        }
+        else if (other != null && transform.parent != other.transform)
+        {
+            transform.SetParent(null);
+            transform.rotation = Quaternion.identity;
+
+            transform.SetParent(other);
+            transform.rotation = Quaternion.identity;
+            //transform.localScale = new Vector3(1, 1, 1);
+
+        }
+
+        
+            
     }
     #endregion
 
