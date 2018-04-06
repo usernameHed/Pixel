@@ -1,36 +1,59 @@
 fileFormatVersion: 2
-guid: bc1f1c9d56eed01479c88ab24fd10e05
-timeCreated: 1522987070
+guid: d601d0866df9015458de729b0f9e13ac
+timeCreated: 1523026936
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: Module_004_01
-    100002: Module_004_02
-    100004: Module_004_03
-    100006: Module_004_04
-    100008: //RootNode
-    400000: Module_004_01
-    400002: Module_004_02
-    400004: Module_004_03
-    400006: Module_004_04
-    400008: //RootNode
-    2100000: No Name
-    2300000: Module_004_01
-    2300002: Module_004_02
-    2300004: Module_004_03
-    2300006: Module_004_04
-    3300000: Module_004_01
-    3300002: Module_004_02
-    3300004: Module_004_03
-    3300006: Module_004_04
-    4300000: Module_004_02
-    4300002: Module_004_03
-    4300004: Module_004_04
-    4300006: Module_004_01
-    7400000: module05
+    100000: //RootNode
+    100002: Cylinder001
+    100004: Cylinder002
+    100006: Cylinder003
+    100008: Cylinder004
+    400000: //RootNode
+    400002: Cylinder001
+    400004: Cylinder002
+    400006: Cylinder003
+    400008: Cylinder004
+    2100000: cylindre01
+    2100002: cylindre02
+    2100004: cylindre03
+    2100006: cylindre04
+    2300000: Cylinder001
+    2300002: Cylinder002
+    2300004: Cylinder003
+    2300006: Cylinder004
+    3300000: Cylinder001
+    3300002: Cylinder002
+    3300004: Cylinder003
+    3300006: Cylinder004
+    4300000: Cylinder001
+    4300002: Cylinder002
+    4300004: Cylinder003
+    4300006: Cylinder004
+    7400000: circle_backgrnd
     9500000: //RootNode
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cylindre01
+    second: {fileID: 2100000, guid: b2888b1823490c341913c32fc0f90ca1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cylindre02
+    second: {fileID: 2100000, guid: b6e711e4e98005f4392f4d45bb6c96cc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cylindre03
+    second: {fileID: 2100000, guid: 4b4ee05622c73194f808e8d62bb44f53, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cylindre04
+    second: {fileID: 2100000, guid: 15cfc2ee4f2ed5b4faea11e4181ec1b9, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -58,10 +81,10 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: module05
+      name: circle_backgrnd
       takeName: Take 001
       firstFrame: 0
-      lastFrame: 83
+      lastFrame: 5000
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

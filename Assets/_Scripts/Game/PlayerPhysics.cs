@@ -13,8 +13,6 @@ public class PlayerPhysics : MonoBehaviour
     [FoldoutGroup("GamePlay"), Tooltip("gravité de base"), SerializeField]
     private float lowMultiplier = 2.5f;
 
-    
-
     [Space(10)]
 
     [FoldoutGroup("Debug"), Tooltip("cooldown du déplacement horizontal"), SerializeField]
@@ -56,17 +54,8 @@ public class PlayerPhysics : MonoBehaviour
     /// </summary>
     private void NotGroundedNorJumped()
     {
-        //si on est pas en mode dash, activer l'attractor
-        if (/*!playerJump.IsJumping() && */!playerDash.IsDashing())
+        if (!playerJump.IsJumping() && !playerDash.IsDashing())
         {
-
-            //si on est en jump, et qu'on a pas d'attractPoint, en mettre un !
-            //mais mettre un coolDown pour l'activer QUE apres un certain temps
-            if (playerJump.IsJumping() && !attractor.HasAttractPoint())
-            {
-                attractor.CoolDownAttractorWhenJump.StartCoolDown();
-            }
-
             //ici c'est la première fois qu'on touche plus le sol, alors que on a pas sauté ! faire quelque chose !
             attractor.SetUpAttractPoint();
         }
@@ -87,7 +76,7 @@ public class PlayerPhysics : MonoBehaviour
             //Debug.Log("ici applique la gravité, on tombe !");
 
             //ne pas appliquer les autres force quand on a un attract point !
-            if (attractor.HasAttractPoint() && attractor.CoolDownAttractorWhenJump.IsReady())
+            if (attractor.HasAttractPoint())
                 return;
 
             if (!inputPlayer.JumpInput)
@@ -120,7 +109,7 @@ public class PlayerPhysics : MonoBehaviour
     /// </summary>
     private void FixedUpdate ()
 	{
-        if (worldCollision.IsGroundedSafe() && worldCollision.CoolDownGroundedJump.IsReady())    //ici, si on est sur le sol...
+        if (worldCollision.IsGroundedSafe())    //ici, si on est sur le sol...
             IsGrounded();
 
         ApplyGravity();

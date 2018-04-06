@@ -670,9 +670,11 @@ public class WorldCollision : MonoBehaviour
             ResetCoolDownGroundedIfGrounded(normal);    //set le cooldown pour éviter de se bloquer en wallJump quand on est au sol...
             SetNewCollider(normal);                     //set les normals des collisions
             SetNewObjectCollision(other.gameObject);    //set l'objet en collision
+            SetGrounded(true, true, other.gameObject.layer);
 
-            //SetGrounded(true, true, other.gameObject.layer);
-            rb.AddForce(normal * -forceStay, ForceMode.VelocityChange);
+            //transform.SetParent(other.transform);
+            //PhysicsExt.ApplyConstForce(rb, normal, forceStay);
+            //groundedDedug = true;
         }
     }
 
