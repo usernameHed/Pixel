@@ -9,6 +9,8 @@ public class AnimController : MonoBehaviour
     #region Attributes
     [FoldoutGroup("GamePlay"), Tooltip("Animator du joueur"), SerializeField]
     private bool right = true;
+    [FoldoutGroup("GamePlay"), Tooltip("Animator du joueur"), SerializeField]
+    private float speedTurn = 3f;
 
     [FoldoutGroup("GamePlay"), Tooltip("Animator du joueur"), SerializeField]
     private Animator anim;
@@ -16,6 +18,9 @@ public class AnimController : MonoBehaviour
 
     [FoldoutGroup("GamePlay"), Tooltip("Animator du joueur"), SerializeField]
     private Transform trail;
+
+    private float speedInput = 1;
+    private Vector3 refMove;
     #endregion
 
     #region Initialization
@@ -27,16 +32,27 @@ public class AnimController : MonoBehaviour
     #endregion
 
     #region Core
-    public void Turn(bool rightMove, float speed)
+    public void Turn(Vector3 moveDir, bool rightMove, float speed)
     {
         //anim["Turn"].speed = speed;
         right = rightMove;
-        Debug.Log("speed: " + speed);
+        speedInput = Mathf.Abs(speed);
+        refMove = moveDir;
+        Debug.Log("speed: " + speedInput);
 
     }
     #endregion
 
     #region Unity ending functions
+    private void Update()
+    {
+        if (speedInput > 0.1f)
+        {
+            Vector3 dir = QuaternionExt.CrossProduct(refMove, Vector3.forward);
+            dir = (right) ? dir : -dir;
 
-	#endregion
+            trail.rotation = QuaternionExt.DirObject(trail.rotation, dir.x, -dir.y, speedTurn * speedInput, QuaternionExt.TurnType.Z);
+        }
+    }
+    #endregion
 }

@@ -178,12 +178,12 @@ public class PlayerMove : MonoBehaviour
 
             if (dir < 0)
             {
-                animController.Turn(false, dir);
+                animController.Turn(right.normalized, false, dir);
                 //return (-greenVector);
             }
             else if (dir > 0)
             {
-                animController.Turn(true, dir);
+                animController.Turn(right.normalized, true, dir);
             }
 
             return (right * dir);

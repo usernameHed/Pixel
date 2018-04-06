@@ -20,8 +20,8 @@ public static class QuaternionExt
 
 		Quaternion _targetRotation = Quaternion.identity;
 
-        float x = (typeRotation == TurnType.X) ? heading * 1 * Mathf.Rad2Deg : 0;
-        float y = (typeRotation == TurnType.Y) ? heading * 1 * Mathf.Rad2Deg : 0;
+        float x = (typeRotation == TurnType.X) ? heading * -1 * Mathf.Rad2Deg : 0;
+        float y = (typeRotation == TurnType.Y) ? heading * -1 * Mathf.Rad2Deg : 0;
         float z = (typeRotation == TurnType.Z) ? heading * -1 * Mathf.Rad2Deg : 0;
 
         _targetRotation = Quaternion.Euler(x, y, z);
