@@ -92,81 +92,8 @@ public class PlayerController : MonoBehaviour, IKillable
     /// </summary>
     private void ChangeDirectionArrow()
     {
-        if (!(inputPlayer.HorizRight == 0 && inputPlayer.VertiRight == 0) && !isSith)
-        {
-            dirArrow.rotation = QuaternionExt.DirObject(dirArrow.rotation, inputPlayer.HorizRight, -inputPlayer.VertiRight, turnRateArrow, QuaternionExt.TurnType.Z);
-        }
-        else
-        {
-            dirArrow.rotation = QuaternionExt.DirObject(dirArrow.rotation, worldCollision.GetSumNormalSafe().x, -worldCollision.GetSumNormalSafe().y, turnRateArrow, QuaternionExt.TurnType.Z);
-        }
+        dirArrow.rotation = QuaternionExt.DirObject(dirArrow.rotation, worldCollision.GetLastPersistSumNormalSafe().x, -worldCollision.GetLastPersistSumNormalSafe().y, turnRateArrow, QuaternionExt.TurnType.Z);
         //anim.transform.rotation = QuaternionExt.DirObject(anim.transform.rotation, normalCollide.x, -normalCollide.y, turnRateArrow, QuaternionExt.TurnType.Z);
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag(GameData.Prefabs.SuperPower.ToString()))
-        {
-            if (!isSith)
-            {
-                superPower.SetSuperPower();
-                ObjectsPooler.Instance.SpawnFromPool(GameData.PoolTag.DeathPlayer, transform.position, Quaternion.identity, ObjectsPooler.Instance.transform);
-                Destroy(other.gameObject);
-
-                //normalCollide = rb.velocity.normalized;
-                playerJump.JumpFromCollision();
-            }
-            else
-            {
-                Kill();
-            }
-        }
-    }
-
-    /// <summary>
-    /// action de collisions
-    /// renvoi vrai si on force le jump, faux si on jump pas
-    /// </summary>
-    private bool CollisionAction(GameObject other)
-    {
-        //ici 2 BB8 se touche...
-        if (!isSith && other.HasComponent<PlayerController>() && !other.GetComponent<PlayerController>().IsSith)
-        {
-            //ici on est en l'air (ou plutot... si on a qu'une seul normal... ça veut dire qu'il y a des chance
-            //que la seul collision qu'on ai, c'est celui avec le player (donc on est en l'air)
-            if (/*IsOnlyOneNormal() &&*/ coolDownSelfRepulsion.IsReady() && repulseOtherWhenTouchOnAir)
-            {
-                /*
-                //si l'autre n'est pas en l'air, set son coolDown pour pas qu'il saute aussi !
-                if (other.GetComponent<PlayerController>().Grounded)
-                {
-                    other.GetComponent<PlayerController>().CoolDownSelfRepulsion.StartCoolDown();
-                }
-                */
-                coolDownSelfRepulsion.StartCoolDown();
-
-                Vector3 jumpDir = -(other.transform.position - transform.position).normalized;
-                playerJump.JumpFromCollision(jumpDir);                    //saute !
-                return (true);
-            }
-
-        }
-        //si je suis un sith, et que l'autre n'en ai pas un...
-        else if (isSith && other.HasComponent<PlayerController>() && !other.GetComponent<PlayerController>().IsSith)
-        {
-            //s'il n'est pas en mode superpower, on le tue !
-            if (!other.GetComponent<PlayerController>().SuperPowerScript.SuperPowerActived)
-            {
-                other.GetComponent<PlayerController>().Kill();
-            }
-            else
-            {
-                other.GetComponent<PlayerController>().Kill();
-                Kill();
-            }
-            
-        }
-        return (false);
     }
 
     private void StopAction()

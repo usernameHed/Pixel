@@ -65,12 +65,13 @@ public class PlayerPhysics : MonoBehaviour
             //attractor.SetNewNormalForceWhenFlying();
             //Debug.Log("ici applique la gravité, on tombe !");
 
-            /*if (rb.velocity.y < 0)
+            if (!inputPlayer.JumpInput)
             {
                 Debug.Log("ici gravité fall");
                 //rb.velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
                 PhysicsExt.ApplyConstForce(rb, worldCollision.GetLastPersistSumNormalSafe(), fallMultiplier);
             }
+            /*
             else if (rb.velocity.y > 0 && !inputPlayer.JumpInput)
             {
                 PhysicsExt.ApplyConstForce(rb, worldCollision.GetLastPersistSumNormalSafe(), lowMultiplier);

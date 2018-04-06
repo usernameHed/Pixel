@@ -9386,11 +9386,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67cf885c839015449b08e40a99bbff75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 8
+  jumpForce: 15
   gravity: 9.81
-  stayHold: 1
+  stayHold: 0
   coolDownJump:
-    timeCoolDown: 1
+    timeCoolDown: 0.4
   onJump:
     vibrateLeft: 1
     strenthLeft: 0.3
@@ -9423,8 +9423,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gravityMultiplier: 5
-  fallMultiplier: 8
-  lowMultiplier: 3
+  fallMultiplier: 10
+  lowMultiplier: 1
   playerJump: {fileID: 928328583}
   worldCollision: {fileID: 928328592}
   rb: {fileID: 928328582}
@@ -10379,7 +10379,7 @@ GameObject:
   - component: {fileID: 1063248892}
   - component: {fileID: 1063248891}
   - component: {fileID: 1063248890}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Floor (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10415,7 +10415,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 9dda4e0ae843d49bbb0c151148f7877f, type: 2}
+  - {fileID: 2100000, guid: 0c60839d950db134cbf022728163f133, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -11741,8 +11741,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1484146510}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 13.5, y: -1.3, z: 0}
-  m_LocalScale: {x: 24.04, y: 1, z: 1}
+  m_LocalPosition: {x: 8.92, y: -1.3, z: 0}
+  m_LocalScale: {x: 15.786104, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1825310458}
   m_RootOrder: 0

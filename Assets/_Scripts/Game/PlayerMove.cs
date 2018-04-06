@@ -83,7 +83,7 @@ public class PlayerMove : MonoBehaviour
         //si on a juste sauté, ne rien faire
         if (!worldCollision.CoolDownGroundedJump.IsReady() || !worldCollision.CoolDownGrounded.IsReady())
         {
-            Debug.Log("NO READY");
+            //Debug.Log("NO READY");
             return;
         }
             

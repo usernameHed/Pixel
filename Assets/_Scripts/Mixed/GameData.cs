@@ -40,6 +40,7 @@ public static class GameData
         Player,
         Obstacle,
         Default,
+        NoMove,
     }
 
     public enum Sounds

@@ -99,7 +99,7 @@ public class PlayerJump : MonoBehaviour
             //not grounded
             if (inputPlayer.JumpInput)
             {
-                Debug.Log("ici on saute pas dans le vide...");
+                //Debug.Log("ici on saute pas dans le vide...");
             }
         }
     }
