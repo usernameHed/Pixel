@@ -18,6 +18,10 @@ public class AnimController : MonoBehaviour
 
     [FoldoutGroup("GamePlay"), Tooltip("Animator du joueur"), SerializeField]
     private Transform trail;
+    [FoldoutGroup("GamePlay"), Tooltip("Animator du joueur"), SerializeField]
+    private Transform ear;
+    [FoldoutGroup("GamePlay"), Tooltip("Animator du joueur"), SerializeField]
+    private Transform dirArrow;
 
     private float speedInput = 1;
     private Vector3 refMove;
@@ -53,6 +57,7 @@ public class AnimController : MonoBehaviour
 
             trail.rotation = QuaternionExt.DirObject(trail.rotation, dir.x, -dir.y, speedTurn * speedInput, QuaternionExt.TurnType.Z);
         }
+        ear.rotation = dirArrow.rotation;
     }
     #endregion
 }
