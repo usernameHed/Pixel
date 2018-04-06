@@ -17,6 +17,8 @@ public class Grip : MonoBehaviour
 
     [FoldoutGroup("Debug"), Tooltip("est-on grippé ?"), SerializeField]
     public bool gripped = false;
+    [FoldoutGroup("Debug"), Tooltip("cooldown du déplacement horizontal"), SerializeField]
+    private WorldCollision worldCollision;
     [FoldoutGroup("Debug"), Tooltip("ref"), SerializeField]
     private Rigidbody rb;
     [FoldoutGroup("Debug"), Tooltip("ref"), SerializeField]
@@ -48,7 +50,7 @@ public class Grip : MonoBehaviour
     public bool CanGrip()
     {
         //faux si le cooldown n'est pas fini
-        if (!coolDownGrip.IsReady() || !playerController.Grounded)
+        if (!coolDownGrip.IsReady() || !worldCollision.IsGroundedSafe())
             return (false);
         return (true);
     }

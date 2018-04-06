@@ -29,8 +29,12 @@ public class Attractor : MonoBehaviour
 
     [FoldoutGroup("Debug"), Tooltip("ref"), SerializeField]
     private PlayerController playerController;
+    [FoldoutGroup("Debug"), Tooltip("cooldown du déplacement horizontal"), SerializeField]
+    private PlayerMove playerMove;
+    [FoldoutGroup("Debug"), Tooltip("cooldown du déplacement horizontal"), SerializeField]
+    private WorldCollision worldCollision;
     [FoldoutGroup("Debug"), Tooltip("ref"), SerializeField]
-    private BetterJump betterJump;
+    private PlayerPhysics betterJump;
     [FoldoutGroup("Debug"), Tooltip("ref"), SerializeField]
     private Rigidbody rb;
 
@@ -108,7 +112,7 @@ public class Attractor : MonoBehaviour
     {
         ResetAttractPoint();    //ici se reset, on est sur le ground !
 
-        worldLastNormal = playerController.NormalCollide;   //avoir toujours une normal à jour
+        worldLastNormal = worldCollision.GetSumNormalSafe();   //avoir toujours une normal à jour
         float distForSave = (WorldLastPositionGetIndex(0) - transform.position).sqrMagnitude;
 
         //si la distance entre les 2 point est trop grande, dans tout les cas, save la nouvelle position !
@@ -118,7 +122,7 @@ public class Attractor : MonoBehaviour
             //DebugExtension.DebugWireSphere(WorldLastPositionGetIndex(0), Color.yellow, 0.5f, 1f);
         }
         //si la normal à changé, update la position + normal !
-        else if (worldPreviousNormal != playerController.NormalCollide)
+        else if (worldPreviousNormal != worldCollision.GetSumNormalSafe())
         {
             //ici changement de position SEULEMENT si l'angle de la normal diffère de X
             float anglePreviousNormal = QuaternionExt.GetAngleFromVector(worldPreviousNormal);
@@ -160,7 +164,7 @@ public class Attractor : MonoBehaviour
 
         Debug.Log("ici on stup l'attract point !");
 
-        lengthInputForceAttractPoint = playerController.FindTheRightDir().magnitude;    //ici la force de l'attract point ! (0 - 1)
+        lengthInputForceAttractPoint = playerMove.FindTheRightDir().magnitude;    //ici la force de l'attract point ! (0 - 1)
         //lengthInputForceAttractPoint = rb.velocity.magnitude;    //ici la force de l'attract point ! (0 - MAxVelocityPlayer)
 
         //TODOO
@@ -201,11 +205,11 @@ public class Attractor : MonoBehaviour
         float signVector = QuaternionExt.DotProduct(dirAttractPoint, -worldLastNormal);
         if (signVector > 0)
         {
-            playerController.NormalCollide = -QuaternionExt.GetMiddleOf2Vector(dirAttractPoint, -worldLastNormal);
+            worldCollision.SetSumNormal(-QuaternionExt.GetMiddleOf2Vector(dirAttractPoint, -worldLastNormal));
         }
         else
         {
-            playerController.NormalCollide = -QuaternionExt.GetMiddleOf2Vector(dirAttractPoint, worldLastNormal);
+            worldCollision.SetSumNormal(-QuaternionExt.GetMiddleOf2Vector(dirAttractPoint, worldLastNormal));
         }
         //playerController.NormalCollide = -dirAttractPoint;
 
@@ -213,7 +217,7 @@ public class Attractor : MonoBehaviour
         //ici renvoyer vrai ou faux selon si le dir est derriere la derniere normal ?
         //pour pas appliquer la vieille force de normal après...
         
-        rb.AddForce(playerController.NormalCollide * -forceAttractPoint, ForceMode.VelocityChange);
+        rb.AddForce(worldCollision.GetSumNormalSafe() * -forceAttractPoint, ForceMode.VelocityChange);
     }
 
     
