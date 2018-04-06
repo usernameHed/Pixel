@@ -11,12 +11,11 @@ public class PlayerController : MonoBehaviour, IKillable
     private int idPlayer = 0;
     public int IdPlayer { set { idPlayer = value; } get { return idPlayer; } }
 
-    [FoldoutGroup("GamePlay"), Tooltip("est-on un sith ?"), SerializeField]
-    private bool isSith = false;
-    public bool IsSith { get { return isSith; } }
-
     [FoldoutGroup("GamePlay"), Tooltip("list des layer de collisions"), SerializeField]
     private float turnRateArrow = 400f;
+
+    [FoldoutGroup("GamePlay"), Tooltip("temps d'attend avan tle restart"), SerializeField]
+    private float timeWaitBeforeDie = 2f;
 
     [FoldoutGroup("GamePlay"), Tooltip("vibration quand on jump"), SerializeField]
     private Vibration onDie;
@@ -26,6 +25,8 @@ public class PlayerController : MonoBehaviour, IKillable
 
     [FoldoutGroup("Object"), Tooltip("direction du joystick"), SerializeField]
     private Transform dirArrow;
+    [FoldoutGroup("Object"), Tooltip("bag du squirell"), SerializeField]
+    private Transform bag;
 
 
     [FoldoutGroup("Debug"), Tooltip("cooldown du déplacement horizontal"), SerializeField]
@@ -101,6 +102,15 @@ public class PlayerController : MonoBehaviour, IKillable
     }
 
     /// <summary>
+    /// ici prend une noisette !
+    /// </summary>
+    public void GetNoisette()
+    {
+        Debug.Log("ici on a une noistte");
+
+    }
+
+    /// <summary>
     /// Direction arrow
     /// </summary>
     private void ChangeDirectionArrow()
@@ -137,7 +147,11 @@ public class PlayerController : MonoBehaviour, IKillable
         GameManager.Instance.CameraObject.GetComponent<ScreenShake>().ShakeCamera();
         ObjectsPooler.Instance.SpawnFromPool(GameData.PoolTag.DeathPlayer, transform.position, Quaternion.identity, ObjectsPooler.Instance.transform);
         PlayerConnected.Instance.setVibrationPlayer(idPlayer, onDie);
+        SoundManager.GetSingleton.playSound(GameData.Sounds.Explode.ToString() + transform.GetInstanceID());
+
         enabledObject = false;
+
+        GameManager.Instance.SceneManagerLocal.PlayNext(timeWaitBeforeDie);
         gameObject.SetActive(false);
     }
 

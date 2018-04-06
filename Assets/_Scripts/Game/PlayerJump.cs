@@ -127,6 +127,7 @@ public class PlayerJump : MonoBehaviour
 
         coolDownJump.StartCoolDown();   //set le coolDown du jump
         PlayerConnected.Instance.setVibrationPlayer(playerController.IdPlayer, onJump); //set vibration de saut
+        SoundManager.GetSingleton.playSound(GameData.Sounds.Jump.ToString() + transform.GetInstanceID());
 
         hasJumpAndFlying = true; //on vient de sauter ! tant qu'on retombe pas, on est vrai
 

@@ -120,6 +120,8 @@ public class PlayerDash : MonoBehaviour
 
         coolDownJumpDash.StartCoolDown();   //set le coolDown du jump
         PlayerConnected.Instance.setVibrationPlayer(playerController.IdPlayer, onDash); //set vibration de saut
+        SoundManager.GetSingleton.playSound(GameData.Sounds.Swouch.ToString() + transform.GetInstanceID());
+        GameManager.Instance.CameraObject.GetComponent<ScreenShake>().ShakeCamera();
 
         hasDashed = true; //on vient de sauter ! tant qu'on retombe pas, on est vrai
 

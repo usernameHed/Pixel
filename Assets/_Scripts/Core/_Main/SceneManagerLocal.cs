@@ -132,15 +132,27 @@ public class SceneManagerLocal : MonoBehaviour
     /// ici lance le jeu, il est chargé !
     /// </summary>
     [FoldoutGroup("Debug"), Button("Play")]
-    public void PlayNext()
+    public void PlayNext(float time = 0)
     {
-        SceneManagerGlobal.Instance.ActivateScene(
-            sceneToLoad[0].scene,
-            sceneToLoad[0].fade,
-            sceneToLoad[0].fadeTime);    //hard code du next ?
-
+        if (time == 0)
+        {
+            SceneManagerGlobal.Instance.ActivateScene(
+                sceneToLoad[0].scene,
+                sceneToLoad[0].fade,
+                sceneToLoad[0].fadeTime);    //hard code du next ?
+        }
+        else
+            Invoke("PlayNextAfterWait", time);
         //ici gère les unloads ?
     }
+    private void PlayNextAfterWait()
+    {
+        SceneManagerGlobal.Instance.ActivateScene(
+                sceneToLoad[0].scene,
+                sceneToLoad[0].fade,
+                sceneToLoad[0].fadeTime);    //hard code du next ?
+    }
+
     public void PlayPrevious(bool unloadFirst = true)
     {
         if (unloadFirst)

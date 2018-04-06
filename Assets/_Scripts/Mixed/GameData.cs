@@ -50,6 +50,11 @@ public static class GameData
         SpiksOn,
         SpiksOff,
         Bounce,
+        Jump,
+        Dash,
+        Swouch,
+        Explode,
+        Bonus,
     }
 
     /// <summary>

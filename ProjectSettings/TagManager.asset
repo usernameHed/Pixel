@@ -16,6 +16,7 @@ TagManager:
   - Enemy
   - SuperPower
   - Bumper
+  - CanvasForCinematics
   layers:
   - Default
   - TransparentFX
@@ -30,7 +31,7 @@ TagManager:
   - Obstacle
   - NoMove
   - Bump
-  - 
+  - Noisette
   - 
   - 
   - 
