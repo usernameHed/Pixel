@@ -210,7 +210,14 @@ public class AnimController : MonoBehaviour
 
         parentAnim.rotation = dirArrow.rotation;
         //anim.transform.rotation = Quaternion.AngleAxis(90, dirArrow.eulerAngles);
-        ear.rotation = dirArrow.rotation;
+        //ear.rotation = dirArrow.rotation;
+        for (int i = 0; i < ear.childCount; i++)
+        {
+            if (ear.GetChild(i).HasComponent<Rigidbody>())
+            {
+                ear.GetChild(i).GetComponent<Rigidbody>().velocity = Vector3.zero;
+            }
+        }
     }
 
     public void DirectionChanged()
