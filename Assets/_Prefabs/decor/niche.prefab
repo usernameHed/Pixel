@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4335393451904474}
   - component: {fileID: 65232174450195600}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: collider (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 33143793734405006}
   - component: {fileID: 23133564198807098}
   - component: {fileID: 95035784035065048}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: niche
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54,7 +54,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4811866246932462}
   - component: {fileID: 65769476586783068}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: collider (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,7 +70,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4140645865530366}
   - component: {fileID: 65249919780167700}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86,7 +86,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4420110446495302}
   - component: {fileID: 65412477545229940}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: collider (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,7 +102,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4471134317303832}
   - component: {fileID: 65941487264139014}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: collider (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118,7 +118,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4995190593371720}
   - component: {fileID: 65926943773430490}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: collider (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -134,7 +134,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4128075201932312}
   - component: {fileID: 65469139726305670}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: collider (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

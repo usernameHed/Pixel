@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33058656577342720}
   - component: {fileID: 23938779369531624}
   - component: {fileID: 65402953764034942}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: pot_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 33415933024845722}
   - component: {fileID: 23282604963615086}
   - component: {fileID: 65845578137666588}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: pot_002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,7 +56,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4878753044932880}
   - component: {fileID: 95024298902537146}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: pots
   m_TagString: Untagged
   m_Icon: {fileID: 0}

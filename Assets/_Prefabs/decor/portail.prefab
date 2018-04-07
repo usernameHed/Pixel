@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 65926186927882532}
   - component: {fileID: 65538120483956706}
   - component: {fileID: 65731290820893168}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: portail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 4917529994925570}
   - component: {fileID: 33160742837443834}
   - component: {fileID: 23523795729160026}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: portail001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
