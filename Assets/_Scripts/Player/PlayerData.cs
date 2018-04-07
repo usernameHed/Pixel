@@ -6,9 +6,8 @@ public class PlayerData : PersistantData
 {
     #region Attributes
 
-    [FoldoutGroup("GamePlay"), Tooltip("score des 4 joueurs"), SerializeField]
-    private int[] scorePlayer = new int[SizeArrayId];
-    public int[] ScorePlayer { get { return scorePlayer; } }
+    [FoldoutGroup("GamePlay"), Tooltip("score des 4 joueurs")]
+    public int scorePlayer = 0;
 
 
     private const int SizeArrayId = 2;  //nombre de ball du joueur
@@ -20,10 +19,7 @@ public class PlayerData : PersistantData
     /// </summary>
     public void SetDefault()
     {
-        for (int i = 0; i < SizeArrayId; i++)
-        {
-            scorePlayer[i] = 0;
-        }        
+        scorePlayer = 0;
     }
 
     public override string GetFilePath ()

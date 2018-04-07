@@ -26,6 +26,15 @@ public class PlayerBag : MonoBehaviour
         noisertteArray[numberNoisette].SetActive(true);
         numberNoisette++;
     }
+
+    public void SetNoisetteOnCheckpoint(int number)
+    {
+        numberNoisette = number;
+        for (int i = 0;  i < number; i++)
+        {
+            noisertteArray[i].SetActive(true);
+        }
+    }
     #endregion
 
     #region Unity ending functions

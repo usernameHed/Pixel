@@ -49,6 +49,8 @@ public class TriggerNoisette : MonoBehaviour
             PlayerBag bag = other.gameObject.GetComponent<PlayerBag>();
             bag.GetNoisette();
 
+            ScoreManager.Instance.Data.scorePlayer++;
+
             parent.gameObject.SetActive(false);
             //GameManager.Instance.SceneManagerLocal.PlayIndex(2, true);
             enabledObject = false;

@@ -10,9 +10,15 @@ using System.Collections.Generic;
 public class LevelManager : MonoBehaviour, ILevelManager
 {
     #region Attributes
-    
+    public GameObject player;
+    public PlayerBag bag;
+
     [FoldoutGroup("Debug"), Tooltip("gere le temps avant de pouvoir faire Restart"), SerializeField]
     private FrequencyTimer coolDownRestart;
+
+    public GameObject[] checkpoint;
+    public Transform[] pointRespawn;
+    public int checkpointNumber = 0;
 
     private bool enabledScript = true;
     #endregion
@@ -45,6 +51,20 @@ public class LevelManager : MonoBehaviour, ILevelManager
     public void LevelInit()
     {
         Debug.Log("level init");
+        int scorePlayer = ScoreManager.Instance.Data.scorePlayer;
+        for (int i = 0; i < scorePlayer; i++)
+        {
+            checkpoint[i].SetActive(false);
+            //bag.noisertteArray[i].SetActive(true);
+            //bag.numberNoisette++;
+        }
+        bag.SetNoisetteOnCheckpoint(scorePlayer);
+
+        if (scorePlayer > 0)
+        {
+            player.transform.position = pointRespawn[scorePlayer - 1].position;
+            //player.transform.rotation = pointRespawn[scorePlayer - 1].rotation;
+        }
     }
 
     public void InputLevel()

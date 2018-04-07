@@ -27,6 +27,7 @@ public class MenuManager : MonoBehaviour, ILevelManager
     public void InitScene()
     {
         enabledScript = true;
+        ScoreManager.Instance.ResetAll();
     }
 
     #endregion
