@@ -101,13 +101,13 @@ public class AnimController : MonoBehaviour
             else if (speedInput < 0.5f)
             {
                 //ici anim de marche
-                Debug.Log("ici walk ?");
+                //Debug.Log("ici walk ?");
                 anim.SetBool("walk", true);
             }
             else if (speedInput >= 0.5f)
             {
                 //ici anim de course
-                Debug.Log("ici run ?");
+                //Debug.Log("ici run ?");
                 anim.SetBool("run", true);
             }
 

@@ -169,7 +169,7 @@ public class PlayerMove : MonoBehaviour
             float diffLastInput;
             if (QuaternionExt.IsAngleCloseToOtherByAmount(angleInputPlayer, angleLastInputDir, debugCloseValueAngleInput, out diffLastInput))
             {
-                Debug.Log("ici propulse !");
+                //Debug.Log("ici propulse !");
                 rb.AddForce(inputPlayer * propulseWhenNewGround, ForceMode.VelocityChange);
             }
 
