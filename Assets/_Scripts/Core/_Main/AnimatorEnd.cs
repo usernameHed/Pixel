@@ -25,9 +25,14 @@ public class AnimatorEnd : MonoBehaviour
     {
         anim.SetBool("Jump", false);
     }
+
+    public void StopSwitch()
+    {
+        anim.SetBool("switch_direc", false);
+    }
     #endregion
 
     #region Unity ending functions
 
-	#endregion
+    #endregion
 }
