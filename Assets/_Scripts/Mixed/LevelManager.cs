@@ -114,6 +114,7 @@ public class LevelManager : MonoBehaviour, ILevelManager
             return;
 
         enabledScript = false;
+        SoundManager.GetSingleton.playSound("event:/Music/BackgroundMusic", true);
 
         ObjectsPooler.Instance.desactiveEveryOneForTransition();
         ObjectsPoolerLocal.Instance.desactiveEveryOneForTransition();
