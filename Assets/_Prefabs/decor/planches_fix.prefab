@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33029088490387486}
   - component: {fileID: 23959546755856194}
   - component: {fileID: 65574948031433800}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: planche_004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37,7 +37,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4244531833338002}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: planches_fix
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 33540278873463806}
   - component: {fileID: 23502169270565342}
   - component: {fileID: 65706215666341910}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: planche_002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ GameObject:
   - component: {fileID: 33121332021221418}
   - component: {fileID: 23802374329881684}
   - component: {fileID: 65214367087964706}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: planche_003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 33134459468331282}
   - component: {fileID: 23780644000271990}
   - component: {fileID: 65006867873693064}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: planche_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 33633532499182486}
   - component: {fileID: 23027075317550720}
   - component: {fileID: 65229068037615006}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: planche_005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
