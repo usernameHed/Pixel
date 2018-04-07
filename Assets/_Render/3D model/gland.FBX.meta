@@ -6,13 +6,24 @@ ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
+    100002: gland
     400000: //RootNode
+    400002: gland
     2100000: No Name
     2300000: //RootNode
+    2300002: gland
     3300000: //RootNode
+    3300002: gland
     4300000: Sphere001
+    4300002: gland
+    7400000: Take 001
     9500000: //RootNode
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: No Name
+    second: {fileID: 2100000, guid: 623d4bf6b8497014b96be6e4a37b4080, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -50,7 +61,7 @@ ModelImporter:
     importCameras: 1
     importLights: 1
     swapUVChannels: 0
-    generateSecondaryUV: 0
+    generateSecondaryUV: 1
     useFileUnits: 1
     optimizeMeshForGPU: 1
     keepQuads: 0

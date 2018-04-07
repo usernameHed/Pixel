@@ -18,6 +18,7 @@ ModelImporter:
     400008: planche_005
     400010: //RootNode
     2100000: 'Material #2'
+    2100002: 'Material #3'
     2300000: planche_001
     2300002: planche_002
     2300004: planche_003
@@ -40,6 +41,11 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: 'Material #2'
     second: {fileID: 2100000, guid: 72e738ca92b6d83479bafe32460e1a2c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 'Material #3'
+    second: {fileID: 2100000, guid: 4095cdcd14e2f7343981611260c3dd59, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

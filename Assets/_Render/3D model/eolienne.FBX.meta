@@ -1,0 +1,256 @@
+fileFormatVersion: 2
+guid: 9faee2f1475ea5241826807ad7f15b2a
+timeCreated: 1523081279
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: barriere
+    100002: barriere_CTRL
+    100004: debris_verre_001
+    100006: debris_verre_001_CTRL
+    100008: debris_verre_002
+    100010: debris_verre_002_CTRL
+    100012: debris_verre_003
+    100014: debris_verre_003_CTRL
+    100016: debris_verre_004
+    100018: debris_verre_004_CTRL
+    100020: debris_verre_005
+    100022: debris_verre_006
+    100024: debris_verre_006_CTRL
+    100026: debris_verre_007
+    100028: debris_verre_007_CTRL
+    100030: debris_verre_007_CTRL001
+    100032: debris_verre_008
+    100034: debris_verre_008_CTRL
+    100036: //RootNode
+    100038: eolienne
+    100040: eolienne_CTRL
+    100042: fenetre_001_CTRL
+    100044: fenetre_002
+    100046: gland
+    100048: gland_CTRL
+    100050: niche
+    100052: niche_CTRL
+    100054: planche_001
+    100056: planche_001_CTRL
+    100058: planche_002
+    100060: planche_002_CTRL
+    100062: planche_003
+    100064: planche_003_CTRL
+    100066: planche_004
+    100068: planche_004_CTRL
+    100070: planche_005
+    100072: planche_005_CTRL
+    100074: portail001
+    100076: portail_CTRL
+    100078: pot_001
+    100080: pot_001_CTRL
+    100082: pot_002
+    100084: pot_002_CTRL
+    100086: roue
+    100088: roue_CTRL
+    100090: silot
+    100092: silot_CTRL
+    400000: barriere
+    400002: barriere_CTRL
+    400004: debris_verre_001
+    400006: debris_verre_001_CTRL
+    400008: debris_verre_002
+    400010: debris_verre_002_CTRL
+    400012: debris_verre_003
+    400014: debris_verre_003_CTRL
+    400016: debris_verre_004
+    400018: debris_verre_004_CTRL
+    400020: debris_verre_005
+    400022: debris_verre_006
+    400024: debris_verre_006_CTRL
+    400026: debris_verre_007
+    400028: debris_verre_007_CTRL
+    400030: debris_verre_007_CTRL001
+    400032: debris_verre_008
+    400034: debris_verre_008_CTRL
+    400036: //RootNode
+    400038: eolienne
+    400040: eolienne_CTRL
+    400042: fenetre_001_CTRL
+    400044: fenetre_002
+    400046: gland
+    400048: gland_CTRL
+    400050: niche
+    400052: niche_CTRL
+    400054: planche_001
+    400056: planche_001_CTRL
+    400058: planche_002
+    400060: planche_002_CTRL
+    400062: planche_003
+    400064: planche_003_CTRL
+    400066: planche_004
+    400068: planche_004_CTRL
+    400070: planche_005
+    400072: planche_005_CTRL
+    400074: portail001
+    400076: portail_CTRL
+    400078: pot_001
+    400080: pot_001_CTRL
+    400082: pot_002
+    400084: pot_002_CTRL
+    400086: roue
+    400088: roue_CTRL
+    400090: silot
+    400092: silot_CTRL
+    2100000: 'Material #3'
+    2100002: 01 - Default
+    2100004: No Name
+    2100006: 02 - Default
+    2300000: barriere
+    2300002: debris_verre_001
+    2300004: debris_verre_002
+    2300006: debris_verre_003
+    2300008: debris_verre_004
+    2300010: debris_verre_005
+    2300012: debris_verre_006
+    2300014: debris_verre_007
+    2300016: debris_verre_008
+    2300018: eolienne
+    2300020: fenetre_002
+    2300022: gland
+    2300024: niche
+    2300026: planche_001
+    2300028: planche_002
+    2300030: planche_003
+    2300032: planche_004
+    2300034: planche_005
+    2300036: portail001
+    2300038: pot_001
+    2300040: pot_002
+    2300042: roue
+    2300044: silot
+    3300000: barriere
+    3300002: debris_verre_001
+    3300004: debris_verre_002
+    3300006: debris_verre_003
+    3300008: debris_verre_004
+    3300010: debris_verre_005
+    3300012: debris_verre_006
+    3300014: debris_verre_007
+    3300016: debris_verre_008
+    3300018: eolienne
+    3300020: fenetre_002
+    3300022: gland
+    3300024: niche
+    3300026: planche_001
+    3300028: planche_002
+    3300030: planche_003
+    3300032: planche_004
+    3300034: planche_005
+    3300036: portail001
+    3300038: pot_001
+    3300040: pot_002
+    3300042: roue
+    3300044: silot
+    4300000: portail001
+    4300002: barriere
+    4300004: niche
+    4300006: roue
+    4300008: pot_002
+    4300010: pot_001
+    4300012: debris_verre_002
+    4300014: debris_verre_006
+    4300016: debris_verre_004
+    4300018: debris_verre_007
+    4300020: debris_verre_008
+    4300022: planche_003
+    4300024: debris_verre_005
+    4300026: fenetre_002
+    4300028: debris_verre_001
+    4300030: debris_verre_003
+    4300032: planche_001
+    4300034: planche_005
+    4300036: planche_004
+    4300038: planche_002
+    4300040: silot
+    4300042: gland
+    4300044: eolienne
+    7400000: Take 001
+    9500000: //RootNode
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
