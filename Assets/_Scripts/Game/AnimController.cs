@@ -55,8 +55,11 @@ public class AnimController : MonoBehaviour
             Vector3 dir = QuaternionExt.CrossProduct(refMove, Vector3.forward);
             dir = (right) ? dir : -dir;
 
+            //anim.transform.localScale = new Vector3(1, 1, (right) ? -1 : 1);
+
             trail.rotation = QuaternionExt.DirObject(trail.rotation, dir.x, -dir.y, speedTurn * speedInput, QuaternionExt.TurnType.Z);
         }
+        anim.transform.rotation = dirArrow.rotation;
         ear.rotation = dirArrow.rotation;
     }
     #endregion
