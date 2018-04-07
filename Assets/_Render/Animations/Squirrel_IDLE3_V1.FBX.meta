@@ -1,0 +1,216 @@
+fileFormatVersion: 2
+guid: 0f0c73fcf5a522048941708f3623e0c0
+timeCreated: 1523068528
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: SQUI_Bip001
+    100002: SQUI_Bip001 Head
+    100004: SQUI_Bip001 L Calf
+    100006: SQUI_Bip001 L Clavicle
+    100008: SQUI_Bip001 L Finger0
+    100010: SQUI_Bip001 L Foot
+    100012: SQUI_Bip001 L Forearm
+    100014: SQUI_Bip001 L Hand
+    100016: SQUI_Bip001 L Thigh
+    100018: SQUI_Bip001 L Toe0
+    100020: SQUI_Bip001 L UpperArm
+    100022: SQUI_Bip001 Neck
+    100024: SQUI_Bip001 Pelvis
+    100026: SQUI_Bip001 R Calf
+    100028: SQUI_Bip001 R Clavicle
+    100030: SQUI_Bip001 R Finger0
+    100032: SQUI_Bip001 R Foot
+    100034: SQUI_Bip001 R Forearm
+    100036: SQUI_Bip001 R Hand
+    100038: SQUI_Bip001 R Thigh
+    100040: SQUI_Bip001 R Toe0
+    100042: SQUI_Bip001 R UpperArm
+    100044: SQUI_Bip001 Spine
+    100046: SQUI_Bip001 Spine1
+    100048: SQUI_Bip001 Spine2
+    100050: SQUI_CTRL_WING_L
+    100052: SQUI_CTRL_WING_R
+    100054: SQUI_MESH_aile_dr
+    100056: SQUI_MESH_aile_g
+    100058: SQUI_MESH_body
+    100060: SQUI_MESH_oeil_dr
+    100062: SQUI_MESH_oeil_g
+    100064: SQUI_MESH_paupiere_dr
+    100066: SQUI_MESH_paupiere_g
+    100068: SQUI_MESH_sourcil_dr
+    100070: SQUI_MESH_sourcil_g
+    100072: //RootNode
+    400000: SQUI_Bip001
+    400002: SQUI_Bip001 Head
+    400004: SQUI_Bip001 L Calf
+    400006: SQUI_Bip001 L Clavicle
+    400008: SQUI_Bip001 L Finger0
+    400010: SQUI_Bip001 L Foot
+    400012: SQUI_Bip001 L Forearm
+    400014: SQUI_Bip001 L Hand
+    400016: SQUI_Bip001 L Thigh
+    400018: SQUI_Bip001 L Toe0
+    400020: SQUI_Bip001 L UpperArm
+    400022: SQUI_Bip001 Neck
+    400024: SQUI_Bip001 Pelvis
+    400026: SQUI_Bip001 R Calf
+    400028: SQUI_Bip001 R Clavicle
+    400030: SQUI_Bip001 R Finger0
+    400032: SQUI_Bip001 R Foot
+    400034: SQUI_Bip001 R Forearm
+    400036: SQUI_Bip001 R Hand
+    400038: SQUI_Bip001 R Thigh
+    400040: SQUI_Bip001 R Toe0
+    400042: SQUI_Bip001 R UpperArm
+    400044: SQUI_Bip001 Spine
+    400046: SQUI_Bip001 Spine1
+    400048: SQUI_Bip001 Spine2
+    400050: SQUI_CTRL_WING_L
+    400052: SQUI_CTRL_WING_R
+    400054: SQUI_MESH_aile_dr
+    400056: SQUI_MESH_aile_g
+    400058: SQUI_MESH_body
+    400060: SQUI_MESH_oeil_dr
+    400062: SQUI_MESH_oeil_g
+    400064: SQUI_MESH_paupiere_dr
+    400066: SQUI_MESH_paupiere_g
+    400068: SQUI_MESH_sourcil_dr
+    400070: SQUI_MESH_sourcil_g
+    400072: //RootNode
+    2100000: 03 - Default
+    2300000: SQUI_MESH_oeil_dr
+    2300002: SQUI_MESH_oeil_g
+    2300004: SQUI_MESH_paupiere_dr
+    2300006: SQUI_MESH_paupiere_g
+    2300008: SQUI_MESH_sourcil_dr
+    2300010: SQUI_MESH_sourcil_g
+    3300000: SQUI_MESH_oeil_dr
+    3300002: SQUI_MESH_oeil_g
+    3300004: SQUI_MESH_paupiere_dr
+    3300006: SQUI_MESH_paupiere_g
+    3300008: SQUI_MESH_sourcil_dr
+    3300010: SQUI_MESH_sourcil_g
+    4300000: SQUI_MESH_sourcil_dr
+    4300002: SQUI_MESH_sourcil_g
+    4300004: SQUI_MESH_paupiere_g
+    4300006: SQUI_MESH_oeil_g
+    4300008: SQUI_MESH_oeil_dr
+    4300010: SQUI_MESH_paupiere_dr
+    4300012: SQUI_MESH_body
+    4300014: SQUI_MESH_aile_dr
+    4300016: SQUI_MESH_aile_g
+    7400000: squirrel_idle03
+    9500000: //RootNode
+    13700000: SQUI_MESH_aile_dr
+    13700002: SQUI_MESH_aile_g
+    13700004: SQUI_MESH_body
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: squirrel_idle03
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 220
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

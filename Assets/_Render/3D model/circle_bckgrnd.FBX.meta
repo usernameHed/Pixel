@@ -1,0 +1,174 @@
+fileFormatVersion: 2
+guid: 0c0918c6c499dcc48b9ff79792a43b71
+timeCreated: 1523067257
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Cylinder001
+    100004: Cylinder002
+    100006: Cylinder003
+    100008: Cylinder004
+    100010: Cylinder005
+    400000: //RootNode
+    400002: Cylinder001
+    400004: Cylinder002
+    400006: Cylinder003
+    400008: Cylinder004
+    400010: Cylinder005
+    2100000: cylindre01
+    2100002: cylindre02
+    2100004: cylindre03
+    2100006: cylindre04
+    2100008: cylindre05
+    2300000: Cylinder001
+    2300002: Cylinder002
+    2300004: Cylinder003
+    2300006: Cylinder004
+    2300008: Cylinder005
+    3300000: Cylinder001
+    3300002: Cylinder002
+    3300004: Cylinder003
+    3300006: Cylinder004
+    3300008: Cylinder005
+    4300000: Cylinder001
+    4300002: Cylinder002
+    4300004: Cylinder003
+    4300006: Cylinder004
+    4300008: Cylinder005
+    7400000: cylindre_bckgrnd
+    9500000: //RootNode
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cylindre01
+    second: {fileID: 2100000, guid: 8efba7767e8fcb84aa854b2d1209c8a9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cylindre02
+    second: {fileID: 2100000, guid: 7f3e32446460deb4983f9ad72b11bd56, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cylindre03
+    second: {fileID: 2100000, guid: f2019d4b9fd86284aab490d97575a5d3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cylindre04
+    second: {fileID: 2100000, guid: 132e4c297a252cc4b9f24198bb12430c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cylindre05
+    second: {fileID: 2100000, guid: 1b987ae544234954d8b47a1ef7c73c8c, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 1
+    materialSearch: 0
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: cylindre_bckgrnd
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 5000
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
