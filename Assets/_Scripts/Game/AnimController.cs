@@ -27,7 +27,7 @@ public class AnimController : MonoBehaviour
     [FoldoutGroup("GamePlay"), Tooltip("Animator du joueur"), SerializeField]
     private Transform dirArrow;
 
-    private float speedInput = 1;
+    private float speedInput = 0;
     private Vector3 refMove;
 
     private bool hasChanged = false;
@@ -42,8 +42,20 @@ public class AnimController : MonoBehaviour
     #endregion
 
     #region Core
+    /// <summary>
+    /// ici move (turn ?) ou stop
+    /// </summary>
+    /// <param name="moveDir"></param>
+    /// <param name="rightMove"></param>
+    /// <param name="speed"></param>
     public void Turn(Vector3 moveDir, bool rightMove, float speed)
     {
+        if (speed == 0)
+        {
+            speedInput = 0;
+            return;
+        }
+
         if (right != rightMove)
             hasChanged = true;
         //anim["Turn"].speed = speed;
@@ -67,7 +79,18 @@ public class AnimController : MonoBehaviour
             {
                 hasChanged = false;
                 anim.SetBool("switch_direc", true);
+                anim.Play("switch_direc");
                 //parentAnim.transform.localScale = new Vector3((right) ? 1 : -1, 1, 1);
+            }
+            else if (speedInput < 0.5f)
+            {
+                //ici anim de marche
+            }
+            else if (speedInput >= 0.5f)
+            {
+                //ici anim de course
+                Debug.Log("ici run ?");
+                anim.SetBool("run", true);
             }
 
             /*if (anim.GetBool("switch_direc"))
@@ -86,6 +109,13 @@ public class AnimController : MonoBehaviour
 
 
             //trail.rotation = QuaternionExt.DirObject(trail.rotation, dir.x, -dir.y, speedTurn * speedInput, QuaternionExt.TurnType.Z);
+        }
+        else
+        {
+            if (anim.GetBool("run"))
+            {
+                anim.SetBool("run", false);
+            }
         }
         parentAnim.rotation = dirArrow.rotation;
         //anim.transform.rotation = Quaternion.AngleAxis(90, dirArrow.eulerAngles);

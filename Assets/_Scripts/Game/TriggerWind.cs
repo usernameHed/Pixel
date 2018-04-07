@@ -65,7 +65,8 @@ public class TriggerWind : MonoBehaviour
             GameObject[] list = playerToPush.ListObjToPush;
             for (int i = 0; i < list.Length; i++)
             {
-                PhysicsExt.ApplyConstForce(list[i].GetComponent<Rigidbody>(), force, Random.Range(randomMinForce, randomMaxForce));
+                if (list[i].GetComponent<Rigidbody>())
+                    PhysicsExt.ApplyConstForce(list[i].GetComponent<Rigidbody>(), force, Random.Range(randomMinForce, randomMaxForce));
             }
         }
         else if (first.IsReady() && second.IsReady() && !passSecond)

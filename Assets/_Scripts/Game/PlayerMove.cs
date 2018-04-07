@@ -72,6 +72,7 @@ public class PlayerMove : MonoBehaviour
         }
         else
         {
+            animController.Turn(Vector3.zero, true, 0);
             //stop le déplacement
             //anim.SetBool("Run", false);
             //Debug.Log("ici stoppé");
@@ -243,6 +244,7 @@ public class PlayerMove : MonoBehaviour
         }
         else
         {
+            animController.Turn(Vector3.zero, true, 0);
             return (Vector3.zero);
         }
     }
