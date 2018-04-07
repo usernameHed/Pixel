@@ -15,6 +15,8 @@ public class AnimController : MonoBehaviour
     [FoldoutGroup("GamePlay"), Tooltip("Animator du joueur"), SerializeField]
     private Animator anim;
     public Animator Anim { get { return (anim); } }
+    [FoldoutGroup("GamePlay"), Tooltip("Animator du joueur"), SerializeField]
+    private Transform parentAnim;
 
     [FoldoutGroup("GamePlay"), Tooltip("Animator du joueur"), SerializeField]
     private Transform trail;
@@ -55,11 +57,12 @@ public class AnimController : MonoBehaviour
             Vector3 dir = QuaternionExt.CrossProduct(refMove, Vector3.forward);
             dir = (right) ? dir : -dir;
 
-            //anim.transform.localScale = new Vector3(1, 1, (right) ? -1 : 1);
+            parentAnim.transform.localScale = new Vector3((right) ? 1 : -1, 1, 1);
 
             trail.rotation = QuaternionExt.DirObject(trail.rotation, dir.x, -dir.y, speedTurn * speedInput, QuaternionExt.TurnType.Z);
         }
-        anim.transform.rotation = dirArrow.rotation;
+        parentAnim.rotation = dirArrow.rotation;
+        //anim.transform.rotation = Quaternion.AngleAxis(90, dirArrow.eulerAngles);
         ear.rotation = dirArrow.rotation;
     }
     #endregion
