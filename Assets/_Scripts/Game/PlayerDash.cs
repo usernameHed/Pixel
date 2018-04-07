@@ -11,6 +11,9 @@ public class PlayerDash : MonoBehaviour
     private float dashForce = 30.0f;
     [FoldoutGroup("Jump"), SerializeField]
     private float gravity = 9.81f;
+    [FoldoutGroup("Jump"), Tooltip("hauteur maximal du saut"), SerializeField]
+    private float airMoveDash = 30.0f;
+    public float AirMoveDash { get { return (airMoveDash); } }
 
     [FoldoutGroup("Jump"), Tooltip("cooldown du jump"), SerializeField]
     private FrequencyCoolDown coolDownJumpDash;

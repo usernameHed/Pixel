@@ -29,6 +29,8 @@ public class PlayerMove : MonoBehaviour
     private Rigidbody rb;           //ref du rb
     [FoldoutGroup("Debug"), Tooltip("ref"), SerializeField]
     private AnimController animController;           //ref du rb
+    [FoldoutGroup("Debug"), Tooltip("ref"), SerializeField]
+    private PlayerDash playerDash;           //ref du rb
 
     private bool stopAction = false;    //le joueur est-il stopé ?
     private Vector3 lastInputDir;
@@ -65,7 +67,7 @@ public class PlayerMove : MonoBehaviour
             }
             else
             {
-
+                MoveOnAir();
             }
         }
         else
@@ -73,6 +75,57 @@ public class PlayerMove : MonoBehaviour
             //stop le déplacement
             //anim.SetBool("Run", false);
             //Debug.Log("ici stoppé");
+        }
+    }
+
+    private void MoveOnAir()
+    {
+        if (!playerDash.IsDashing())
+            return;
+
+        Vector3 dir = FindTheRightAirDir();
+
+        if (dir == Vector3.zero)
+            return;
+
+        rb.AddForce(dir * playerDash.AirMoveDash, ForceMode.VelocityChange);
+
+        Debug.DrawRay(transform.position, dir * 3, Color.yellow, 1f);
+        //Debug.Break();
+    }
+
+
+    /// <summary>
+    /// set la direction des inputs selon la normal !
+    /// </summary>
+    /// <returns></returns>
+    public Vector3 FindTheRightAirDir()
+    {
+        Vector3 velocity = rb.velocity;
+
+        // Calculate how fast we should be moving
+        Vector3 targetVelocity = new Vector3(inputPlayer.Horiz, inputPlayer.Verti, 0);
+        //si on veut bouger...
+        if (targetVelocity.x != 0 || targetVelocity.y != 0)
+        {
+            Vector3 right = QuaternionExt.CrossProduct(velocity, Vector3.forward).normalized;
+            float dir = QuaternionExt.DotProduct(targetVelocity, right);
+
+            /*if (dir < 0)
+            {
+                animController.Turn(right.normalized, false, dir);
+                //return (-greenVector);
+            }
+            else if (dir > 0)
+            {
+                animController.Turn(right.normalized, true, dir);
+            }*/
+
+            return (right * dir);
+        }
+        else
+        {
+            return (Vector3.zero);
         }
     }
 
