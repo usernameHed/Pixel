@@ -41,6 +41,7 @@ public class TriggerNoisette : MonoBehaviour
             PlayerController playerController = other.gameObject.GetComponent<PlayerController>();
             PlayerConnected.Instance.setVibrationPlayer(playerController.IdPlayer, onTake);
             SoundManager.GetSingleton.playSound(GameData.Sounds.Bonus.ToString() + transform.parent.GetInstanceID());
+            ObjectsPooler.Instance.SpawnFromPool(GameData.PoolTag.DeathPlayer, transform.position, Quaternion.identity, ObjectsPooler.Instance.transform);
 
             PlayerBag bag = other.gameObject.GetComponent<PlayerBag>();
             bag.GetNoisette();

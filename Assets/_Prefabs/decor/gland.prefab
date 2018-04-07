@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4713610773526636}
   - component: {fileID: 114663037562518128}
   - component: {fileID: 114893910633174494}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: SFX Bonus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 33801747598791302}
   - component: {fileID: 65590261850824812}
   - component: {fileID: 114304077464996842}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,10 +55,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4052396919236134}
   - component: {fileID: 33144266831797880}
-  - component: {fileID: 65627106501418992}
   - component: {fileID: 23842623581895502}
   - component: {fileID: 54665860849674150}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: display
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75,7 +74,7 @@ GameObject:
   - component: {fileID: 4419468492346150}
   - component: {fileID: 33461959474326824}
   - component: {fileID: 23513269706701914}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: gland
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,7 +90,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4275932423885210}
   - component: {fileID: 95669732943576124}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: gland
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118,8 +117,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1928395625070042}
   m_LocalRotation: {x: 0.00000006638977, y: 0.0000000016141387, z: 0.052335955, w: 0.9986295}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 18.15, y: -3.43, z: -0}
+  m_LocalScale: {x: 1.3, y: 1.3, z: 1.3}
   m_Children:
   - {fileID: 4419468492346150}
   m_Father: {fileID: 0}
@@ -132,7 +131,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1917119879390272}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: 17.97, y: -5.02, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4944771353636128}
@@ -161,7 +160,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1275317253538536}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0000000021473, y: -0.0000000038024, z: -0.000000015209}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5846681, y: 0.54999983, z: 0.8632531}
   m_Children: []
   m_Father: {fileID: 4419468492346150}
@@ -279,18 +278,6 @@ BoxCollider:
   m_GameObject: {fileID: 1275317253538536}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 0.8401573}
-  m_Center: {x: 0.0000000025637525, y: 0.000000007289143, z: -0.079920866}
---- !u!65 &65627106501418992
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1342382877860756}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 0.8401573}
