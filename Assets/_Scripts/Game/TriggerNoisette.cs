@@ -12,6 +12,9 @@ public class TriggerNoisette : MonoBehaviour
     [FoldoutGroup("GamePlay"), Tooltip("list des prefabs à push"), SerializeField]
     private List<GameData.Layers> listLayerToCollide;
 
+    [FoldoutGroup("GamePlay"), Tooltip("parent"), SerializeField]
+    private Transform parent;
+
     [FoldoutGroup("GamePlay"), Tooltip("vibration quand on take"), SerializeField]
     private Vibration onTake;
 
@@ -46,7 +49,7 @@ public class TriggerNoisette : MonoBehaviour
             PlayerBag bag = other.gameObject.GetComponent<PlayerBag>();
             bag.GetNoisette();
 
-            gameObject.transform.parent.gameObject.SetActive(false);
+            parent.gameObject.SetActive(false);
             //GameManager.Instance.SceneManagerLocal.PlayIndex(2, true);
             enabledObject = false;
         }

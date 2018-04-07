@@ -13,7 +13,6 @@ public class ZoneEffector : MonoBehaviour                                   //co
     public bool onEnter = true;
     public bool onExit = true;
     public bool triggerPlayer = true;
-    public bool triggerEggs = false;
 
     /// <summary>
     /// variable public HideInInspector
@@ -123,14 +122,9 @@ public class ZoneEffector : MonoBehaviour                                   //co
     private void OnTriggerExit(Collider collision)
     {
         //si c'est un collider 2D, et que son objet de reference est un joueur
-        if (onExit && collision.CompareTag("Player"))
+        if (onExit && collision.CompareTag(GameData.Prefabs.Player.ToString()))
         {
             //collision.gameObject.GetComponent<PlayerController>().deleteZone(this);
-            ActionOnCamera(false);
-        }
-        else if (onEnter && collision.CompareTag("Eggs") && triggerEggs)
-        {
-            //collision.gameObject.GetComponent<PlayerController>().addZone(this);
             ActionOnCamera(false);
         }
     }

@@ -64,6 +64,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1644540357444654
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4417416516582152}
+  - component: {fileID: 114823742491185206}
+  - component: {fileID: 114147226950623576}
+  m_Layer: 11
+  m_Name: pointCam
+  m_TagString: Untagged
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1917119879390272
 GameObject:
   m_ObjectHideFlags: 0
@@ -117,12 +134,26 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1928395625070042}
   m_LocalRotation: {x: 0.00000006638977, y: 0.0000000016141387, z: 0.052335955, w: 0.9986295}
-  m_LocalPosition: {x: 18.15, y: -3.43, z: -0}
+  m_LocalPosition: {x: 14.68, y: 3.63, z: -0}
   m_LocalScale: {x: 1.3, y: 1.3, z: 1.3}
   m_Children:
   - {fileID: 4419468492346150}
+  - {fileID: 4417416516582152}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4417416516582152
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1644540357444654}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4275932423885210}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4419468492346150
 Transform:
@@ -299,6 +330,20 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114147226950623576
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1644540357444654}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8b11e115b393d94da4e302790452464, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onEnableAdd: 1
+  onDisableRemove: 1
+  cameraController: {fileID: 0}
 --- !u!114 &114304077464996842
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -311,6 +356,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   listLayerToCollide: 00000000
+  parent: {fileID: 4275932423885210}
   onTake:
     vibrateLeft: 0
     strenthLeft: 0
@@ -340,6 +386,24 @@ MonoBehaviour:
   OverrideAttenuation: 0
   OverrideMinDistance: 1
   OverrideMaxDistance: 20
+--- !u!114 &114823742491185206
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1644540357444654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a0b6f626a21530489a9570ba269ee69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camTarget: {fileID: 114147226950623576}
+  timeOpti: 0.1
+  timeWithEffect: 1
+  isOk: 1
+  restart: 0
+  sendInfoToCamArray: 1
+  alwaysOnCamera: 0
 --- !u!114 &114893910633174494
 MonoBehaviour:
   m_ObjectHideFlags: 1
