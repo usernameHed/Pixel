@@ -1,46 +1,23 @@
 fileFormatVersion: 2
-guid: 35582f7c9bd6d8a42a3c1bd21eb9c03a
-timeCreated: 1523101030
+guid: 5c33913550529c546818e9cebf287edf
+timeCreated: 1523120874
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: foreground
-    100002: //RootNode
-    100004: grange_porte_CTRL
-    100006: grange_porte_CTRL001
-    100008: Object003
-    100010: Object004
-    400000: foreground
-    400002: //RootNode
-    400004: grange_porte_CTRL
-    400006: grange_porte_CTRL001
-    400008: Object003
-    400010: Object004
+    100000: //RootNode
+    400000: //RootNode
     2100000: No Name
-    2100002: 'Material #2'
-    2300000: foreground
-    2300002: Object003
-    2300004: Object004
-    3300000: foreground
-    3300002: Object003
-    3300004: Object004
-    4300000: foreground
-    4300002: Object003
-    4300004: Object004
-    7400000: grange_porte
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: mur_level
     9500000: //RootNode
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: 'Material #2'
-    second: {fileID: 2100000, guid: 55743d3f591800f449ab8e4826fa2dec, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
       name: No Name
-    second: {fileID: 2100000, guid: db56b63524bb5104db8c06049b1a25fe, type: 2}
+    second: {fileID: 2100000, guid: cc870d765bc713846a05fd7f3633adf5, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -66,35 +43,7 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations:
-    - serializedVersion: 16
-      name: grange_porte
-      takeName: Take 001
-      firstFrame: 0
-      lastFrame: 190
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 1
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+    clipAnimations: []
     isReadable: 1
   meshes:
     lODScreenPercentages: []
