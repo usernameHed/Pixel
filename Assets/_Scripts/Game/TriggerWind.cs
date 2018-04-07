@@ -16,6 +16,8 @@ public class TriggerWind : MonoBehaviour
     // Directional force applied to objects that enter this object's Collider 2D boundaries
     public Vector3 force;
     private bool applyForce = false;
+
+    private PlayerController playerToPush;
     #endregion
 
     #region Initialization
@@ -32,7 +34,11 @@ public class TriggerWind : MonoBehaviour
         if (!applyForce)
             return;
 
-
+        GameObject[] list = playerToPush.ListObjToPush;
+        for (int i = 0; i < list.Length; i++)
+        {
+            PhysicsExt.ApplyConstForce(list[i].GetComponent<Rigidbody>(), force, windForce);
+        }
     }
 
     /// <summary>
@@ -44,6 +50,7 @@ public class TriggerWind : MonoBehaviour
         if (other.gameObject.CompareTag(GameData.Prefabs.Player.ToString()))
         {
             applyForce = true;
+            playerToPush = other.gameObject.GetComponent<PlayerController>();
         }
     }
 
@@ -56,6 +63,7 @@ public class TriggerWind : MonoBehaviour
         if (other.gameObject.CompareTag(GameData.Prefabs.Player.ToString()))
         {
             applyForce = false;
+            playerToPush = null;
         }
     }
 

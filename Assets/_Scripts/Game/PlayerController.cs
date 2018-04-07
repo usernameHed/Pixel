@@ -19,7 +19,11 @@ public class PlayerController : MonoBehaviour, IKillable
 
     [FoldoutGroup("GamePlay"), Tooltip("vibration quand on jump"), SerializeField]
     private Vibration onDie;
-    
+
+    [FoldoutGroup("GamePlay"), Tooltip("vibration quand on jump"), SerializeField]
+    private GameObject[] listObjToPush;
+    public GameObject[] ListObjToPush { get { return (listObjToPush); } }
+
     [FoldoutGroup("Repulse"), Tooltip("cooldown de repulsion"), SerializeField]
     private FrequencyCoolDown coolDownParent; //O.2
 
