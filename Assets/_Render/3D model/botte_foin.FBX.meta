@@ -9,10 +9,16 @@ ModelImporter:
     100002: botte_foin_001
     100004: botte_foin_002
     100006: botte_foin_003
+    100008: botte_foin_001_CTRL
+    100010: botte_foin_002_CTRL
+    100012: botte_foin_003_CTRL
     400000: //RootNode
     400002: botte_foin_001
     400004: botte_foin_002
     400006: botte_foin_003
+    400008: botte_foin_001_CTRL
+    400010: botte_foin_002_CTRL
+    400012: botte_foin_003_CTRL
     2100000: 'Material #3'
     2300000: botte_foin_001
     2300002: botte_foin_002
@@ -23,6 +29,7 @@ ModelImporter:
     4300000: botte_foin_003
     4300002: botte_foin_001
     4300004: botte_foin_002
+    7400000: Take 001
     9500000: //RootNode
   externalObjects: {}
   materials:
