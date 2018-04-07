@@ -42,6 +42,15 @@ ModelImporter:
     100068: SQUI_MESH_sourcil_dr
     100070: SQUI_MESH_sourcil_g
     100072: //RootNode
+    100074: SQUI_Bip001 Footsteps
+    100076: SQUI_Bip001 HeadNub
+    100078: SQUI_Bip001 L Finger0Nub
+    100080: SQUI_Bip001 L Toe0Nub
+    100082: SQUI_Bip001 R Finger0Nub
+    100084: SQUI_Bip001 R Toe0Nub
+    100086: SQUI_MESH_oreille_dr
+    100088: SQUI_MESH_oreille_g
+    100090: SQUI_MESH_queue
     400000: SQUI_Bip001
     400002: SQUI_Bip001 Head
     400004: SQUI_Bip001 L Calf
@@ -79,6 +88,15 @@ ModelImporter:
     400068: SQUI_MESH_sourcil_dr
     400070: SQUI_MESH_sourcil_g
     400072: //RootNode
+    400074: SQUI_Bip001 Footsteps
+    400076: SQUI_Bip001 HeadNub
+    400078: SQUI_Bip001 L Finger0Nub
+    400080: SQUI_Bip001 L Toe0Nub
+    400082: SQUI_Bip001 R Finger0Nub
+    400084: SQUI_Bip001 R Toe0Nub
+    400086: SQUI_MESH_oreille_dr
+    400088: SQUI_MESH_oreille_g
+    400090: SQUI_MESH_queue
     2100000: 03 - Default
     2300000: SQUI_MESH_oeil_dr
     2300002: SQUI_MESH_oeil_g
@@ -86,12 +104,18 @@ ModelImporter:
     2300006: SQUI_MESH_paupiere_g
     2300008: SQUI_MESH_sourcil_dr
     2300010: SQUI_MESH_sourcil_g
+    2300012: SQUI_MESH_oreille_dr
+    2300014: SQUI_MESH_oreille_g
+    2300016: SQUI_MESH_queue
     3300000: SQUI_MESH_oeil_dr
     3300002: SQUI_MESH_oeil_g
     3300004: SQUI_MESH_paupiere_dr
     3300006: SQUI_MESH_paupiere_g
     3300008: SQUI_MESH_sourcil_dr
     3300010: SQUI_MESH_sourcil_g
+    3300012: SQUI_MESH_oreille_dr
+    3300014: SQUI_MESH_oreille_g
+    3300016: SQUI_MESH_queue
     4300000: SQUI_MESH_sourcil_dr
     4300002: SQUI_MESH_sourcil_g
     4300004: SQUI_MESH_paupiere_g
@@ -101,6 +125,9 @@ ModelImporter:
     4300012: SQUI_MESH_body
     4300014: SQUI_MESH_aile_dr
     4300016: SQUI_MESH_aile_g
+    4300018: SQUI_MESH_oreille_dr
+    4300020: SQUI_MESH_oreille_g
+    4300022: SQUI_MESH_queue
     7400000: squirrel_turngd
     7400002: squirrel_turndg
     9500000: //RootNode
