@@ -20,7 +20,9 @@ public class PlayerDash : MonoBehaviour
 
     [FoldoutGroup("Jump"), Tooltip("vibration quand on jump"), SerializeField]
     private Vibration onDash;
-    
+
+    [FoldoutGroup("Debug"), Tooltip("cooldown du déplacement horizontal"), SerializeField]
+    private AnimController animController;
     [FoldoutGroup("Debug"), Tooltip("cooldown du déplacement horizontal"), SerializeField]
     private PlayerMove playerMove;
     [FoldoutGroup("Debug"), Tooltip("cooldown du déplacement horizontal"), SerializeField]
@@ -127,6 +129,7 @@ public class PlayerDash : MonoBehaviour
         GameManager.Instance.CameraObject.GetComponent<ScreenShake>().ShakeCamera();
 
         hasDashed = true; //on vient de sauter ! tant qu'on retombe pas, on est vrai
+        animController.JustDash();
 
         //applique soit la force de saut, soit la force défini dans les parametres
         Vector3 jumpForce = (!applyThisForce) ? dir * CalculateJumpVerticalSpeed() : dir * force;
@@ -214,6 +217,7 @@ public class PlayerDash : MonoBehaviour
     {
         //playerController.Anim.SetBool("Jump", false);
         Debug.Log("ici just grounded");
+        animController.JustGroundedDash();
         hasDashed = false;
         PlayerConnected.Instance.setVibrationPlayer(playerController.IdPlayer, playerJump.OnGrounded);
     }

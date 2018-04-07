@@ -32,6 +32,8 @@ public class PlayerJump : MonoBehaviour
     private WorldCollision worldCollision;
     [FoldoutGroup("Debug"), Tooltip("cooldown du déplacement horizontal"), SerializeField]
     private PlayerController playerController;
+    [FoldoutGroup("Debug"), Tooltip("cooldown du déplacement horizontal"), SerializeField]
+    private AnimController animController;
     [FoldoutGroup("Debug"), Tooltip("ref"), SerializeField]
     private InputPlayer inputPlayer;
     [FoldoutGroup("Debug"), Tooltip("ref"), SerializeField]
@@ -131,6 +133,8 @@ public class PlayerJump : MonoBehaviour
 
         hasJumpAndFlying = true; //on vient de sauter ! tant qu'on retombe pas, on est vrai
 
+        animController.JustJump();
+
         //applique soit la force de saut, soit la force défini dans les parametres
         Vector3 jumpForce = (!applyThisForce) ? dir * CalculateJumpVerticalSpeed() : dir * force;
 
@@ -174,6 +178,7 @@ public class PlayerJump : MonoBehaviour
     {
         //playerController.Anim.SetBool("Jump", false);
         Debug.Log("ici just grounded");
+        animController.JustGroundedJump();
         hasJumpAndFlying = false;
         PlayerConnected.Instance.setVibrationPlayer(playerController.IdPlayer, onGrounded);
     }

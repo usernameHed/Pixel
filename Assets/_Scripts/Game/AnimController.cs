@@ -19,6 +19,16 @@ public class AnimController : MonoBehaviour
     public Animator Anim { get { return (anim); } }
     [FoldoutGroup("GamePlay"), Tooltip("Animator du joueur"), SerializeField]
     private Transform parentAnim;
+    [FoldoutGroup("GamePlay"), Tooltip("Animator du joueur"), SerializeField]
+    private WorldCollision worldCollision;
+
+    [FoldoutGroup("GamePlay"), Tooltip("Animator du joueur"), SerializeField]
+    private FrequencyCoolDown coolDownGoToJumpWitoutJumping;
+
+    [FoldoutGroup("GamePlay"), Tooltip("Animator du joueur"), SerializeField]
+    private PlayerJump playerJump;
+    [FoldoutGroup("GamePlay"), Tooltip("Animator du joueur"), SerializeField]
+    private PlayerDash playerDash;
 
     [FoldoutGroup("GamePlay"), Tooltip("Animator du joueur"), SerializeField]
     private Transform trail;
@@ -31,6 +41,8 @@ public class AnimController : MonoBehaviour
     private Vector3 refMove;
 
     private bool hasChanged = false;
+
+    private bool waitingForJumpBool = false;
     #endregion
 
     #region Initialization
@@ -68,7 +80,11 @@ public class AnimController : MonoBehaviour
     #endregion
 
     #region Unity ending functions
-    private void Update()
+
+    /// <summary>
+    /// ici gère les anim grounded
+    /// </summary>
+    private void GroundedAnim()
     {
         if (speedInput > 0f)
         {
@@ -117,6 +133,72 @@ public class AnimController : MonoBehaviour
                 anim.SetBool("run", false);
             }
         }
+    }
+
+    private void HandleAnim()
+    {
+        if (worldCollision.IsGroundedSafe() && worldCollision.CoolDownGroundedJump.IsReady())
+        {
+            GroundedAnim();
+            coolDownGoToJumpWitoutJumping.Reset();
+            waitingForJumpBool = false;
+            anim.SetBool("jump", false);
+            anim.SetBool("dash", false);
+        }
+        else
+        {
+            if (!playerJump.IsJumping() && !playerDash.IsDashing() && worldCollision.CoolDownGroundedJump.IsReady() && !waitingForJumpBool)
+            {
+                coolDownGoToJumpWitoutJumping.StartCoolDown();
+                waitingForJumpBool = true;
+            }
+            if (!playerJump.IsJumping() && !playerDash.IsDashing() && waitingForJumpBool && coolDownGoToJumpWitoutJumping.IsReady()
+                && !anim.GetCurrentAnimatorStateInfo(0).IsName("jump"))
+            {
+                waitingForJumpBool = false;
+                anim.speed = 1;
+                anim.Play("jump");
+            }
+        }
+    }
+
+    /// <summary>
+    /// appelé quand on vient d'atterir
+    /// </summary>
+    public void JustGroundedJump()
+    {
+        anim.SetBool("jump", false);
+    }
+
+    /// <summary>
+    /// appelé quand on vient d'atterir
+    /// </summary>
+    public void JustGroundedDash()
+    {
+        anim.SetBool("dash", false);
+    }
+
+    /// <summary>
+    /// ici on jump !
+    /// </summary>
+    public void JustJump()
+    {
+        coolDownGoToJumpWitoutJumping.Reset();
+        anim.SetBool("jump", true);
+    }
+    /// <summary>
+    /// ici on jump !
+    /// </summary>
+    public void JustDash()
+    {
+        coolDownGoToJumpWitoutJumping.Reset();
+        anim.SetBool("dash", true);
+    }
+
+    private void Update()
+    {
+        HandleAnim();
+
         parentAnim.rotation = dirArrow.rotation;
         //anim.transform.rotation = Quaternion.AngleAxis(90, dirArrow.eulerAngles);
         ear.rotation = dirArrow.rotation;
