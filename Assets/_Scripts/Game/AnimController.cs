@@ -70,7 +70,7 @@ public class AnimController : MonoBehaviour
                 //parentAnim.transform.localScale = new Vector3((right) ? 1 : -1, 1, 1);
             }
 
-            if (anim.GetBool("switch_direc"))
+            /*if (anim.GetBool("switch_direc"))
             {
                 //AnimationClip animation = anim.GetAnimationClipFromAnimatorByName("switch_direc");
 
@@ -81,11 +81,11 @@ public class AnimController : MonoBehaviour
             else
             {
                 anim.speed = 1f;
-            }
+            }*/
 
 
 
-            trail.rotation = QuaternionExt.DirObject(trail.rotation, dir.x, -dir.y, speedTurn * speedInput, QuaternionExt.TurnType.Z);
+            //trail.rotation = QuaternionExt.DirObject(trail.rotation, dir.x, -dir.y, speedTurn * speedInput, QuaternionExt.TurnType.Z);
         }
         parentAnim.rotation = dirArrow.rotation;
         //anim.transform.rotation = Quaternion.AngleAxis(90, dirArrow.eulerAngles);
