@@ -168,6 +168,7 @@ public class AnimController : MonoBehaviour
     public void JustGroundedJump()
     {
         anim.SetBool("jump", false);
+        anim.Play("jump");
     }
 
     /// <summary>
@@ -176,6 +177,7 @@ public class AnimController : MonoBehaviour
     public void JustGroundedDash()
     {
         anim.SetBool("dash", false);
+        anim.Play("jump");
     }
 
     /// <summary>
@@ -193,6 +195,7 @@ public class AnimController : MonoBehaviour
     {
         coolDownGoToJumpWitoutJumping.Reset();
         anim.SetBool("dash", true);
+        anim.Play("dash");
     }
 
     private void Update()
