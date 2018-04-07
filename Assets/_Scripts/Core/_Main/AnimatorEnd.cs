@@ -10,6 +10,8 @@ public class AnimatorEnd : MonoBehaviour
 
     [FoldoutGroup("Object"), Tooltip("opti fps"), SerializeField]
     private Animator anim;
+    [FoldoutGroup("Object"), Tooltip("opti fps"), SerializeField]
+    private AnimController animController;
 
     #endregion
 
@@ -29,6 +31,7 @@ public class AnimatorEnd : MonoBehaviour
     public void StopSwitch()
     {
         anim.SetBool("switch_direc", false);
+        animController.DirectionChanged();
     }
     #endregion
 
