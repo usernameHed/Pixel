@@ -69,12 +69,19 @@ public class AnimController : MonoBehaviour
                 anim.SetBool("switch_direc", true);
                 //parentAnim.transform.localScale = new Vector3((right) ? 1 : -1, 1, 1);
             }
-            /*if (anim.GetBool("switch_direc"))
+
+            if (anim.GetBool("switch_direc"))
             {
-                AnimationClip animation = anim.GetAnimationClipFromAnimatorByName("switch_direc");
-                
-                animation["switch_direc"].speed = 2.0f;
-            }*/
+                //AnimationClip animation = anim.GetAnimationClipFromAnimatorByName("switch_direc");
+
+                //animTurn.averageDuration = speedInput;
+                anim.speed = speedInput;
+                //animTurn["switch_direc"].speed = 2.0f;
+            }
+            else
+            {
+                anim.speed = 1f;
+            }
 
 
 
