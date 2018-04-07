@@ -20,6 +20,8 @@ public class BumperBehaviour : MonoBehaviour
     [FoldoutGroup("GamePlay"), Tooltip("list des prefabs à push"), SerializeField]
     private List<GameData.Layers> listLayerToPush;
 
+    public FrequencyCoolDown coolDownBump;
+
     private bool enabledObject = true;
     private Camera cam;
     #endregion
@@ -63,8 +65,13 @@ public class BumperBehaviour : MonoBehaviour
     /// </summary>
     private void DoBump(GameObject obj)
     {
+
+        if (!coolDownBump.IsReady())
+            return;
+
+        coolDownBump.StartCoolDown();
         //sound bump
-        SoundManager.GetSingleton.playSound(GameData.Sounds.Bounce.ToString() + transform.GetInstanceID().ToString());
+        SoundManager.GetSingleton.playSound(GameData.Sounds.Bump.ToString() + transform.GetInstanceID().ToString());
 
 
         Rigidbody rbOther = obj.GetComponent<Rigidbody>();

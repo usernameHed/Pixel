@@ -65,6 +65,8 @@ public class LevelManager : MonoBehaviour, ILevelManager
             player.transform.position = pointRespawn[scorePlayer - 1].position;
             //player.transform.rotation = pointRespawn[scorePlayer - 1].rotation;
         }
+
+        SoundManager.GetSingleton.playSound("event:/Music/BackgroundMusic");
     }
 
     public void InputLevel()
