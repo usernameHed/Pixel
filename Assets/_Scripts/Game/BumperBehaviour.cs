@@ -84,6 +84,8 @@ public class BumperBehaviour : MonoBehaviour
         }*/
 
         float force = rbOther.velocity.magnitude;
+        if (force < forceObjects)
+            force = forceObjects;
 
         rbOther.ClearVelocity();    //clear velocity du rigidbody
 
