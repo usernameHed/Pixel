@@ -42,7 +42,7 @@ public class AnimController : MonoBehaviour
         right = rightMove;
         speedInput = Mathf.Abs(speed);
         refMove = moveDir;
-        Debug.Log("speed: " + speedInput);
+        //Debug.Log("speed: " + speedInput);
 
     }
     #endregion
