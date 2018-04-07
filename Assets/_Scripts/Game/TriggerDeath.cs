@@ -28,7 +28,7 @@ public class TriggerDeath : MonoBehaviour
     /// trigger
     /// </summary>
     /// <param name="other"></param>
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (!enabledObject)
             return;
