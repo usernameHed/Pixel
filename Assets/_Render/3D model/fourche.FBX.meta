@@ -13,7 +13,12 @@ ModelImporter:
     4300000: fourche
     7400000: Take 001
     9500000: //RootNode
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 01 - Default
+    second: {fileID: 2100000, guid: e1ca123e9288cd84684bd2828b1c16e3, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

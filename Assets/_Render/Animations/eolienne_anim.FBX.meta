@@ -7,16 +7,38 @@ ModelImporter:
   fileIDToRecycleName:
     100000: eolienne
     100002: //RootNode
+    100004: eolienne_pale_CTRL
+    100006: eolienne_pales
+    100008: eolienne_pied
     400000: eolienne
     400002: //RootNode
+    400004: eolienne_pale_CTRL
+    400006: eolienne_pales
+    400008: eolienne_pied
     2100000: 01 - Default
     2100002: 02 - Default
     2300000: eolienne
+    2300002: eolienne_pales
+    2300004: eolienne_pied
     3300000: eolienne
+    3300002: eolienne_pales
+    3300004: eolienne_pied
     4300000: eolienne
+    4300002: eolienne_pied
+    4300004: eolienne_pales
     7400000: eolienne
     9500000: //RootNode
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 01 - Default
+    second: {fileID: 2100000, guid: b35ea2fa9eec5f442a6af0f52eae51a5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 02 - Default
+    second: {fileID: 2100000, guid: ab179b02871b76648a49b738281586ab, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
