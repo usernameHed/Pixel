@@ -1,2 +1,2 @@
-# FrogKiss
-FrogKiss - M1 mini-projet
+# Squirrel
+Pixel challenge - Mention honorable
