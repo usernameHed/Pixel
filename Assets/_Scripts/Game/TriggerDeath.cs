@@ -39,10 +39,13 @@ public class TriggerDeath : MonoBehaviour
             if (kill != null)
             {
                 kill.Kill();
+                //enabledObject = false;
             }
+            else
+                return;
 
             //GameManager.Instance.SceneManagerLocal.PlayIndex(2, true);
-            enabledObject = false;
+            
         }
     }
     #endregion

@@ -15,6 +15,9 @@ public class TriggerNoisette : MonoBehaviour
     [FoldoutGroup("GamePlay"), Tooltip("parent"), SerializeField]
     private Transform parent;
 
+    [FoldoutGroup("GamePlay"), Tooltip("parent"), SerializeField]
+    private Transform checkpoint;
+
     [FoldoutGroup("GamePlay"), Tooltip("vibration quand on take"), SerializeField]
     private Vibration onTake;
 
@@ -50,6 +53,8 @@ public class TriggerNoisette : MonoBehaviour
             bag.GetNoisette();
 
             ScoreManager.Instance.Data.scorePlayer++;
+
+            checkpoint.SetParent(null);
 
             parent.gameObject.SetActive(false);
             //GameManager.Instance.SceneManagerLocal.PlayIndex(2, true);

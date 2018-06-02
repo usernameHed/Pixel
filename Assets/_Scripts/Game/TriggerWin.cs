@@ -36,6 +36,7 @@ public class TriggerWin : MonoBehaviour
         if (GameData.IsInList(listLayerToCollide, other.gameObject.layer))
         {
             SoundManager.GetSingleton.playSound("event:/Music/BackgroundMusic", true);
+            ScoreManager.Instance.ResetAll();
             GameManager.Instance.SceneManagerLocal.PlayIndex(2, true);
             enabledObject = false;
         }
